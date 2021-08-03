@@ -11,6 +11,9 @@ class ModulesServiceProvider extends \Illuminate\Support\ServiceProvider
                  if(file_exists(__DIR__.'/'.$module.'/Routes/site.php')) {
                      $this->loadRoutesFrom(__DIR__.'/'.$module.'/Routes/site.php');
                 }
+                if(file_exists(__DIR__.'/'.$module.'/Routes/admin.php')) {
+                    $this->loadRoutesFrom(__DIR__.'/'.$module.'/Routes/admin.php');
+                }
         //Загружаем View
         //view('Test::admin')
                 if(is_dir(__DIR__.'/'.$module.'/Views')) {

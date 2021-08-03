@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\PageController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,26 +14,19 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){
-Route::group(['prefix'=>'admin'], function (){
-    Route::resource('/pages',PageController::class);
-    });
-});
-
-//Route::get('/dashboard', function () {
-//    return Inertia::render('Dashboard');
-//})->middleware(['auth', 'verified'])->name('dashboard');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//Route::get('/', [HomeController::class, 'index']);
+//Auth::routes();
+//Route::get('/', function () {
+//    return view('dashboard');
+//})->middleware(['auth'])->name('admin');
 
 require __DIR__.'/auth.php';
+//Route::group(['prefix' => 'admin'], function(){
+//
+//    Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index']);
+//
+//
+//});
