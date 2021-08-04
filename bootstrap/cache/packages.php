@@ -1,4 +1,11 @@
 <?php return array (
+  'barryvdh/laravel-ide-helper' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
@@ -43,6 +50,17 @@
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'mcamara/laravel-localization' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'LaravelLocalization' => 'Mcamara\\LaravelLocalization\\Facades\\LaravelLocalization',
     ),
   ),
   'nesbot/carbon' => 

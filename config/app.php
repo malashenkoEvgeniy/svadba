@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Modules\ModulesServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
 
     ],
 

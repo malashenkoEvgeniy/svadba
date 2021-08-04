@@ -1,16 +1,14 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin;
 
-
-use App\Http\Controllers\Controller;
-
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     public function index()
     {
-        return 'admin';
+        $page = MainPage::first();
+
+        return view('admin.main_page.edit', compact('page'));
     }
 
 }
