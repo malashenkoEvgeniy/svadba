@@ -14,8 +14,8 @@ class BaseController extends Controller
 {
     public function __construct()
     {
-        $newRequests = FormRequest::new ()->orderBy('created_at')->count();
-        view()->share(compact('newRequests'));
+//        $newRequests = FormRequest::new ()->orderBy('created_at')->count();
+//        view()->share(compact('newRequests'));
     }
 
     public function translit($value)
