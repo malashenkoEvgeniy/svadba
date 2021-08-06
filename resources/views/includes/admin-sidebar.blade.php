@@ -33,6 +33,12 @@
                     <p>Главная страница</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{route('categories.index')}}" class="nav-link">
+                    <i class="nav-icon fas fa-archive"></i>
+                    <p>Категории</p>
+                </a>
+            </li>
             <hr>
 
             <li class="nav-item">

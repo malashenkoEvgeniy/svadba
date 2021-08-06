@@ -28,8 +28,8 @@ class MediaProject extends Model
      * Relation for project teams
      * @return MorphToMany
      */
-    public function teams()
+    public function category()
     {
-        return $this->morphedByMany(Team::class, 'attachable', 'attaches');
+        return $this->morphedByMany(Category::class, 'attachable', 'attaches');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
@@ -45,6 +46,7 @@ Route::group(
         Route::resource('home', HomeController::class)->except([
             'index'
         ]);
+        Route::resource('categories', CategoryController::class);
 
     }
     );
