@@ -28,7 +28,7 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="../widgets.html" class="nav-link">
+                <a href="{{route('my-home', 1)}}" class="nav-link">
                     <i class="fas fa-home"></i>
                     <p>Главная страница</p>
                 </a>

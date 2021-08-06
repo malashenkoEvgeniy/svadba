@@ -1,58 +1,102 @@
 @extends('layouts.admin')
-{{--@extends('site._layouts.main')--}}
 
-@section('title', 'Page Title')
 @section('content')
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th style="width: 10px">#</th>
-            <th>Task</th>
-            <th>Progress</th>
-            <th style="width: 40px">Label</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>
-                <div class="progress progress-xs">
-                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Home</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">Home</li>
+                        </ol>
+                    </div>
                 </div>
-            </td>
-            <td><span class="badge bg-danger">55%</span></td>
-        </tr>
-        <tr>
-            <td>2.</td>
-            <td>Clean database</td>
-            <td>
-                <div class="progress progress-xs">
-                    <div class="progress-bar bg-warning" style="width: 70%"></div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Список категорий</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+{{--                        @include('admin.includes.alerts')--}}
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>Наименование</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $page->translate()->title }}</td>
+                                            <td>
+                                                <a href="{{ route('home.edit', $page->id) }}" class="btn btn-info btn-sm float-left mr-1">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                    </div>
+                    <div class="card-footer clearfix">
+                        @if(count($slider))
+                            <h2>Изображения для слайдера</h2>
+                        <table class="table table-bordered table-hover text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>Изображение</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($slider as $slide)
+                                @foreach($slide->attachments as $slide_img)
+                                    <tr>
+
+                                        <td><img src="{{$slide_img->img_prev }}" alt="Превью">
+                                            </td>
+                                        <td>
+
+                                            <form action="{{ route('home.destroy',  $slide->id) }}" method="post" class="float-left">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Подтвердите удаление')">
+                                                    <i  class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                        @endif
+                    </div>
                 </div>
-            </td>
-            <td><span class="badge bg-warning">70%</span></td>
-        </tr>
-        <tr>
-            <td>3.</td>
-            <td>Cron job running</td>
-            <td>
-                <div class="progress progress-xs progress-striped active">
-                    <div class="progress-bar bg-primary" style="width: 30%"></div>
-                </div>
-            </td>
-            <td><span class="badge bg-primary">30%</span></td>
-        </tr>
-        <tr>
-            <td>4.</td>
-            <td>Fix and squish bugs</td>
-            <td>
-                <div class="progress progress-xs progress-striped active">
-                    <div class="progress-bar bg-success" style="width: 90%"></div>
-                </div>
-            </td>
-            <td><span class="badge bg-success">90%</span></td>
-        </tr>
-        </tbody>
-    </table>
+                <!-- /.card -->
+
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+        </section>
+    </div>
 @endsection

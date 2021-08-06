@@ -41,7 +41,11 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth'],
     ], function () {
     Route::group(['prefix' => 'admin-my'], function () {
-        Route::get('/', [HomeController::class, 'index'])->name('home');
+        Route::get('', [HomeController::class, 'index'])->name('my-home');
+        Route::resource('home', HomeController::class)->except([
+            'index'
+        ]);
+
     }
     );
 });

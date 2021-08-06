@@ -50,7 +50,7 @@ class BaseController extends Controller
         return $data;
     }
 
-    public function storeFileForResize( $file, $storePath = '/uploads/')
+    public function storeFileForResize( $file, $storePath = '/uploads/', $parameters=null)
     {
 
         $fileNewName = time() . $file->getClientOriginalName();
@@ -59,22 +59,110 @@ class BaseController extends Controller
         $image = $manager->make($file);
         $width = Image::make($image)->width();
         $height = Image::make($image)->height();
-        $water = $manager->make('img/logo.png');
-        $str = public_path() . $storePath .'max_'. $fileNewName;
-        $water->resize( $width*0.3,$height*0.3, function ($img){
-            $img->aspectRatio();
-        });
-        $image->insert($water, 'center', 10, 10);
+        $strF = public_path() . $storePath .'f'. $fileNewName;
+        $strD = public_path() . $storePath .'d'. $fileNewName;
+        $strT = public_path() . $storePath .'t'. $fileNewName;
+        $strM = public_path() . $storePath .'m'. $fileNewName;
+        $strP = public_path() . $storePath .'p'. $fileNewName;
+        $start_img = [
+            'img_f_w' => 1920,
+            'img_f_h' => 900,
+        ];
 
-        $image->save($str,70);
-        $image->resize(450,300, function ($img){
-            $img->aspectRatio();
-        });
-        $str = public_path() . $storePath. $fileNewName;
-        $image->save($str,70);
+        if($width>$height){
+            if( $start_img['img_f_w'] < $width ) {
+                $image->resize($start_img['img_f_w'], null, function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strF,75);
+            } else {
+                $image->save($strF,75);
+            }
+            if( $parameters['img_d_w'] < $width ) {
+                $image->resize($parameters['img_d_w'], null, function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strD,75);
+            } else {
+                $image->save($strD,75);
+            }
+            if( $parameters['img_t_w'] < $width ) {
+                $image->resize($parameters['img_t_w'], null, function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strT,75);
+            } else {
+                $image->save($strT,75);
+            }
+            if( $parameters['img_m_w'] < $width ) {
+                $image->resize($parameters['img_m_w'], null, function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strM,75);
+            } else {
+                $image->save($strM,75);
+            }
+            if( $parameters['img_p_w'] < $width ) {
+                $image->resize($parameters['img_p_w'], null, function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strP,75);
+            } else {
+                $image->save($strP,75);
+            }
 
+        } else {
+            if( $start_img['img_f_h'] < $height ) {
+                $image->resize(null, $start_img['img_f_h'],  function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strF,75);
+            } else {
+                $image->save($strF,75);
+            }
+            if( $parameters['img_d_h'] < $height ) {
+                $image->resize(null, $parameters['img_d_h'],  function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strD,75);
+            } else {
+                $image->save($strD,75);
+            }
+            if( $parameters['img_t_h'] < $height ) {
+                $image->resize(null, $parameters['img_t_h'],  function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strT,75);
+            } else {
+                $image->save($strT,75);
+            }
+            if( $parameters['img_m_h'] < $height ) {
+                $image->resize(null, $parameters['img_m_h'],  function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strM,75);
+            } else {
+                $image->save($strM,75);
+            }
+            if( $parameters['img_p_h'] < $height ) {
+                $image->resize(null, $parameters['img_p_h'],  function ($img) {
+                    $img->aspectRatio();
+                });
+                $image->save($strP,75);
+            } else {
+                $image->save($strP,75);
+            }
+        }
 
-        $data = ['name' => $fileNewName, 'format' => $file->getClientOriginalExtension(), 'path' => $storePath . $fileNewName, 'path_max' => $storePath .'max_'. $fileNewName];
+        $data = [
+            'name' => $fileNewName,
+            'format' => $file->getClientOriginalExtension(),
+            'pathF' => $storePath .'f'. $fileNewName,
+            'pathD' =>  $storePath .'d'. $fileNewName,
+            'pathT' => $storePath .'t'. $fileNewName,
+            'pathM' => $storePath .'m'. $fileNewName,
+            'pathP' => $storePath .'p'. $fileNewName,
+            ];
 
         return $data;
     }

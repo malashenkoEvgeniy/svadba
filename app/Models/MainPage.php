@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Traits\Attachable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\MainPage
@@ -19,10 +19,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|MainPage whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class MainPage extends Model
+class MainPage extends BaseModel
 {
-    use HasFactory;
+    use HasFactory, Attachable;
     protected $table = 'main_pages';
     protected $guarded = [];
     protected $translateTable = "App\Models\MainPageTranslate";
+
+    public static function create_item()
+    {
+        $main = MainPage::create(['id'=>1]);
+        $main->translations()->create(['title'=>'Новая Коллекция']);
+        return $main;
+    }
 }
