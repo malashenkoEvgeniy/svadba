@@ -5,8 +5,13 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 d-flex">
                         <h1>Редактирование категории</h1>
+                        @if(count($category->attachments))
+                            <img src="{{$category->attachments[0]->img_prev}}" alt="img" width="100" height="50"></td>
+                        @else
+                            Нет изображений
+                        @endif
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -43,6 +48,16 @@
                                             <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                                         </div>
                                     </div>
+                                    @if(count($parent)>0)
+                                        <select name="parent_id"  >
+
+                                            <option value="0" @if($category->parent_id==0) selected @endif>Выбрать категорию</option>
+
+                                            @foreach($parent as  $parent_item)
+                                                <option value="{{$parent_item->id}}" @if($category->parent_id==$parent_item->id) selected @endif>{{$parent_item->translate()->title}}</option>
+                                            @endforeach
+                                        </select>
+                                    @endif
 
                                     <div class="form-group">
                                         <label for="title">Название</label>

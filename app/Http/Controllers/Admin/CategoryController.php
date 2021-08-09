@@ -88,8 +88,13 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('admin.categories.edit', compact('category'));
+        $category = Category::where('id', $id)->with('attachments')->first();
+
+
+
+
+        $parent = Category::where(['parent_id'=>0])->get();
+        return view('admin.categories.edit', compact('category', 'parent'));
     }
 
     /**
@@ -105,13 +110,32 @@ class CategoryController extends BaseController
             'title' => 'required',
         ]);
 
-        $reqTranslation = request()->except('images');
-        $category = Category::find($id);
+        $reqTranslation = request()->except('images', 'parent_id');
+        $category = Category::where('id', $id)->with('attachments')->first();
         if (request()->file('images') !== null) {
-            $this->deleteFile($category->image);
-            $file = $this->storeFile(request()->file('images'), $this->storePath);
-            $category->images = $file['path'];
-            $category->update(['images' => $category->images]);
+            if(count($category->attachments)){
+                foreach ($category->attachments as $attachments){
+                    $this->deleteFile($attachments->img_f);
+                    $this->deleteFile($attachments->img_d);
+                    $this->deleteFile($attachments->img_t);
+                    $this->deleteFile($attachments->img_m);
+                    $this->deleteFile($attachments->img_prev);
+                }
+
+                foreach ($category->attachments as $atach){
+                    $atach->delete();
+                }
+            }
+
+            $file = $this->storeFileForResize(request()->file('images'), $this->storePath, $this->parameters);
+            $img = new MediaProject([
+                'img_f' => $file['pathF'],
+                'img_d' => $file['pathD'],
+                'img_t' => $file['pathT'],
+                'img_m' => $file['pathM'],
+                'img_prev' => $file['pathP'],
+            ]);
+            $category->attachments()->save($img);
         }
          $this->updateTranslation($category, $reqTranslation, $request);
 
@@ -127,7 +151,22 @@ class CategoryController extends BaseController
      */
     public function destroy($id)
     {
-        Category::destroy($id);
+        $category = Category::where('id', $id)->with('attachments')->first();
+        if(count($category->attachments)){
+            foreach ($category->attachments as $attachments){
+                $this->deleteFile($attachments->img_f);
+                $this->deleteFile($attachments->img_d);
+                $this->deleteFile($attachments->img_t);
+                $this->deleteFile($attachments->img_m);
+                $this->deleteFile($attachments->img_prev);
+            }
+
+            foreach ($category->attachments as $atach){
+                $atach->delete();
+            }
+        }
+       $category->delete();
+
         return redirect()->route('categories.index')->with('success', 'Категория удалена');
     }
 }
