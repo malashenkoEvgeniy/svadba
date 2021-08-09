@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Цвета</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Blank Page</li>
+                            <li class="breadcrumb-item active">Бренды</li>
                         </ol>
                     </div>
                 </div>
@@ -26,51 +26,39 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Список категорий</h3>
+                                <h3 class="card-title">Список цветов</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @include('includes.admin.alerts')
-                                <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">Добавить
-                                    категорию</a>
-                                @if (count($categories))
+                                <a href="{{ route('colors.create') }}" class="btn btn-primary mb-3">Добавить
+                                    цвет</a>
+                                @if (count($colors))
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover text-nowrap">
                                             <thead>
                                             <tr>
                                                 <th style="width: 30px">#</th>
                                                 <th>Наименование</th>
-                                                <th>Изображение</th>
-                                                <th>Родитель</th>
+                                                <th>Цвет</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($categories as $category)
+                                            @foreach($colors as $color)
                                                 <tr>
                                                     <td>{{ $loop->index}}</td>
-                                                    <td>{{ $category->translate()->title }}</td>
-                                                    <td>
-                                                        @if(count($category->attachments))
-                                                        <img src="{{$category->attachments[0]->img_prev}}" alt="img" width="100" height="50">
-                                                        @else
-                                                            Нет изображений
-                                                        @endif
-                                                    </td>
-                                                    <td>
+                                                    <td>{{ $color->translate()->title }}</td>
+                                                    <td><div style="background-color:  {{ $color->meaning }}; width: 100%; height: 30px"></div>
+                                                        {{ $color->translate()->title }}</td>
 
-                                                        @if($category->parent !== null)
-                                                            {{$category->parent->translate()->title}}
-                                                        @else
-                                                        Нет родителя
-                                                        @endif
-                                                    </td>
+
                                                     <td>
-                                                        <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-info btn-sm float-left mr-1">
+                                                        <a href="{{ route('colors.edit', ['color' => $color->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <form action="{{ route('categories.destroy', ['category' => $category->id]) }}" method="post" class="float-left">
+                                                        <form action="{{ route('colors.destroy', ['color' => $color->id]) }}" method="post" class="float-left">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"
@@ -86,20 +74,10 @@
                                         </table>
                                     </div>
                                 @else
-                                    <p>Категорий пока нет...</p>
+                                    <p>Цветов пока нет...</p>
                                 @endif
                             </div>
-                            <!-- /.card-body -->
-{{--                            <div class="card-footer clearfix">--}}
-{{--                                {{ $categories->links() }}--}}
-{{--                                --}}{{--<ul class="pagination pagination-sm m-0 float-right">--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">«</a></li>--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">1</a></li>--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">»</a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
+
                         </div>
                         <!-- /.card -->
 

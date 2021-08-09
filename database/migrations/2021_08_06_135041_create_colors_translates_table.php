@@ -17,8 +17,8 @@ class CreateColorsTranslatesTable extends Migration
             $table->id();
             $table->char('title', 255);
             $table->char('language', 10)->default('ru');
-            $table->bigInteger('color_id')->unsigned();
-            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
+            $table->bigInteger('colors_id')->unsigned();
+            $table->foreign('colors_id')->references('id')->on('colors')->onDelete('cascade');
             $table->timestamps();
         });
     }

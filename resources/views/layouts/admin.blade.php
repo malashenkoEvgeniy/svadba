@@ -13,6 +13,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
+    @yield('links')
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -173,7 +174,7 @@
             <span class="brand-text font-weight-light">На сайт</span>
         </a>
 
-        @include('includes.admin-sidebar')
+        @include('includes.admin.admin-sidebar')
     </aside>
 
 
@@ -215,5 +216,6 @@
     //     return this.href == url;
     // }).parentsUntil(".sidebar-menu > .treeview-menu").siblings().removeClass('active menu-open').end().addClass('active menu-open');
 </script>
+@yield('scripts')
 </body>
 </html>

@@ -30,7 +30,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                @include('includes.alerts')
+                                @include('includes.admin.alerts')
                                 <a href="{{ route('brands.create') }}" class="btn btn-primary mb-3">Добавить
                                     бренд</a>
                                 @if (count($brands))
