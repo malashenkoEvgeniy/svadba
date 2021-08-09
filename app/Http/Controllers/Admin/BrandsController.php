@@ -3,29 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Brand;
 use App\Models\MediaProject;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 
-class CategoryController extends BaseController
+class BrandsController extends  BaseController
 {
-    protected $storePath = '/uploads/category/';
+    protected $storePath = '/uploads/brands/';
     protected $parameters = [
-        'img_d_w' => 800,
-        'img_d_h' => 800,
-        'img_t_w' => 500,
-        'img_t_h' => 500,
-        'img_m_w' => 300,
-        'img_m_h' => 300,
-        'img_p_w' => 100,
-        'img_p_h' => 100,
-    ];
+    'img_d_w' => 800,
+    'img_d_h' => 800,
+    'img_t_w' => 500,
+    'img_t_h' => 500,
+    'img_m_w' => 300,
+    'img_m_h' => 300,
+    'img_p_w' => 100,
+    'img_p_h' => 100,
+];
 
     public function __construct()
-    {
-        parent::__construct();
-    }
+{
+    parent::__construct();
+}
     /**
      * Display a listing of the resource.
      *
@@ -33,35 +32,35 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $categories = Category::all();
 
-        return view('admin.categories.index', compact('categories'));
+        $brands = Brand::all();
+
+        return view('admin.brands.index', compact('brands'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        $parent = Category::where(['parent_id'=>0])->get();
-        return view('admin.categories.create', compact('parent'));
+        return view('admin.brands.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required|max:255',
-        ]);
+        $req = request()->only('' );
 
-        $req = request()->only('slug', 'parent_id' );
-        $req['slug'] = SlugService :: createSlug ( Category :: class, 'slug' , $request->title );
+        $reqT = request()->except( 'images' );
 
-        $reqT = request()->except('slug', 'parent_id', 'images' );
-
-         $category = $this->storeWithTranslation(new Category(), $req,$reqT)['model'];
+        $brand = $this->storeWithTranslation(new Brand(), $req,$reqT)['model'];
 
 
         if (request()->file('images') !== null) {
@@ -73,44 +72,37 @@ class CategoryController extends BaseController
                 'img_m' => $file['pathM'],
                 'img_prev' => $file['pathP'],
             ]);
-            $category->attachments()->save($img);
+            $brand->attachments()->save($img);
         }
 
 
-        return redirect()->route('categories.index')->with('success', 'Запись успешно создана');
+        return redirect()->route('brands.index')->with('success', 'Запись успешно создана');
     }
+
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $category = Category::where('id', $id)->with('attachments')->first();
-        $parent = Category::where(['parent_id'=>0])->get();
-        return view('admin.categories.edit', compact('category', 'parent'));
+        $brand = Brand::where('id', $id)->with('attachments')->first();
+        return view('admin.brands.edit', compact('brand'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
         ]);
 
-        $reqTranslation = request()->except('images', 'parent_id');
-        $category = Category::where('id', $id)->with('attachments')->first();
+        $reqTranslation = request()->except('images');
+        $brand = Brand::where('id', $id)->with('attachments')->first();
         if (request()->file('images') !== null) {
-            if(count($category->attachments)){
-                foreach ($category->attachments as $attachments){
+            if(count($brand->attachments)){
+                foreach ($brand->attachments as $attachments){
                     $this->deleteFile($attachments->img_f);
                     $this->deleteFile($attachments->img_d);
                     $this->deleteFile($attachments->img_t);
@@ -118,7 +110,7 @@ class CategoryController extends BaseController
                     $this->deleteFile($attachments->img_prev);
                 }
 
-                foreach ($category->attachments as $atach){
+                foreach ($brand->attachments as $atach){
                     $atach->delete();
                 }
             }
@@ -131,12 +123,12 @@ class CategoryController extends BaseController
                 'img_m' => $file['pathM'],
                 'img_prev' => $file['pathP'],
             ]);
-            $category->attachments()->save($img);
+            $brand->attachments()->save($img);
         }
-         $this->updateTranslation($category, $reqTranslation, $request);
+        $this->updateTranslation($brand, $reqTranslation, $request);
 
 
-        return redirect()->route('categories.index')->with('success', 'Изменения сохранены');
+        return redirect()->route('brands.index')->with('success', 'Изменения сохранены');
     }
 
     /**
@@ -147,9 +139,9 @@ class CategoryController extends BaseController
      */
     public function destroy($id)
     {
-        $category = Category::where('id', $id)->with('attachments')->first();
-        if(count($category->attachments)){
-            foreach ($category->attachments as $attachments){
+        $brand = Brand::where('id', $id)->with('attachments')->first();
+        if(count($brand->attachments)){
+            foreach ($brand->attachments as $attachments){
                 $this->deleteFile($attachments->img_f);
                 $this->deleteFile($attachments->img_d);
                 $this->deleteFile($attachments->img_t);
@@ -157,12 +149,12 @@ class CategoryController extends BaseController
                 $this->deleteFile($attachments->img_prev);
             }
 
-            foreach ($category->attachments as $atach){
+            foreach ($brand->attachments as $atach){
                 $atach->delete();
             }
         }
-       $category->delete();
+        $brand->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Категория удалена');
+        return redirect()->route('brands.index')->with('success', 'Бренд удален');
     }
 }

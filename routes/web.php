@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Artisan;
@@ -47,6 +48,7 @@ Route::group(
             'index'
         ]);
         Route::resource('categories', CategoryController::class);
+        Route::resource('brands', BrandsController::class);
 
     }
     );

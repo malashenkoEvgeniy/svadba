@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Бренды</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Blank Page</li>
+                            <li class="breadcrumb-item active">Бренды</li>
                         </ol>
                     </div>
                 </div>
@@ -26,14 +26,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Список категорий</h3>
+                                <h3 class="card-title">Список брендов</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @include('includes.alerts')
-                                <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">Добавить
-                                    категорию</a>
-                                @if (count($categories))
+                                <a href="{{ route('brands.create') }}" class="btn btn-primary mb-3">Добавить
+                                    бренд</a>
+                                @if (count($brands))
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover text-nowrap">
                                             <thead>
@@ -41,36 +41,28 @@
                                                 <th style="width: 30px">#</th>
                                                 <th>Наименование</th>
                                                 <th>Изображение</th>
-                                                <th>Родитель</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($categories as $category)
+                                            @foreach($brands as $brand)
                                                 <tr>
                                                     <td>{{ $loop->index}}</td>
-                                                    <td>{{ $category->translate()->title }}</td>
+                                                    <td>{{ $brand->translate()->title }}</td>
                                                     <td>
-                                                        @if(count($category->attachments))
-                                                        <img src="{{$category->attachments[0]->img_prev}}" alt="img" width="100" height="50">
+                                                        @if(count($brand->attachments))
+                                                        <img src="{{$brand->attachments[0]->img_prev}}" alt="img" width="100" height="50">
                                                         @else
                                                             Нет изображений
                                                         @endif
                                                     </td>
-                                                    <td>
 
-                                                        @if($category->parent !== null)
-                                                            {{$category->parent->translate()->title}}
-                                                        @else
-                                                        Нет родителя
-                                                        @endif
-                                                    </td>
                                                     <td>
-                                                        <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-info btn-sm float-left mr-1">
+                                                        <a href="{{ route('brands.edit', ['brand' => $brand->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <form action="{{ route('categories.destroy', ['category' => $category->id]) }}" method="post" class="float-left">
+                                                        <form action="{{ route('brands.destroy', ['brand' => $brand->id]) }}" method="post" class="float-left">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"
@@ -86,20 +78,10 @@
                                         </table>
                                     </div>
                                 @else
-                                    <p>Категорий пока нет...</p>
+                                    <p>Брендов пока нет...</p>
                                 @endif
                             </div>
-                            <!-- /.card-body -->
-{{--                            <div class="card-footer clearfix">--}}
-{{--                                {{ $categories->links() }}--}}
-{{--                                --}}{{--<ul class="pagination pagination-sm m-0 float-right">--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">«</a></li>--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">1</a></li>--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
-{{--                                    <li class="page-item"><a class="page-link" href="#">»</a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
+
                         </div>
                         <!-- /.card -->
 
