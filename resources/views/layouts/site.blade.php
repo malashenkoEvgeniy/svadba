@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('site/libs/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/home.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/goods.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/pagination.css')}}">
     @yield('links')
     <title>Document</title>
@@ -22,7 +23,7 @@
 
     @yield('content')
 
-
+    @include('includes.site.footer')
 
 
 </div>

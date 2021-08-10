@@ -3,13 +3,16 @@
 
 namespace App\Modules\Home\Controllers\Site;
 
+use App\Http\Controllers\Site\BaseController;
+use App\Models\MainPage;
+use App\Models\MainSlider;
 
-use App\Http\Controllers\Controller;
-
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     public function index()
     {
-        return view('Home::site.home.index');
+        $page = MainPage::first();
+        $slider = MainSlider::all();
+        return view('Home::site.home.index', compact('page', 'slider'));
     }
 }

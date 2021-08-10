@@ -41,6 +41,7 @@
                         <div class="col-12 col-sm-6">
                             <h3 class="d-inline-block d-sm-none">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
                             <div class="col-12">
+
                                 @if(count($product->attachments))
                                     <img src="{{$product->attachments[0]->img_d}}" alt="img" class="product-image" width="100" height="50">
                                 @else
@@ -62,6 +63,11 @@
                                 </div>
                                 <input type="text" name="title"  class="form-control " id="title"     placeholder="Название" value="{{ $product->translate()->title }}">
                             </div>
+                            <div class="input-group mb-3">
+                                <input type="file" name="images" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                            </div>
+
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Родительская категория</span>

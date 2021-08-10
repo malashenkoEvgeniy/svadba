@@ -65,7 +65,7 @@ class BaseController extends Controller
         $strM = public_path() . $storePath .'m'. $fileNewName;
         $strP = public_path() . $storePath .'p'. $fileNewName;
         $start_img = [
-            'img_f_w' => 1920,
+            'img_f_w' => 1900,
             'img_f_h' => 900,
         ];
 

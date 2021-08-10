@@ -41,7 +41,11 @@
                                                 <th style="width: 30px">#</th>
                                                 <th>Наименование</th>
                                                 <th>Изображение</th>
+                                                <th>Цена</th>
                                                 <th>Родитель</th>
+                                                <th>Товар акционный</th>
+                                                <th>Товар-новинка</th>
+                                                <th>Товар коллекция</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
@@ -57,10 +61,14 @@
                                                             Нет изображений
                                                         @endif
                                                     </td>
-                                                    <td>
-                                                        {{$product->category->translate()->title}}
-
+                                                    <td>{{$product->price}}</td>
+                                                    <td>{{$product->category->translate()->title}}</td>
+                                                    <td>@if($product->is_promotion)
+                                                            +<br> Новая цена: {{$product->new_price}}
+                                                        @else - @endif
                                                     </td>
+                                                    <td>@if($product->is_new) + @else - @endif </td>
+                                                    <td>@if($product->is_collection) + @else - @endif </td>
                                                     <td>
                                                         <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>

@@ -3,31 +3,31 @@
         <ul class="nav-list">
             <li class="nav-item nav-item-burger">
                 <button class="btn-menu-burger">
-                    <img src="img/burger.png" alt="">
+                    @include('svg.burger')
                 </button>
             </li>
             <li class="nav-item nav-item-logo">
                 <a href="/" class="nav-item-logo-link">
-                    <img src="img/logo.png" alt="" class="nav-item-logo-img">
+                    <img src="{{asset('site/img/logo.png')}}" alt="" class="nav-item-logo-img">
                 </a>
             </li>
             <li class="nav-item nav-item-nav-menu">
                 <ul class="nav-menu-list">
                     <li class="nav-menu-item nav-item-burger burger-close-btn">
                         <button class="nav-item-burger-close">
-                            <img src="img/burger-close.png" alt="" class="">
+                            @include('svg.burger-close')
                         </button>
                     </li>
                     <li class="nav-menu-item">
-                        <a href="#" class="nav-menu-link nav-menu-link-catalog">
+                        <a href="{{route('catalog.index')}}" class="nav-menu-link nav-menu-link-catalog">
                             <span>Каталог</span><button class="btn-menu-arrow">
-                                <img src="img/arrow.png" alt="">
+                                <img src="" alt="">
                             </button>
                         </a>
                         <div class="sub-catalog-menu">
                             <a href="#" class="nav-menu-back">
                                 <div class="btn-menu-back">
-                                    <img src="img/back.png" alt="">
+                                    @include('svg.back')
                                 </div>
                                 <span>Каталог</span>
                             </a>
@@ -36,7 +36,7 @@
                                     <a href="#" class="sub-catalog-link active">
                                         <span>Свадебные платья</span>
                                         <button class="btn-menu-arrow">
-                                            <img src="img/arrow.png" alt="">
+                                            @include('svg.arrow')
                                         </button>
                                     </a>
                                     <ul class="unit-list active">
@@ -64,7 +64,7 @@
                                     <a href="#" class="sub-catalog-link">
                                         <span>Вечерние платья</span>
                                         <button class="btn-menu-arrow">
-                                            <img src="img/arrow.png" alt="">
+                                            @include('svg.arrow')
                                         </button>
                                     </a>
                                     <ul class="unit-list">
@@ -80,7 +80,7 @@
                                     <a href="#" class="sub-catalog-link">
                                         <span>Аксессуары и обувь</span>
                                         <button class="btn-menu-arrow">
-                                            <img src="img/arrow.png" alt="">
+                                            @include('svg.arrow')
                                         </button>
                                     </a>
                                     <ul class="unit-list">
@@ -115,13 +115,13 @@
                         <a href="#" class="nav-menu-link nav-menu-link-service">
                             <span>Услуги</span>
                             <button class="btn-menu-arrow">
-                                <img src="img/arrow.png" alt="">
+                                @include('svg.arrow')
                             </button>
                         </a>
                         <div class="sub-service-menu">
                             <a href="#" class="nav-menu-back">
                                 <div class="btn-menu-back">
-                                    <img src="img/back.png" alt="">
+                                    @include('svg.back')
                                 </div>
                                 <span>Услуги</span>
                             </a>
@@ -161,12 +161,18 @@
             <li class="nav-item nav-item-search">
                 <form class="search-form search-input-close">
                     <input id="search" placeholder="Введите название платья или бренда" name="serch" type="text" >
-                    <button type="submit" class="search-form-btn"><img src="img/search.png" alt=""></button>
+                    <button type="submit" class="search-form-btn">
+                        @include('svg.search')
+                    </button>
                 </form>
-                <button class="search-form-btn-open"><img src="img/search.png" alt=""></button>
+                <button class="search-form-btn-open">
+                    @include('svg.search')
+                </button>
             </li>
             <li class="nav-item nav-item-nav-cart">
-                <a href="#" class="nav-item-cart-btn"><img src="img/cart.png" alt=""></a>
+                <a href="#" class="nav-item-cart-btn">
+                    @include('svg.cart')
+                </a>
                 <div class="counter-orders">10</div>
             </li>
         </ul>

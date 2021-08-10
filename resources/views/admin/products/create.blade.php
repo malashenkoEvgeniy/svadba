@@ -40,7 +40,6 @@
                             <div class="card-body">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-
                                         <span class="input-group-text">Изображение</span>
                                     </div>
                                     <div class="custom-file">

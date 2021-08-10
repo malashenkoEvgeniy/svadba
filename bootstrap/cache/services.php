@@ -41,6 +41,7 @@
     37 => 'App\\Providers\\RouteServiceProvider',
     38 => 'App\\Modules\\ModulesServiceProvider',
     39 => 'Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider',
+    40 => 'App\\Providers\\WidgetServiceProvider',
   ),
   'eager' => 
   array (
@@ -68,6 +69,7 @@
     21 => 'App\\Providers\\RouteServiceProvider',
     22 => 'App\\Modules\\ModulesServiceProvider',
     23 => 'Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider',
+    24 => 'App\\Providers\\WidgetServiceProvider',
   ),
   'deferred' => 
   array (

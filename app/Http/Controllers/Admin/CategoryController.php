@@ -12,13 +12,13 @@ class CategoryController extends BaseController
 {
     protected $storePath = '/uploads/category/';
     protected $parameters = [
-        'img_d_w' => 800,
-        'img_d_h' => 800,
-        'img_t_w' => 500,
-        'img_t_h' => 500,
-        'img_m_w' => 300,
-        'img_m_h' => 300,
-        'img_p_w' => 100,
+        'img_d_w' => 638,
+        'img_d_h' => 764,
+        'img_t_w' => 265,
+        'img_t_h' => 368,
+        'img_m_w' => 320,
+        'img_m_h' => 368,
+        'img_p_w' => 80,
         'img_p_h' => 100,
     ];
 

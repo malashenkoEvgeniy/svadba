@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Modules\ModulesServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        App\Providers\WidgetServiceProvider::class,
 
     ],
 
