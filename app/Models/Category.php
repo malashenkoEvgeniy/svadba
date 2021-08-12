@@ -47,6 +47,12 @@ class Category extends BaseModel
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
+    public function children()
+    {
+        return $this->hasMany(Page::class, 'parent_id');
+    }
+
+
     public static function creat($title, $parent_id = 0, $img = null)
     {
         $category = new static();

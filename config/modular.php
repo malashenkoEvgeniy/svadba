@@ -4,5 +4,6 @@ return [
     "base_namespace"=>"App\Modules",
     "modules" =>[
        "Home",
+       "Pages",
     ],
 ];

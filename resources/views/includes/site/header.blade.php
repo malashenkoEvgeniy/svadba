@@ -18,99 +18,113 @@
                             @include('svg.burger-close')
                         </button>
                     </li>
-                    <li class="nav-menu-item">
-                        <a href="{{route('catalog.index')}}" class="nav-menu-link nav-menu-link-catalog">
-                            <span>Каталог</span><button class="btn-menu-arrow">
-                                <img src="" alt="">
-                            </button>
-                        </a>
-                        <div class="sub-catalog-menu">
-                            <a href="#" class="nav-menu-back">
-                                <div class="btn-menu-back">
-                                    @include('svg.back')
-                                </div>
-                                <span>Каталог</span>
-                            </a>
-                            <ul class="sub-catalog-list">
-                                <li class="sub-catalog-item">
-                                    <a href="#" class="sub-catalog-link active">
-                                        <span>Свадебные платья</span>
-                                        <button class="btn-menu-arrow">
-                                            @include('svg.arrow')
-                                        </button>
+                    @foreach($pages as $page)
+                        @if($page->slug == 'katalog')
+                            <li class="nav-menu-item">
+                                <a href="{{route('page.view', ['slug'=>$page->slug])}}" class="nav-menu-link nav-menu-link-catalog">
+                                    <span>{{$page->translate()->title}}</span>
+                                    <button class="btn-menu-arrow"> @include('svg.back')</button>
+                                </a>
+                                <div class="sub-catalog-menu">
+                                    <a href="#" class="nav-menu-back">
+                                        <div class="btn-menu-back">
+                                            @include('svg.back')
+                                        </div>
+                                        <span>{{$page->translate()->title}}</span>
                                     </a>
-                                    <ul class="unit-list active">
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Naviblue  - USA</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Brilliance - минимализм</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Миди, платья для росписи</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Nora Naviano Italy</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Blunny Italy</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Свадебные платья больших размеров</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="sub-catalog-item">
-                                    <a href="#" class="sub-catalog-link">
-                                        <span>Вечерние платья</span>
-                                        <button class="btn-menu-arrow">
-                                            @include('svg.arrow')
-                                        </button>
-                                    </a>
-                                    <ul class="unit-list">
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Naviblue  - USA</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Jovani USA</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="sub-catalog-item">
-                                    <a href="#" class="sub-catalog-link">
-                                        <span>Аксессуары и обувь</span>
-                                        <button class="btn-menu-arrow">
-                                            @include('svg.arrow')
-                                        </button>
-                                    </a>
-                                    <ul class="unit-list">
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Диадемы, веточки, заколки для невест</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Пеньюары</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Фата для невесты</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Серьги длинные свадебные и вечерние</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Свадебные и вечерняя обувь, босоножки</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Шубки норковые, лебяжьи для невест</a>
-                                        </li>
-                                        <li class="unit-item">
-                                            <a href="#" class="unit-link">Кружевное болеро для невест</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
 
-                    </li>
+
+
+
+{{--                                    TODU:: Здесь закончил вчера--}}
+
+
+                                    <ul class="sub-catalog-list">
+                                        <li class="sub-catalog-item">
+                                            <a href="#" class="sub-catalog-link active">
+                                                <span>Свадебные платья</span>
+                                                <button class="btn-menu-arrow">
+                                                    @include('svg.arrow')
+                                                </button>
+                                            </a>
+                                            <ul class="unit-list active">
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Naviblue  - USA</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Brilliance - минимализм</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Миди, платья для росписи</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Nora Naviano Italy</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Blunny Italy</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Свадебные платья больших размеров</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="sub-catalog-item">
+                                            <a href="#" class="sub-catalog-link">
+                                                <span>Вечерние платья</span>
+                                                <button class="btn-menu-arrow">
+                                                    @include('svg.arrow')
+                                                </button>
+                                            </a>
+                                            <ul class="unit-list">
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Naviblue  - USA</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Jovani USA</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="sub-catalog-item">
+                                            <a href="#" class="sub-catalog-link">
+                                                <span>Аксессуары и обувь</span>
+                                                <button class="btn-menu-arrow">
+                                                    @include('svg.arrow')
+                                                </button>
+                                            </a>
+                                            <ul class="unit-list">
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Диадемы, веточки, заколки для невест</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Пеньюары</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Фата для невесты</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Серьги длинные свадебные и вечерние</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Свадебные и вечерняя обувь, босоножки</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Шубки норковые, лебяжьи для невест</a>
+                                                </li>
+                                                <li class="unit-item">
+                                                    <a href="#" class="unit-link">Кружевное болеро для невест</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </li>
+                        @endif
+                        <li class="nav-menu-item">
+                            <a href="{{route('page.view', ['slug'=>$page->slug])}}" class="nav-menu-link">{{$page->translate()->title}}</a>
+                        </li>
+                    @endforeach
+
                     <li class="nav-menu-item">
                         <a href="#" class="nav-menu-link nav-menu-link-service">
                             <span>Услуги</span>
