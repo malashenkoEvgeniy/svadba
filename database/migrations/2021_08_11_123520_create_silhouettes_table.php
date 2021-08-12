@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\MainPage;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDataForMainPage extends Migration
+class CreateSilhouettesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class CreateDataForMainPage extends Migration
      */
     public function up()
     {
-        MainPage::create_item();
+        Schema::create('silhouettes', function (Blueprint $table) {
+            $table->id();
+            $table->string('scheme');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class CreateDataForMainPage extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('data_for_main_page');
+        Schema::dropIfExists('silhouettes');
     }
 }

@@ -10,17 +10,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends BaseController
 {
-    protected $storePath = '/uploads/category/';
-    protected $parameters = [
-        'img_d_w' => 638,
-        'img_d_h' => 764,
-        'img_t_w' => 265,
-        'img_t_h' => 368,
-        'img_m_w' => 320,
-        'img_m_h' => 368,
-        'img_p_w' => 80,
-        'img_p_h' => 100,
-    ];
+
 
     public function __construct()
     {
@@ -65,7 +55,7 @@ class CategoryController extends BaseController
 
 
         if (request()->file('images') !== null) {
-            $file = $this->storeFileForResize(request()->file('images'), $this->storePath, $this->parameters);
+            $file = $this->storeFileForResize(request()->file('images'), Category::STORE_PATH, Category::PARAMETERS);
             $img = new MediaProject([
                 'img_f' => $file['pathF'],
                 'img_d' => $file['pathD'],
@@ -123,7 +113,7 @@ class CategoryController extends BaseController
                 }
             }
 
-            $file = $this->storeFileForResize(request()->file('images'), $this->storePath, $this->parameters);
+            $file = $this->storeFileForResize(request()->file('images'), Category::STORE_PATH, Category::PARAMETERS);
             $img = new MediaProject([
                 'img_f' => $file['pathF'],
                 'img_d' => $file['pathD'],

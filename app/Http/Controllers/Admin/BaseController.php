@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use App\Models\FormRequest;
+use App\Models\Page;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
@@ -16,6 +17,10 @@ class BaseController extends Controller
     {
 //        $newRequests = FormRequest::new ()->orderBy('created_at')->count();
 //        view()->share(compact('newRequests'));
+            $pages = Page::where('parent_id', 0)->orderBy('order_by')->get();
+            $contacts = Contact::where('id', 1)->first();
+
+            view()->share(compact('pages', 'contacts'));
     }
 
     public function translit($value)

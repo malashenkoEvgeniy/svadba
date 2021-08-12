@@ -16,7 +16,7 @@
     @yield('links')
 </head>
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
+<!-- site wrapper -->
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -169,9 +169,9 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="{{url('/')}}" target="_blank" class="brand-link">
-            <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">На сайт</span>
+        <a href="{{url('/')}}" target="_blank" class="brand-link" style="background-color: #cccccc; color: #1b1b1b">
+            <img src="{{$contacts->logo}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light" style="font-weight: bold">На сайт</span>
         </a>
 
         @include('includes.admin.admin-sidebar')

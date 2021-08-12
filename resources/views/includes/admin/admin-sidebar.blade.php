@@ -68,6 +68,81 @@
                     </li>
                 </ul>
             </li>
+            @if(count($pages))
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Pages
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('pages.index')}}" class="nav-link">
+                                <i class="far fa-newspaper"></i>
+                                <p>Все страницы</p>
+                            </a>
+                        </li>
+                        @foreach($pages as $page)
+                        <li class="nav-item">
+                            <a href="{{ route('pages.edit', ['page' => $page->id]) }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{$page->translate()->title }}</p>
+                                @if(count($page->children)) <i class="fas fa-angle-left right"></i>@endif
+
+                            </a>
+                            @if(count($page->children))
+                                <ul class="nav nav-treeview">
+                                    @foreach($page->children as $subpage)
+                                        <li class="nav-item">
+                                            <a href="{{ route('pages.edit', ['page' => $subpage->id]) }}" class="nav-link">
+                                                <i class="fas fa-adjust"></i>
+                                                <p>{{$subpage->translate()->title }}</p>
+                                            </a>
+                                            @if(count($page->children))
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </li>
+                        @endforeach
+                    </ul>
+                </li>
+            @else
+                <li class="nav-item">
+                    <a href="{{route('pages.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>Страницы</p>
+                    </a>
+                </li>
+            @endif
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                        Магазины
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('shops.index')}}" class="nav-link">
+                            <i class="far fa-newspaper"></i>
+                            <p>Магазины</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('cities.index')}}" class="nav-link">
+                            <i class="far fa-newspaper"></i>
+                            <p>Города</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
             <hr>
 
 

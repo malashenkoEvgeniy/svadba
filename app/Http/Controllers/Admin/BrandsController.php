@@ -9,18 +9,6 @@ use Illuminate\Http\Request;
 
 class BrandsController extends  BaseController
 {
-    protected $storePath = '/uploads/brands/';
-    protected $parameters = [
-    'img_d_w' => 800,
-    'img_d_h' => 800,
-    'img_t_w' => 500,
-    'img_t_h' => 500,
-    'img_m_w' => 300,
-    'img_m_h' => 300,
-    'img_p_w' => 100,
-    'img_p_h' => 100,
-];
-
     public function __construct()
 {
     parent::__construct();
@@ -64,7 +52,7 @@ class BrandsController extends  BaseController
 
 
         if (request()->file('images') !== null) {
-            $file = $this->storeFileForResize(request()->file('images'), $this->storePath, $this->parameters);
+            $file = $this->storeFileForResize(request()->file('images'), Brand::STORE_PATH, Brand::PARAMETERS);
             $img = new MediaProject([
                 'img_f' => $file['pathF'],
                 'img_d' => $file['pathD'],

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
     public function __construct(){
-
+        $contacts = Contact::where('id', 1)->first();
+        view()->share(compact('contacts'));
     }
 //    function __construct(){
 //        $settings = Settings::find(1);
