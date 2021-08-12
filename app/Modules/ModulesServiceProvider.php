@@ -16,9 +16,9 @@ class ModulesServiceProvider extends \Illuminate\Support\ServiceProvider
                 }
         //Загружаем View
         //view('Test::admin')
-                if(is_dir(__DIR__.'/'.$module.'/Views')) {
+                if(is_dir(__DIR__.'/'.$module.'/views')) {
 
-                $this->loadViewsFrom(__DIR__.'/'.$module.'/Views', $module);
+                $this->loadViewsFrom(__DIR__.'/'.$module.'/views', $module);
                 }
     //Подгружаем миграции
                 if(is_dir(__DIR__.'/'.$module.'/Migration')) {

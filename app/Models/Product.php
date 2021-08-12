@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Attachable;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,18 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends BaseModel
 {
     use HasFactory, Attachable, Sluggable;
+
+    const STORE_PATH = '/uploads/product/';
+    const PARAMETERS = [
+        'img_d_w' => 450,
+        'img_d_h' => 640,
+        'img_t_w' => 750,
+        'img_t_h' => 350,
+        'img_m_w' => 300,
+        'img_m_h' => 300,
+        'img_p_w' => 100,
+        'img_p_h' => 75,
+    ];
 
 
 
@@ -33,6 +46,44 @@ class Product extends BaseModel
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public static function create_item($title, $vendor_code, $price, $category_id, $is_promotion = 0, $new_price =0, $is_new = 0, $is_collection = 0,  $img= [])
+    {
+
+
+        $slug =  SlugService :: createSlug ( Product :: class, 'slug' , $title);
+
+        $product = Product::create([
+            'slug'=>$slug,
+            'vendor_code'=>$vendor_code,
+            'price'=>$price,
+            'category_id'=>$category_id,
+            'is_promotion'=>$is_promotion,
+            'new_price'=>$new_price,
+            'is_new'=>$is_new,
+            'is_collection'=>$is_collection
+
+        ]);
+        $product->translations()->create([
+            'title'=>$title,
+            'language'=>'ru'
+        ]);
+
+        if (count($img)) {
+            foreach ($img as $item) {
+                $file = BaseModel::storeFileForResize($item, self::STORE_PATH, self::PARAMETERS);
+                $main_img = new MediaProject([
+                    'img_f' => $file['pathF'],
+                    'img_d' => $file['pathD'],
+                    'img_t' => $file['pathT'],
+                    'img_m' => $file['pathM'],
+                    'img_prev' => $file['pathP'],
+                ]);
+                $product->attachments()->save($main_img);
+            }
+        }
+        return $product;
     }
 
 }

@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends BaseController
 {
-    protected $storePath = '/uploads/main-pages/';
-
 
     public function index()
     {
@@ -48,18 +46,9 @@ class HomeController extends BaseController
 
         $reqTranslation = request()->except('images');
         $page = MainPage::first();
-        $parameters = [
-            'img_d_w' => 1024,
-            'img_d_h' => 520,
-            'img_t_w' => 750,
-            'img_t_h' => 350,
-            'img_m_w' => 300,
-            'img_m_h' => 300,
-            'img_p_w' => 100,
-            'img_p_h' => 75,
-        ];
+
         if (request()->file('images') !== null) {
-            $file = $this->storeFileForResize(request()->file('images'), $this->storePath,  $parameters);
+            $file = $this->storeFileForResize(request()->file('images'), MainPage::STORE_PATH, MainPage::PARAMETERS);
             $img = new MediaProject([
                 'img_f' => $file['pathF'],
                 'img_d' => $file['pathD'],

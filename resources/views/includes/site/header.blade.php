@@ -8,7 +8,7 @@
             </li>
             <li class="nav-item nav-item-logo">
                 <a href="/" class="nav-item-logo-link">
-                    <img src="{{asset('site/img/logo.png')}}" alt="" class="nav-item-logo-img">
+                    <img src="{{$contacts->logo}}" alt="" class="nav-item-logo-img">
                 </a>
             </li>
             <li class="nav-item nav-item-nav-menu">

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Colors;
+use App\Models\MainPage;
 use App\Models\MediaProject;
 use App\Models\Product;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -34,6 +37,7 @@ class ProductController extends BaseController
      */
     public function index()
     {
+
         $products = Product::all();
 
         return view('admin.products.index', compact('products'));
@@ -177,6 +181,6 @@ class ProductController extends BaseController
         }
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Категория удалена');
+        return redirect()->route('products.index')->with('success', 'Категория удалена');
     }
 }
