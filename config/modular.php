@@ -5,6 +5,6 @@ return [
     "modules" =>[
        "Home",
        "Pages",
-//        "Order"
+        "Order"
     ],
 ];

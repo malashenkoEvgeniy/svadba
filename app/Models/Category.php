@@ -38,7 +38,7 @@ class Category extends BaseModel
             ]
         ];
     }
-    protected $table = 'order';
+    protected $table = 'categories';
     protected $guarded = [];
     protected $translateTable = "App\Models\\translates\\CategoryTranslate";
 
