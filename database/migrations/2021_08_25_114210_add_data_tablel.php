@@ -32,19 +32,19 @@ class AddDataTablel extends Migration
         Page::create_item('Доставка и оплата', 3);
         Page::create_item('О компании', 4);
         Page::create_item('Контакты', 5);
-        Page::create_item('Проведение свадеб под ключ', 6, 2);
-        Page::create_item('Подгон платьев по фигуре', 7, 2);
-        Page::create_item('Выездные царемонии', 8, 2);
+        Page::create_item('Проведение свадеб под ключ', 6, 2, '\site\img\service1.jpg');
+        Page::create_item('Подгон платьев по фигуре', 7, 2, '\site\img\service2.jpg');
+        Page::create_item('Выездные царемонии', 8, 2, '\site\img\service3.jpg');
 
         Contact::create(['email'=>'teremki@gmail.com', 'phone_1'=>'096-000-00-00', 'logo' =>'/site/img/logo.png']);
         City::create_item('Киев');
         City::create_item('Львов');
-        Shop::create_item('Магазин 1', 'teremki@gmail.com', '096-000-00-00', 1 );
-        Shop::create_item('Магазин 1', 'teremki@gmail.com', '096-000-00-00', 1 );
-        Shop::create_item('Магазин 1', 'teremki@gmail.com', '096-000-00-00', 1 );
-        Shop::create_item('Магазин 1', 'teremki@gmail.com', '096-000-00-00', 1 );
-        Shop::create_item('Магазин 1', 'teremki@gmail.com', '096-000-00-00', 1 );
-        Shop::create_item('Магазин 1', 'teremki@gmail.com', '096-000-00-00', 2 );
+        Shop::create_item('Магазин 1','Шевченко, 16', 'teremki@gmail.com', '096-000-00-00', 1 );
+        Shop::create_item('Магазин 1','Шевченко, 16', 'teremki@gmail.com', '096-000-00-00', 1 );
+        Shop::create_item('Магазин 1','Шевченко, 16', 'teremki@gmail.com', '096-000-00-00', 1 );
+        Shop::create_item('Магазин 1','Шевченко, 16', 'teremki@gmail.com', '096-000-00-00', 1 );
+        Shop::create_item('Магазин 1','Шевченко, 16', 'teremki@gmail.com', '096-000-00-00', 1 );
+        Shop::create_item('Магазин 1', 'Шевченко, 16', 'teremki@gmail.com', '096-000-00-00', 2 );
 
         (new Category())->creat('Свадебные платья', 0, '\site\img\cat1.jpg');
         (new Category())->creat('Вечерние платья', 0, '\site\img\cat2.jpg');

@@ -16,6 +16,7 @@ class CreateShopTranslatesTable extends Migration
         Schema::create('shop_translates', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->string('address')->nullable();
             $table->char('language', 10);
             $table->bigInteger('shop_id')->unsigned();
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');

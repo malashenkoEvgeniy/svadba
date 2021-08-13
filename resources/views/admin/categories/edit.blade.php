@@ -34,7 +34,7 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" action="{{ route('categories.update', ['category' => $category->id]) }}"  enctype="multipart/form-data">
+                            <form role="form" method="post" action="{{ route('order.update', ['category' => $category->id]) }}"  enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">

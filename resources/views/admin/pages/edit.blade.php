@@ -7,7 +7,11 @@
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex">
                         <h1>Редактирование страницы</h1>
-
+                        @if(count($pageEdit->attachments))
+                            <img src="{{$pageEdit->attachments[0]->img_prev}}" alt="img" width="100" height="50"></td>
+                        @else
+                            Нет изображений
+                        @endif
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -43,6 +47,16 @@
                                                class="form-control " id="title"  value="{{ $pageEdit->translate()->title }}"    placeholder="Название">
                                     </div>
                                     @endif
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+
+                                            <span class="input-group-text">Изображение</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" name="images" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label>Текст</label>
                                         <textarea  class="form-control editor" name="body" >{{ $pageEdit->translate()->body }}</textarea>

@@ -31,7 +31,7 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @include('includes.admin.alerts')
-                                <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">Добавить
+                                <a href="{{ route('order.create') }}" class="btn btn-primary mb-3">Добавить
                                     категорию</a>
                                 @if (count($categories))
                                     <div class="table-responsive">
@@ -66,11 +66,11 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-info btn-sm float-left mr-1">
+                                                        <a href="{{ route('order.edit', ['category' => $category->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <form action="{{ route('categories.destroy', ['category' => $category->id]) }}" method="post" class="float-left">
+                                                        <form action="{{ route('order.destroy', ['category' => $category->id]) }}" method="post" class="float-left">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"
@@ -91,7 +91,7 @@
                             </div>
                             <!-- /.card-body -->
 {{--                            <div class="card-footer clearfix">--}}
-{{--                                {{ $categories->links() }}--}}
+{{--                                {{ $order->links() }}--}}
 {{--                                --}}{{--<ul class="pagination pagination-sm m-0 float-right">--}}
 {{--                                    <li class="page-item"><a class="page-link" href="#">«</a></li>--}}
 {{--                                    <li class="page-item"><a class="page-link" href="#">1</a></li>--}}

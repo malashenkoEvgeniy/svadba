@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Contact;
+use App\Models\MediaProject;
 use App\Models\Page;
 use App\Models\Shop;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -51,9 +52,20 @@ class PageController extends BaseController
 //        dd($request);
         $req['parent_id'] = 2;
         $req['slug'] = SlugService :: createSlug ( Page :: class, 'slug' , $request->title );
-        $reqT = request()->except('slug', 'parent_id');
+        $reqT = request()->except('slug', 'parent_id', 'images');
 
-        $this->storeWithTranslation(new Page(), $req,$reqT);
+        $page = $this->storeWithTranslation(new Page(), $req,$reqT)['model'];
+        if (request()->file('images') !== null) {
+            $file = $this->storeFileForResize(request()->file('images'), Page::STORE_PATH, Page::PARAMETERS);
+            $img = new MediaProject([
+                'img_f' => $file['pathF'],
+                'img_d' => $file['pathD'],
+                'img_t' => $file['pathT'],
+                'img_m' => $file['pathM'],
+                'img_prev' => $file['pathP'],
+            ]);
+            $page->attachments()->save($img);
+        }
 
         return redirect()->route('pages.index')->with('success', 'Запись успешно создана');
     }
@@ -104,7 +116,35 @@ class PageController extends BaseController
             $contacts->update($recC);
             return redirect()->route('pages.edit', ['page'=>6])->with('success', 'Изменения сохранены');
         }
-        $reqT = request()->all();
+        if (request()->file('images') !== null) {
+            if(count($page->attachments)){
+                foreach ($page->attachments as $attachments){
+                    $this->deleteFile($attachments->img_f);
+                    $this->deleteFile($attachments->img_d);
+                    $this->deleteFile($attachments->img_t);
+                    $this->deleteFile($attachments->img_m);
+                    $this->deleteFile($attachments->img_prev);
+                }
+
+                foreach ($page->attachments as $atach){
+                    $atach->delete();
+                }
+            }
+
+            $file = $this->storeFileForResize(request()->file('images'), Page::STORE_PATH, Page::PARAMETERS);
+            $img = new MediaProject([
+                'img_f' => $file['pathF'],
+                'img_d' => $file['pathD'],
+                'img_t' => $file['pathT'],
+                'img_m' => $file['pathM'],
+                'img_prev' => $file['pathP'],
+            ]);
+            $page->attachments()->save($img);
+        }
+
+
+
+        $reqT = request()->except( 'images');
         $this->updateTranslation($page, $reqT, $request);
 
         return redirect()->route('pages.index')->with('success', 'Изменения сохранены');
@@ -119,8 +159,21 @@ class PageController extends BaseController
     public function destroy($id)
     {
         $page = Page::where('id', $id)->first();
+        if(count($page->attachments)){
+            foreach ($page->attachments as $attachments){
+                $this->deleteFile($attachments->img_f);
+                $this->deleteFile($attachments->img_d);
+                $this->deleteFile($attachments->img_t);
+                $this->deleteFile($attachments->img_m);
+                $this->deleteFile($attachments->img_prev);
+            }
+
+            foreach ($page->attachments as $atach){
+                $atach->delete();
+            }
+        }
         $page->delete();
 
-        return redirect()->route('products.index')->with('success', 'Категория удалена');
+        return redirect()->route('pages.index')->with('success', 'Категория удалена');
     }
 }

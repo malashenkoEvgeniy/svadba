@@ -15,6 +15,10 @@ class City extends BaseModel
     protected $guarded = [];
     protected $translateTable = "App\Models\\translates\CityTranslates";
 
+    public function shops()
+    {
+        return $this->hasMany(Shop::class, 'city_id');
+    }
 
     public static function create_item($title)
     {
@@ -23,8 +27,6 @@ class City extends BaseModel
             'title' => $title,
             'language' => 'ru'
         ]);
-
-
         return $page;
     }
 }

@@ -5,7 +5,7 @@
     <ul class="catalog-list">
         @foreach($categories as $category)
         <li class="catalog-item" >
-            <a href="#" class="catalog-link" style="background-image: url(
+            <a href="{{route('page.category.view', ['slug'=>$category->slug])}}" class="catalog-link" style="background-image: url(
             @if(count($category->attachments))
             {{$category->attachments[0]->img_d}}
             @endif

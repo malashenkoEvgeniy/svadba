@@ -1,10 +1,13 @@
 @extends('layouts.site')
 @section('links')
-
+    <link rel="stylesheet" href="{{asset('site/css/page.css')}}">
 @endsection
 @section('content')
     <main>
-        <h1>{{$page->translate()->title}}</h1>
+        @include('includes.site.breadcrumbs')
+        <section class="content">
+            <h1 class="content-title page-title">{{$page->translate()->title}}</h1>
+        </section>
     </main>
 @endsection
 

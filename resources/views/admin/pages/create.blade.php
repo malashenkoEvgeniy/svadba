@@ -28,6 +28,16 @@
                         <form role="form" method="post" action="{{ route('pages.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+
+                                        <span class="input-group-text">Изображение</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" name="images" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="title">Название</label>
                                     <input type="text" name="title"

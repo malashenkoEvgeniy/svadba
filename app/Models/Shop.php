@@ -14,7 +14,7 @@ class Shop extends BaseModel
     protected $translateTable = "App\Models\\translates\ShopTranslates";
 
 
-    public static function create_item($title, $email, $phone, $city_id)
+    public static function create_item($title, $address, $email, $phone, $city_id)
     {
         $shop = self::create([
             'email'=>$email,
@@ -24,6 +24,7 @@ class Shop extends BaseModel
         ]);
         $shop->translations()->create([
             'title' => $title,
+            'address' => $address,
             'language' => 'ru'
         ]);
         return $shop;

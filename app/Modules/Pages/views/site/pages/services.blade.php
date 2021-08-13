@@ -4,7 +4,8 @@
 @endsection
 @section('content')
     <main>
-        @widget('catalog')
+        @include('includes.site.breadcrumbs')
+        @widget('catalog', ['is_category'=>0])
     </main>
 @endsection
 

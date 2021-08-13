@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form role="form" method="post" action="{{ route('categories.store') }}" enctype="multipart/form-data">
+                        <form role="form" method="post" action="{{ route('order.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="input-group mb-3">

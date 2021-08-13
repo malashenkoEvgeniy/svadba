@@ -53,7 +53,7 @@ Route::group(
     ], function(){
 
     Route::group(["namespace"=>"App\Http\Controllers\Site", "prefix" => "/"], function() {
-        Route::get('catalog','CatalogController@index')->name('catalog.index');
+        Route::get('catalog','CategoryController@index')->name('catalog.index');
     });
 
 });

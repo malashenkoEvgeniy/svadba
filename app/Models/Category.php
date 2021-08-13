@@ -38,7 +38,7 @@ class Category extends BaseModel
             ]
         ];
     }
-    protected $table = 'categories';
+    protected $table = 'order';
     protected $guarded = [];
     protected $translateTable = "App\Models\\translates\\CategoryTranslate";
 
@@ -49,7 +49,7 @@ class Category extends BaseModel
 
     public function children()
     {
-        return $this->hasMany(Page::class, 'parent_id');
+        return $this->hasMany(Category::class, 'parent_id');
     }
 
 

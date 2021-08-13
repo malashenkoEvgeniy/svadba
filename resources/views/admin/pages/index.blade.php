@@ -76,6 +76,7 @@
                                                     <tr>
                                                         <th style="width: 30px">#</th>
                                                         <th>Наименование</th>
+                                                        <th>Изображение</th>
                                                         <th>Родитель</th>
                                                         <th>Actions</th>
                                                     </tr>
@@ -85,6 +86,13 @@
                                                         <tr>
                                                             <td>{{ $loop->index}}</td>
                                                             <td>{{ $subpage->translate()->title }}</td>
+                                                            <td>
+                                                                @if(count($subpage->attachments))
+                                                                    <img src="{{$subpage->attachments[0]->img_prev}}" alt="img" width="100" height="50">
+                                                                @else
+                                                                    Нет изображений
+                                                                @endif
+                                                            </td>
                                                             <td>Услуги</td>
                                                             <td>
                                                                 <a href="{{ route('pages.edit', ['page' => $subpage->id]) }}" class="btn btn-info btn-sm float-left mr-1">
@@ -113,7 +121,7 @@
                             </div>
                             <!-- /.card-body -->
 {{--                            <div class="card-footer clearfix">--}}
-{{--                                {{ $categories->links() }}--}}
+{{--                                {{ $order->links() }}--}}
 {{--                                --}}{{--<ul class="pagination pagination-sm m-0 float-right">--}}
 {{--                                    <li class="page-item"><a class="page-link" href="#">«</a></li>--}}
 {{--                                    <li class="page-item"><a class="page-link" href="#">1</a></li>--}}

@@ -8,7 +8,7 @@
             </li>
             <li class="nav-item nav-item-logo">
                 <a href="/" class="nav-item-logo-link">
-                    <img src="{{$contacts->logo}}" alt="" class="nav-item-logo-img">
+                    <img src="{{$contacts->logo}}" alt="" class="nav-item-logo-img" width="214" height="84">
                 </a>
             </li>
             <li class="nav-item nav-item-nav-menu">
@@ -32,144 +32,61 @@
                                         </div>
                                         <span>{{$page->translate()->title}}</span>
                                     </a>
-
-
-
-
-{{--                                    TODU:: Здесь закончил вчера--}}
-
-
                                     <ul class="sub-catalog-list">
+                                        @foreach($categories as $category)
                                         <li class="sub-catalog-item">
-                                            <a href="#" class="sub-catalog-link active">
-                                                <span>Свадебные платья</span>
+                                            <a href="{{route('page.category.view', ['slug'=>$category->slug])}}" class="sub-catalog-link active">
+                                                <span>{{$category->translate()->title}}</span>
                                                 <button class="btn-menu-arrow">
                                                     @include('svg.arrow')
                                                 </button>
                                             </a>
+                                            @if(count($category->children))
                                             <ul class="unit-list active">
+                                                @foreach($category->children as $subcategory)
                                                 <li class="unit-item">
-                                                    <a href="#" class="unit-link">Naviblue  - USA</a>
+                                                    <a href="{{route('page.category.view', ['slug'=>$subcategory->slug])}}" class="unit-link">{{$subcategory->translate()->title}}</a>
                                                 </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Brilliance - минимализм</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Миди, платья для росписи</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Nora Naviano Italy</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Blunny Italy</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Свадебные платья больших размеров</a>
-                                                </li>
+                                                @endforeach
                                             </ul>
+                                            @endif
                                         </li>
-                                        <li class="sub-catalog-item">
-                                            <a href="#" class="sub-catalog-link">
-                                                <span>Вечерние платья</span>
-                                                <button class="btn-menu-arrow">
-                                                    @include('svg.arrow')
-                                                </button>
-                                            </a>
-                                            <ul class="unit-list">
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Naviblue  - USA</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Jovani USA</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="sub-catalog-item">
-                                            <a href="#" class="sub-catalog-link">
-                                                <span>Аксессуары и обувь</span>
-                                                <button class="btn-menu-arrow">
-                                                    @include('svg.arrow')
-                                                </button>
-                                            </a>
-                                            <ul class="unit-list">
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Диадемы, веточки, заколки для невест</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Пеньюары</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Фата для невесты</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Серьги длинные свадебные и вечерние</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Свадебные и вечерняя обувь, босоножки</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Шубки норковые, лебяжьи для невест</a>
-                                                </li>
-                                                <li class="unit-item">
-                                                    <a href="#" class="unit-link">Кружевное болеро для невест</a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
-
                             </li>
-                        @endif
+                        @elseif($page->slug == 'uslugi')
+                            <li class="nav-menu-item">
+                                <a href="{{route('page.view', ['slug'=>$page->slug])}}" class="nav-menu-link nav-menu-link-service">
+                                    <span>{{$page->translate()->title}}</span>
+                                    <button class="btn-menu-arrow">
+                                        @include('svg.arrow')
+                                    </button>
+                                </a>
+                                <div class="sub-service-menu">
+                                    <a href="#" class="nav-menu-back">
+                                        <div class="btn-menu-back">
+                                            @include('svg.back')
+                                        </div>
+                                        <span>{{$page->translate()->title}}</span>
+                                    </a>
+                                    <ul class="sub-service-list">
+                                        @foreach($page->children as $subpage)
+                                        <li class="sub-service-item">
+                                            <a href="{{route('page.view', ['slug'=>$subpage->slug])}}" class="sub-service-link">
+                                                <span>{{$subpage->translate()->title}}</span>
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
+                        @else
                         <li class="nav-menu-item">
                             <a href="{{route('page.view', ['slug'=>$page->slug])}}" class="nav-menu-link">{{$page->translate()->title}}</a>
                         </li>
+                        @endif
                     @endforeach
-
-                    <li class="nav-menu-item">
-                        <a href="#" class="nav-menu-link nav-menu-link-service">
-                            <span>Услуги</span>
-                            <button class="btn-menu-arrow">
-                                @include('svg.arrow')
-                            </button>
-                        </a>
-                        <div class="sub-service-menu">
-                            <a href="#" class="nav-menu-back">
-                                <div class="btn-menu-back">
-                                    @include('svg.back')
-                                </div>
-                                <span>Услуги</span>
-                            </a>
-                            <ul class="sub-service-list">
-                                <li class="sub-service-item">
-                                    <a href="#" class="sub-service-link">
-                                        <span>Проведение свадеб под ключ</span>
-                                    </a>
-                                </li>
-                                <li class="sub-service-item">
-                                    <a href="#" class="sub-service-link">
-                                        <span>Подгон платьев по фигуре</span>
-                                    </a>
-                                </li>
-                                <li class="sub-service-item">
-                                    <a href="#" class="sub-service-link">
-                                        <span>Выездные царемонии</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-menu-item">
-                        <a href="#" class="nav-menu-link">Акции</a>
-                    </li>
-                    <li class="nav-menu-item">
-                        <a href="#" class="nav-menu-link">Доставка и оплата</a>
-                    </li>
-                    <li class="nav-menu-item">
-                        <a href="#" class="nav-menu-link">О компании</a>
-                    </li><li class="nav-menu-item">
-                        <a href="#" class="nav-menu-link">Контаткты</a>
-                    </li>
                 </ul>
             </li>
             <li class="nav-item nav-item-search">

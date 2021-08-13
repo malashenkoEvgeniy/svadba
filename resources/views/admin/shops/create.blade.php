@@ -50,6 +50,12 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
+                                        <span class="input-group-text">@include('svg.location')</span>
+                                    </div>
+                                    <input type="text" class="form-control" name="address">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
                                         <span class="input-group-text">@include('svg.email')</span>
                                     </div>
                                     <input type="text" class="form-control" name="email">
