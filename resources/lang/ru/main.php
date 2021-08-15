@@ -13,6 +13,7 @@ return [
         'fk_btn'=>'Отправить',
         'contacts-medium-title'=>'НАШИ МАГАЗИНЫ'
     ],
+    'categories'=>'Категории'
 
 
 ];

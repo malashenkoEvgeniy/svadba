@@ -5,7 +5,7 @@
 
     <a href="#" class="products-link ">
         @if(count($model->attachments))
-            <img src="{{$model->attachments[0]->img_d}}" data-old="site/img/item1.jpg" data-change="site/img/item4.jpg" alt="" class="products-img">
+            <img src="{{$model->attachments[0]->img_d}}" data-old="{{$model->attachments[0]->img_d}}" data-change="{{ asset('site/img/item4.jpg')}}" alt="" class="products-img">
         @endif
 
         <h3 class="products-link-title">{{$model->translate()->title}}</h3>

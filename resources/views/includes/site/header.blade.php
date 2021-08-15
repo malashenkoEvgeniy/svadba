@@ -8,7 +8,7 @@
             </li>
             <li class="nav-item nav-item-logo">
                 <a href="/" class="nav-item-logo-link">
-                    <img src="{{$contacts->logo}}" alt="" class="nav-item-logo-img" width="214" height="84">
+                    <img src="{{ $h_contacts->logo}}" alt="" class="nav-item-logo-img" width="214" height="84">
                 </a>
             </li>
             <li class="nav-item nav-item-nav-menu">
@@ -18,11 +18,11 @@
                             @include('svg.burger-close')
                         </button>
                     </li>
-                    @foreach($pages as $page)
-                        @if($page->slug == 'katalog')
+                    @foreach( $h_pages as $page)
+                        @if( $page->slug == 'katalog')
                             <li class="nav-menu-item">
                                 <a href="{{route('page.view', ['slug'=>$page->slug])}}" class="nav-menu-link nav-menu-link-catalog">
-                                    <span>{{$page->translate()->title}}</span>
+                                    <span>{{ $page->translate()->title}}</span>
                                     <button class="btn-menu-arrow"> @include('svg.back')</button>
                                 </a>
                                 <div class="sub-catalog-menu">
@@ -30,22 +30,22 @@
                                         <div class="btn-menu-back">
                                             @include('svg.back')
                                         </div>
-                                        <span>{{$page->translate()->title}}</span>
+                                        <span>{{ $page->translate()->title}}</span>
                                     </a>
                                     <ul class="sub-catalog-list">
-                                        @foreach($categories as $category)
+                                        @foreach( $h_categories as $category)
                                         <li class="sub-catalog-item">
                                             <a href="{{route('page.category.view', ['slug'=>$category->slug])}}" class="sub-catalog-link active">
-                                                <span>{{$category->translate()->title}}</span>
+                                                <span>{{ $category->translate()->title}}</span>
                                                 <button class="btn-menu-arrow">
                                                     @include('svg.arrow')
                                                 </button>
                                             </a>
                                             @if(count($category->children))
                                             <ul class="unit-list active">
-                                                @foreach($category->children as $subcategory)
+                                                @foreach( $category->children as $subcategory)
                                                 <li class="unit-item">
-                                                    <a href="{{route('page.category.view', ['slug'=>$subcategory->slug])}}" class="unit-link">{{$subcategory->translate()->title}}</a>
+                                                    <a href="{{ route('page.category.view', ['slug'=>$subcategory->slug])}}" class="unit-link">{{ $subcategory->translate()->title}}</a>
                                                 </li>
                                                 @endforeach
                                             </ul>
@@ -55,10 +55,10 @@
                                     </ul>
                                 </div>
                             </li>
-                        @elseif($page->slug == 'uslugi')
+                        @elseif( $page->slug == 'uslugi')
                             <li class="nav-menu-item">
-                                <a href="{{route('page.view', ['slug'=>$page->slug])}}" class="nav-menu-link nav-menu-link-service">
-                                    <span>{{$page->translate()->title}}</span>
+                                <a href="{{ route('page.view', ['slug'=>$page->slug])}}" class="nav-menu-link nav-menu-link-service">
+                                    <span>{{ $page->translate()->title}}</span>
                                     <button class="btn-menu-arrow">
                                         @include('svg.arrow')
                                     </button>
@@ -68,13 +68,13 @@
                                         <div class="btn-menu-back">
                                             @include('svg.back')
                                         </div>
-                                        <span>{{$page->translate()->title}}</span>
+                                        <span>{{ $page->translate()->title}}</span>
                                     </a>
                                     <ul class="sub-service-list">
-                                        @foreach($page->children as $subpage)
+                                        @foreach( $page->children as $subpage)
                                         <li class="sub-service-item">
-                                            <a href="{{route('page.view', ['slug'=>$subpage->slug])}}" class="sub-service-link">
-                                                <span>{{$subpage->translate()->title}}</span>
+                                            <a href="{{ route('page.view', ['slug'=>$subpage->slug])}}" class="sub-service-link">
+                                                <span>{{ $subpage->translate()->title}}</span>
                                             </a>
                                         </li>
                                         @endforeach
@@ -83,7 +83,7 @@
                             </li>
                         @else
                         <li class="nav-menu-item">
-                            <a href="{{route('page.view', ['slug'=>$page->slug])}}" class="nav-menu-link">{{$page->translate()->title}}</a>
+                            <a href="{{ route('page.view', ['slug'=>$page->slug])}}" class="nav-menu-link">{{ $page->translate()->title}}</a>
                         </li>
                         @endif
                     @endforeach

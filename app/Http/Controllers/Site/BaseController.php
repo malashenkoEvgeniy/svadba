@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 class BaseController extends Controller
 {
     public function __construct(){
-        $contacts = Contact::where('id', 1)->first();
-        $pages = Page::where('parent_id', 0)->with('children')->get();
-        $categories = Category::where('parent_id', 0)->with('children')->get();
-        view()->share(compact('contacts', 'pages', 'categories'));
+        $h_contacts = Contact::where('id', 1)->first();
+        $h_pages = Page::where('parent_id', 0)->with('children')->get();
+        $h_categories = Category::where('parent_id', 0)->with('children')->get();
+        view()->share(compact('h_contacts', 'h_pages', 'h_categories'));
     }
 //    function __construct(){
 //        $settings = Settings::find(1);

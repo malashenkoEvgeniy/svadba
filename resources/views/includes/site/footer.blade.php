@@ -1,9 +1,9 @@
 <footer class="footer">
     <div class="footer-top">
         <ul class="footer-catalog-list">
-            @foreach($pages as $page)
+            @foreach( $h_pages as $page)
                 <li class="footer-catalog-item">
-                    <a href="{{route('page.view', ['slug'=>$page->slug])}}" class="footer-catalog-link">{{$page->translate()->title}}</a>
+                    <a href="{{route('page.view', ['slug'=>$page->slug])}}" class="footer-catalog-link">{{ $page->translate()->title}}</a>
                 </li>
             @endforeach
         </ul>

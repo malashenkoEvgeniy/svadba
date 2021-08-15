@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Силуеты</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Blank Page</li>
+                            <li class="breadcrumb-item active">Силуеты</li>
                         </ol>
                     </div>
                 </div>
@@ -26,14 +26,13 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Список категорий</h3>
+                                <h3 class="card-title">Список силуетов</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @include('includes.admin.alerts')
-                                <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">Добавить
-                                    категорию</a>
-                                @if (count($categories))
+                                <a href="{{ route('silhouettes.create') }}" class="btn btn-primary mb-3">Добавить силует</a>
+                                @if (count($silhouettes))
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover text-nowrap">
                                             <thead>
@@ -41,36 +40,35 @@
                                                 <th style="width: 30px">#</th>
                                                 <th>Наименование</th>
                                                 <th>Изображение</th>
-                                                <th>Родитель</th>
+                                                <th>Схема</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($categories as $category)
+                                            @foreach( $silhouettes as $silhouette)
                                                 <tr>
                                                     <td>{{ $loop->index}}</td>
-                                                    <td>{{ $category->translate()->title }}</td>
+                                                    <td>{{ $silhouette->translate()->title }}</td>
                                                     <td>
-                                                        @if(count($category->attachments))
-                                                        <img src="{{$category->attachments[0]->img_prev}}" alt="img" width="100" height="50">
+                                                        @if(count($silhouette->attachments))
+                                                        <img src="{{$silhouette->attachments[0]->img_prev}}" alt="img" width="100" height="50">
                                                         @else
                                                             Нет изображений
                                                         @endif
                                                     </td>
                                                     <td>
-
-                                                        @if($category->parent !== null)
-                                                            {{$category->parent->translate()->title}}
+                                                        @if(isset($silhouette->scheme))
+                                                            <img src="{{$silhouette->scheme}}" alt="img" width="100" height="50">
                                                         @else
-                                                        Нет родителя
+                                                            Нет изображений
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-info btn-sm float-left mr-1">
+                                                        <a href="{{ route('silhouettes.edit', ['silhouette' => $silhouette->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </a>
 
-                                                        <form action="{{ route('categories.destroy', ['category' => $category->id]) }}" method="post" class="float-left">
+                                                        <form action="{{ route('silhouettes.destroy', ['silhouette' => $silhouette->id]) }}" method="post" class="float-left">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"
@@ -86,7 +84,7 @@
                                         </table>
                                     </div>
                                 @else
-                                    <p>Категорий пока нет...</p>
+                                    <p>Силуетов пока нет...</p>
                                 @endif
                             </div>
                             <!-- /.card-body -->

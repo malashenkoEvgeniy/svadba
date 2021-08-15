@@ -10,6 +10,7 @@ use App\Models\MainSlider;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Shop;
+use App\Models\Silhouette;
 use Illuminate\Database\Migrations\Migration;
 
 class AddDataTablel extends Migration
@@ -36,7 +37,8 @@ class AddDataTablel extends Migration
         Page::create_item('Подгон платьев по фигуре', 7, 2, '\site\img\service2.jpg');
         Page::create_item('Выездные царемонии', 8, 2, '\site\img\service3.jpg');
 
-        Contact::create(['email'=>'teremki@gmail.com', 'phone_1'=>'096-000-00-00', 'logo' =>'/site/img/logo.png']);
+        Contact::create(['email'=>'teremki@gmail.com', 'phone_1'=>'096-000-00-00', 'phone_2'=>'096-000-00-00', 'working_house'=>'c 9 do 17', 'logo' =>'/site/img/logo.png']);
+
         City::create_item('Киев');
         City::create_item('Львов');
         Shop::create_item('Магазин 1','Шевченко, 16', 'teremki@gmail.com', '096-000-00-00', 1 );
@@ -71,6 +73,12 @@ class AddDataTablel extends Migration
         Brand::creat('Tesoro', '\site\img\brand4.png' );
         Brand::creat('Lanesta', '\site\img\brand5.png' );
         Brand::creat('Brilanta', '\site\img\brand6.png' );
+
+        Silhouette::create_item('Пышное', '\site\img\silhouette1.jpg', '\site\img\filter-silhouette1.jpg');
+        Silhouette::create_item('Прямое', '\site\img\silhouette2.jpg', '\site\img\filter-silhouette2.jpg');
+        Silhouette::create_item('А-силуэт', '\site\img\silhouette3.jpg', '\site\img\filter-silhouette3.jpg');
+        Silhouette::create_item('Ампир', '\site\img\silhouette4.jpg', '\site\img\filter-silhouette4.jpg');
+        Silhouette::create_item('Русалка', '\site\img\silhouette5.jpg', '\site\img\filter-silhouette5.jpg');
 
         Colors::create(['meaning'=>'#ffffff'])->translations()->create(['title'=>'Белый']);
         Colors::create(['meaning'=>'#F6EDE5'])->translations()->create(['title'=>'Молочный']);

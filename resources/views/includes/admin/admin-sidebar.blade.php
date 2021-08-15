@@ -49,9 +49,21 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
+                        <a href="{{route('products.index')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Продукты</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{route('brands.index')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Бренды</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('silhouettes.index')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Силуеты</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -60,12 +72,7 @@
                             <p>Цвета</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{route('products.index')}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Продукты</p>
-                        </a>
-                    </li>
+
                 </ul>
             </li>
             @if(count($pages))

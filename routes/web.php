@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ShopController;
+use App\Http\Controllers\Admin\SilhouetteController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,7 @@ Route::group(
         Route::resource('pages', PageController::class);
         Route::resource('shops', ShopController::class);
         Route::resource('cities', CityController::class);
+        Route::resource('silhouettes', SilhouetteController::class);
 
     }
     );

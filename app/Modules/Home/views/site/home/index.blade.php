@@ -16,7 +16,7 @@
             </div>
             <h1 class="slider-title">{{$main_page->translate()->title}}</h1>
         </section>
-        @widget('catalog')
+        @widget('catalog', 1)
         @widget('similar')
         <section class="advantage">
             <div class="advantage-block">
