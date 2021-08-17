@@ -1,7 +1,7 @@
 @extends('layouts.site')
 @section('links')
     <link rel="stylesheet" href="{{asset('site/css/product.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/add-to-cart.css')}}">
+
 @endsection
 @section('content')
     <main>

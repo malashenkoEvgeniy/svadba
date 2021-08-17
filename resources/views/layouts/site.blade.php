@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{asset('site/css/home.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/goods.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/pagination.css')}}">
+    <link rel="stylesheet" href="{{asset('site/css/add-to-cart.css')}}">
     @yield('links')
     <title>Svadba-Kiev</title>
 </head>
