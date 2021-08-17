@@ -55,6 +55,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{route('textiles.index')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Ткани</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{route('brands.index')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Бренды</p>

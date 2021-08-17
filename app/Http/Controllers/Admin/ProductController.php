@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\ClothingSize;
 use App\Models\Colors;
 use App\Models\MainPage;
 use App\Models\MediaProject;
 use App\Models\Product;
+use App\Models\Silhouette;
+use App\Models\Textile;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 
@@ -46,7 +49,11 @@ class ProductController extends BaseController
     public function create()
     {
         $parent = Category::get();
-        return view('admin.products.create', compact('parent'));
+        $brands = Brand::all();
+        $textiles = Textile::all();
+        $colors = Colors::all();
+        $silhouettes = Silhouette::all();
+        return view('admin.products.create', compact('parent', 'brands', 'textiles', 'colors', 'silhouettes'));
     }
 
     /**
@@ -60,14 +67,22 @@ class ProductController extends BaseController
 //        $this->validate($request, [
 //            'title' => 'required|max:255',
 //        ]);
-//        dd($request);
-        $req = request()->only( 'category_id', 'price',   'new_price' );
+
+        $req = request()->only( 'category_id', 'price',   'new_price', 'brand_id', 'textile_id', 'colors_id', 'silhouette_id' );
         $req['slug'] = SlugService :: createSlug ( Product :: class, 'slug' , $request->title );
         $req['is_promotion'] =  $request->has('is_promotion') ? 1 : 0;
+        $clothingSize = ClothingSize::where('size',$request->size_id)->first();
+        if ($clothingSize == null) {
+            $clothingSize = ClothingSize::create(['size' =>$request->size_id]);
+        }
+        $req['size_id'] = $clothingSize->id;
+        if($req['is_promotion'] ==0){
+            $req['new_price'] = 0;
+        }
         $req['is_new'] =  $request->has('is_new') ? 1 : 0;
         $req[ 'is_collection'] =  $request->has( 'is_collection') ? 1 : 0;
         $req[ 'vendor_code'] =  $req['slug'];
-        $reqT = request()->except('slug', 'category_id', 'price', 'is_promotion', 'is_new', 'is_collection', 'new_price', 'images' );
+        $reqT = request()->except('slug', 'category_id','size_id', 'price', 'brand_id', 'textile_id', 'colors_id', 'silhouette_id', 'is_promotion', 'is_new', 'is_collection', 'new_price', 'images' );
 
         $product = $this->storeWithTranslation(new Product(), $req,$reqT)['model'];
 

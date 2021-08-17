@@ -3,6 +3,7 @@
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\ClothingSize;
 use App\Models\Colors;
 use App\Models\Contact;
 use App\Models\MainPage;
@@ -11,6 +12,7 @@ use App\Models\Page;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\Silhouette;
+use App\Models\Textile;
 use Illuminate\Database\Migrations\Migration;
 
 class AddDataTablel extends Migration
@@ -67,12 +69,23 @@ class AddDataTablel extends Migration
         (new Category())->creat('Шубки норковые, лебяжьи для невест', 3);
         (new Category())->creat('Кружевное болеро для невест', 3);
 
-        Brand::creat('Ardeni wedding dresses', '\site\img\brand1.png' );
-        Brand::creat('Elle rosa', '\site\img\brand2.png' );
-        Brand::creat('Georjell fashion group', '\site\img\brand3.png' );
-        Brand::creat('Tesoro', '\site\img\brand4.png' );
-        Brand::creat('Lanesta', '\site\img\brand5.png' );
-        Brand::creat('Brilanta', '\site\img\brand6.png' );
+          Textile::create_item('Сатин');
+          Textile::create_item('Шелк');
+          Textile::create_item('Лён');
+        ClothingSize::create(['size' =>32]);
+        ClothingSize::create(['size' =>34]);
+        ClothingSize::create(['size' =>36]);
+        ClothingSize::create(['size' =>38]);
+        ClothingSize::create(['size' =>40]);
+        ClothingSize::create(['size' =>42]);
+
+
+        Brand::creat('Ardeni wedding dresses','Италия', '\site\img\brand1.png' );
+        Brand::creat('Elle rosa', 'Италия', '\site\img\brand2.png' );
+        Brand::creat('Georjell fashion group', 'Италия', '\site\img\brand3.png' );
+        Brand::creat('Tesoro', 'Италия','\site\img\brand4.png' );
+        Brand::creat('Lanesta',  'Италия','\site\img\brand5.png' );
+        Brand::creat('Brilanta',  'Италия','\site\img\brand6.png' );
 
         Silhouette::create_item('Пышное', '\site\img\silhouette1.jpg', '\site\img\filter-silhouette1.jpg');
         Silhouette::create_item('Прямое', '\site\img\silhouette2.jpg', '\site\img\filter-silhouette2.jpg');
@@ -94,6 +107,11 @@ class AddDataTablel extends Migration
                 'title' => 'Verona',
                 'price' => 34000,
                 'category_id'=>1,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 1,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>1,
                 'new_price' => 30000,
                 'is_new'=>0,
@@ -105,6 +123,11 @@ class AddDataTablel extends Migration
                 'title' => 'Litto',
                 'price' => 24000,
                 'category_id'=>1,
+                'brand_id' => 2,
+                'silhouette_id' => 2,
+                'colors_id' => 2,
+                'textile_id' => 2,
+                'size_id' => 2,
                 'is_promotion' =>1,
                 'new_price' => 30000,
                 'is_new'=>0,
@@ -116,6 +139,11 @@ class AddDataTablel extends Migration
                 'title' => 'Viola',
                 'price' => 14000,
                 'category_id'=>1,
+                'brand_id' => 3,
+                'silhouette_id' => 3,
+                'colors_id' => 3,
+                'textile_id' => 3,
+                'size_id' => 3,
                 'is_promotion' =>1,
                 'new_price' => 30000,
                 'is_new'=>0,
@@ -126,6 +154,11 @@ class AddDataTablel extends Migration
                 'title' => 'Anetta',
                 'price' => 1000,
                 'category_id'=>1,
+                'brand_id' => 4,
+                'silhouette_id' => 4,
+                'colors_id' => 4,
+                'textile_id' => 1,
+                'size_id' => 4,
                 'is_promotion' =>1,
                 'new_price' => 30000,
                 'is_new'=>0,
@@ -136,6 +169,11 @@ class AddDataTablel extends Migration
                 'title' => 'Nixom',
                 'price' => 2200,
                 'category_id'=>3,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>1,
                 'new_price' => 30000,
                 'is_new'=>0,
@@ -146,6 +184,11 @@ class AddDataTablel extends Migration
                 'title' => 'Lik',
                 'price' => 3000,
                 'category_id'=>1,
+                'brand_id' => 5,
+                'silhouette_id' => 5,
+                'colors_id' => 5,
+                'textile_id' => 1,
+                'size_id' => 5,
                 'is_promotion' =>1,
                 'new_price' => 30000,
                 'is_new'=>0,
@@ -157,6 +200,11 @@ class AddDataTablel extends Migration
                 'title' => 'Verona',
                 'price' => 34000,
                 'category_id'=>3,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>1,
@@ -168,6 +216,11 @@ class AddDataTablel extends Migration
                 'title' => 'Litto',
                 'price' => 24000,
                 'category_id'=>1,
+                'brand_id' => 6,
+                'silhouette_id' => 5,
+                'colors_id' => 6,
+                'textile_id' => 1,
+                'size_id' => 6,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>1,
@@ -179,6 +232,11 @@ class AddDataTablel extends Migration
                 'title' => 'Viola',
                 'price' => 14000,
                 'category_id'=>3,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>1,
@@ -189,6 +247,11 @@ class AddDataTablel extends Migration
                 'title' => 'Anetta',
                 'price' => 1000,
                 'category_id'=>1,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -199,6 +262,11 @@ class AddDataTablel extends Migration
                 'title' => 'Nixom',
                 'price' => 2200,
                 'category_id'=>1,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 8,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -209,6 +277,11 @@ class AddDataTablel extends Migration
                 'title' => 'Lik',
                 'price' => 3000,
                 'category_id'=>1,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -219,6 +292,11 @@ class AddDataTablel extends Migration
                 'title' => 'Nixom',
                 'price' => 2200,
                 'category_id'=>1,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -229,6 +307,11 @@ class AddDataTablel extends Migration
                 'title' => 'Anetta',
                 'price' => 1000,
                 'category_id'=>1,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -239,6 +322,11 @@ class AddDataTablel extends Migration
                 'title' => 'Nixom',
                 'price' => 2200,
                 'category_id'=>3,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -249,6 +337,11 @@ class AddDataTablel extends Migration
                 'title' => 'Lik',
                 'price' => 3000,
                 'category_id'=>1,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -260,6 +353,11 @@ class AddDataTablel extends Migration
                 'title' => 'Verona',
                 'price' => 34000,
                 'category_id'=>3,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -271,6 +369,11 @@ class AddDataTablel extends Migration
                 'title' => 'Litto',
                 'price' => 24000,
                 'category_id'=>1,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -282,6 +385,11 @@ class AddDataTablel extends Migration
                 'title' => 'Viola',
                 'price' => 14000,
                 'category_id'=>3,
+                'brand_id' => 1,
+                'silhouette_id' => 1,
+                'colors_id' => 7,
+                'textile_id' => 1,
+                'size_id' => 1,
                 'is_promotion' =>0,
                 'new_price' => 0,
                 'is_new'=>0,
@@ -296,6 +404,11 @@ class AddDataTablel extends Migration
                 'a'.$i,
                 $data[$i]['price'],
                 $data[$i]['category_id'],
+                $data[$i]['brand_id'],
+                $data[$i]['silhouette_id'],
+                $data[$i]['colors_id'],
+                $data[$i]['textile_id'],
+                $data[$i]['size_id'],
                 $data[$i]['is_promotion'],
                 $data[$i]['new_price'],
                 $data[$i]['is_new'],

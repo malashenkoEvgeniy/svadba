@@ -48,7 +48,45 @@ class Product extends BaseModel
         return $this->belongsTo(Category::class);
     }
 
-    public static function create_item($title, $vendor_code, $price, $category_id, $is_promotion = 0, $new_price =0, $is_new = 0, $is_collection = 0,  $img= [])
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function silhouette()
+    {
+        return $this->belongsTo(Silhouette::class);
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(Colors::class, 'colors_id');
+    }
+
+    public function textile()
+    {
+        return $this->belongsTo(Textile::class);
+    }
+
+    public function size()
+    {
+        return $this->belongsTo(ClothingSize::class);
+    }
+
+    public static function create_item($title,
+                                       $vendor_code,
+                                       $price,
+                                       $category_id,
+                                       $brand_id,
+                                       $silhouette_id,
+                                       $colors_id,
+                                       $textile_id,
+                                       $size_id,
+                                       $is_promotion = 0,
+                                       $new_price =0,
+                                       $is_new = 0,
+                                       $is_collection = 0,
+                                       $img= [])
     {
 
 
@@ -59,6 +97,11 @@ class Product extends BaseModel
             'vendor_code'=>$vendor_code,
             'price'=>$price,
             'category_id'=>$category_id,
+            'brand_id' => $brand_id,
+            'silhouette_id' => $silhouette_id,
+            'colors_id' => $colors_id,
+            'textile_id' => $textile_id,
+            'size_id' => $size_id,
             'is_promotion'=>$is_promotion,
             'new_price'=>$new_price,
             'is_new'=>$is_new,

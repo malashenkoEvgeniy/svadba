@@ -1,144 +1,80 @@
 <div class="modal-btn-filter">
     <div class="modal-btn-filter-header">
-        <h3 class="modal-btn-filter-title">Фильтр</h3>
+        <h3 class="modal-btn-filter-title">@lang('main.filter')</h3>
         <button class="filter-modal-btn-close"><i class="fas fa-times"></i></button>
     </div>
     <form action="" class="filter-form">
+        @if(count($brands))
         <fieldset>
-            <legend>Бренд</legend>
+            <legend>@lang('main.brand')</legend>
             <div class="group-inputs">
+                @foreach($brands as $brand)
                 <div class="group-input">
-                    <input type="checkbox" id="brand1">
-                    <label for="brand1">Бренд 1</label>
+                    <input type="checkbox" id="brand{{$brand->id}}" value="{{$brand->id}}">
+                    <label for="brand{{$brand->id}}">{{$brand->translate()->title}}</label>
                 </div>
-                <div class="group-input">
-                    <input type="checkbox" id="brand2">
-                    <label for="brand2">Бренд 2</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="brand3">
-                    <label for="brand3">Бренд 3</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="brand4">
-                    <label for="brand4">Бренд 4</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="brand5">
-                    <label for="brand5">Бренд 5</label>
-                </div>
+                @endforeach
             </div>
             <button class="filter-show-more">+ показать меньше</button>
         </fieldset>
+        @endif
+        @if(count($colors))
         <fieldset>
             <legend>Цвет</legend>
             <div class="group-inputs">
+                @foreach($colors as $color)
                 <div class="group-input">
-                    <input type="checkbox" id="color1">
-                    <label for="color1">Белый</label>
+                    <input type="checkbox" id="color{{$color->id}}" value="{{$color->id}}">
+                    <label for="color{{$color->id}}">{{$color->translate()->title}}</label>
                 </div>
-                <div class="group-input">
-                    <input type="checkbox" id="color2">
-                    <label for="color2">Молочный</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="color3">
-                    <label for="color3">Бежевый</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="color4">
-                    <label for="color4">Лиловый</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="color5">
-                    <label for="color5">Персиковый</label>
-                </div>
+                @endforeach
             </div>
             <button class="filter-show-more">+ показать меньше</button>
         </fieldset>
+        @endif
+        @if(count($silhouettes))
         <fieldset>
             <legend>Силуэт</legend>
             <div class="group-inputs group-inputs-silhouette">
+                @foreach($silhouettes as $silhouette)
                 <div class="group-input">
-                    <label for="silhouette1"><img src="/img/filter-silhouette1.jpg" alt=""></label>
-                    <input type="checkbox" id="silhouette1">
-                    <label for="silhouette1">Пышное</label>
+                    <label for="silhouette{{$silhouette->id}}"><img src="{{$silhouette->scheme}}" alt=""></label>
+                    <input type="checkbox" id="silhouette{{$silhouette->id}}" value="{{$silhouette->id}}">
+                    <label for="silhouette{{$silhouette->id}}">{{$silhouette->translate()->title}}</label>
                 </div>
-                <div class="group-input">
-                    <label for="silhouette2"><img src="/img/filter-silhouette2.jpg" alt=""></label>
-                    <input type="checkbox" id="silhouette2">
-                    <label for="silhouette2">Прямое</label>
-                </div>
-                <div class="group-input">
-                    <label for="silhouette3"><img src="/img/filter-silhouette3.jpg" alt=""></label>
-                    <input type="checkbox" id="silhouette3">
-                    <label for="silhouette3">А-силуэт</label>
-                </div>
-                <div class="group-input">
-                    <label for="silhouette4"><img src="/img/filter-silhouette4.jpg" alt=""></label>
-                    <input type="checkbox" id="silhouette4">
-                    <label for="silhouette4">Ампир</label>
-                </div>
-                <div class="group-input">
-                    <label for="silhouette5"><img src="/img/filter-silhouette5.jpg" alt=""></label>
-                    <input type="checkbox" id="silhouette5">
-                    <label for="silhouette5">Русалка</label>
-                </div>
-            </div>
+                @endforeach
         </fieldset>
+        @endif
+        @if(count($textiles))
         <fieldset>
             <legend>Ткань</legend>
             <div class="group-inputs">
-                <div class="group-input">
-                    <input type="checkbox" id="textile1">
-                    <label for="textile1">Сатин</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="textile2" checked>
-                    <label for="textile2">Шелк</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="textile3">
-                    <label for="textile3">Лён</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="textile4">
-                    <label for="textile4">Сатин</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="textile4">
-                    <label for="textile4">Сатин</label>
-                </div>
+                @foreach($textiles as $textile)
+                    <div class="group-input">
+                        <input type="checkbox" id="textile{{$textile->id}}" value="{{$textile->id}}">
+                        <label for="textile{{$textile->id}}">{{$textile->translate()->title}}</label>
+                    </div>
+                @endforeach
             </div>
             <button class="filter-show-more">+ показать меньше</button>
         </fieldset>
+        @endif
+        @if(count($sizes))
         <fieldset>
             <legend>Размер</legend>
             <div class="group-inputs">
-                <div class="group-input">
-                    <input type="checkbox" id="size1">
-                    <label for="size1">32</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="size2">
-                    <label for="size2">34</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="size3">
-                    <label for="size3">36</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="size4">
-                    <label for="size4">38</label>
-                </div>
-                <div class="group-input">
-                    <input type="checkbox" id="size4">
-                    <label for="size4">40</label>
-                </div>
+                @foreach($sizes as $size)
+                    <div class="group-input">
+                        <input type="checkbox" id="size{{$size->id}}" value="{{$size->id}}">
+                        <label for="textile{{$size->id}}">{{$size->size}}</label>
+                    </div>
+                @endforeach
             </div>
             <button class="filter-show-more">+ показать меньше</button>
         </fieldset>
+        @endif
         <fieldset>
+
             <legend>Цена</legend>
             <div class="polzunok-container">
                 <div class="polzunok-wrapper">

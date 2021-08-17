@@ -8,6 +8,20 @@
         .new_price_block.active{
             display: block;
         }
+
+        .silhouettes-wrap {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .silhouette {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: column;
+        }
     </style>
 @endsection
 @section('content')
@@ -47,20 +61,77 @@
                                         <label class="custom-file-label" for="inputGroupFile01">Выберите файл</label>
                                     </div>
                                 </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Родительская категория</span>
+                                @if(count($parent)>0)
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Родительская категория</span>
+                                        </div>
+
+                                            <select name="category_id"  >
+                                                @foreach($parent as  $category)
+                                                    <option value="{{$category->id}}">{{$category->translate()->title}}</option>
+                                                @endforeach
+                                            </select>
+
                                     </div>
-                                    @if(count($parent)>0)
-                                        <select name="category_id"  >
-                                            <option value="0" >Выбрать категорию</option>
-                                            @foreach($parent as  $category)
-                                                <option value="{{$category->id}}">{{$category->translate()->title}}</option>
+                                @endif
+                                @if(count($brands)>0)
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Бренд</span>
+                                        </div>
+
+                                        <select name="brand_id"  >
+                                            @foreach($brands as  $brand)
+                                                <option value="{{$brand->id}}">{{$brand->translate()->title}}</option>
                                             @endforeach
                                         </select>
-                                    @endif
-                                </div>
+                                    </div>
+                                @endif
+                                @if(count($textiles)>0)
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Ткань</span>
+                                        </div>
 
+                                        <select name="textile_id"  >
+                                            @foreach($textiles as  $textile)
+                                                <option value="{{$textile->id}}">{{$textile->translate()->title}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
+                                @if(count($colors)>0)
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Цвета</span>
+                                        </div>
+
+                                        <select name="colors_id"  >
+                                            @foreach($colors as  $color)
+                                                <option value="{{$color->id}}" style="background-color: {{$color->meaning}}">{{$color->translate()->title}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
+                                @if(count($silhouettes)>0)
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Силуеты</span>
+                                        </div>
+                                        <div class="silhouettes-wrap">
+                                            @foreach($silhouettes as  $silhouette)
+                                                <div class="silhouette">
+                                                    <img src="{{$silhouette->scheme}}" alt="">
+                                                    <label for="silhouette{{$silhouette->id}}">{{$silhouette->translate()->title}}</label>
+                                                    <input type="radio" value="{{$silhouette->id}}" id="silhouette{{$silhouette->id}}" name="silhouette_id" >                                            </div>
+                                            @endforeach
+                                        </div>
+                                        </select>
+                                    </div>
+                                @endif
+                                <label for="size_id">Размер одежды</label>
+                                <input type="number" min="25" name="size_id" id="size_id">
                                 <div class="form-group">
                                     <label for="title">Название</label>
                                     <input type="text" name="title"

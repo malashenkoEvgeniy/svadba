@@ -2,13 +2,14 @@
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
+     infinite: false,
   fade: true,
   asNavFor: '.product-previews-list'
 });
 $('.product-previews-list').slick({
    dots: false,
     arrows: false,
-//    vertical: true,
+    infinite: false,
     slidesToShow: 3,
     slidesToScroll: 1,
     asNavFor: '.product-main-photos',
@@ -16,22 +17,3 @@ $('.product-previews-list').slick({
 });
 
 
-
-$(".similar-products-list").slick({
-        dots: false,
-        arrows: false,
-        
-        infinite: true,
-        slidesToShow: 3,
-        autoplay: false,
-        autoplaySpeed: 1000,
-        slidesToScroll: 1, 
-             responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-          }
-        },
-      ]});

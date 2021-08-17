@@ -9,25 +9,22 @@ class SimilarWidget implements ContractWidget
     protected $sign;
     protected $model;
 
-    public function __construct($data = []){
-        if (isset($data['sign'])){
-            $this->sign = $data['sign'];
-            $this->model = $data['model'];
+    public function __construct($model=null){
+
+        if (($model!==null)){
+            $this->model = Product::where('silhouette_id', $model->silhouette_id)->get();
+            $this->sign = 'silhouette_id';
         } else {
+
+            $this->model = Product::where('is_promotion', 1)->get();
             $this->sign = 'is_promotion';
         }
     }
 
     public function execute(){
-        if($this->sign == 'is_promotion'){
-            $data = Product::where('is_promotion', 1)->get();
-        }
-        if($this->sign == 'similar'){
-            $data = Product::where('is_promotion', 1);
-        }
 
         return view('Widgets::similar', [
-            'data' => $data,
+            'data' => $this->model,
             'sign' => $this->sign
         ]);
     }

@@ -26,10 +26,19 @@ class Brand extends  BaseModel
     protected $guarded = [];
     protected $translateTable = "App\Models\\translates\\BrandTranslate";
 
-    public static function creat($title,  $img = null)
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public static function creat($title, $made_in_country,  $img = null)
     {
         $brand = Brand::create();
-        $brand->translations()->create(['title'=>$title]);
+        $brand->translations()->create([
+            'title'=>$title,
+            'made_in_country'=>$made_in_country,
+
+            ]);
 
         if (isset($img)) {
             $file = BaseModel::storeFileForResize($img, self::STORE_PATH, self::PARAMETERS);

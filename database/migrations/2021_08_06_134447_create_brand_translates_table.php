@@ -16,6 +16,7 @@ class CreateBrandTranslatesTable extends Migration
         Schema::create('brand_translates', function (Blueprint $table) {
             $table->id();
             $table->char('title', 255);
+            $table->char('made_in_country', 255);
             $table->char('language', 10)->default('ru');
             $table->bigInteger('brand_id')->unsigned();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\SilhouetteController;
+use App\Http\Controllers\Admin\TextileController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,7 @@ Route::group(
         Route::resource('shops', ShopController::class);
         Route::resource('cities', CityController::class);
         Route::resource('silhouettes', SilhouetteController::class);
+        Route::resource('textiles', TextileController::class);
 
     }
     );
@@ -54,8 +56,8 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){
 
-    Route::group(["namespace"=>"App\Http\Controllers\Site", "prefix" => "/"], function() {
-        Route::get('catalog','CategoryController@index')->name('catalog.index');
-    });
+//    Route::group(["namespace"=>"App\Http\Controllers\Site", "prefix" => "/"], function() {
+//        Route::get('catalog','CategoryController@index')->name('catalog.index');
+//    });
 
 });

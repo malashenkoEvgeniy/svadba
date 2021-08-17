@@ -29,7 +29,7 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" action="{{ route('home.update', $page->id) }}"  enctype="multipart/form-data">
+                            <form role="form" method="post" action="{{ route('order.update', $page->id) }}"  enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">

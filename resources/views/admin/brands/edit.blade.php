@@ -52,19 +52,18 @@
                                     <div class="form-group">
                                         <label for="title">Название</label>
                                         <input type="text" name="title"
-                                               class="form-control @error('title') is-invalid @enderror" id="title"
+                                               class="form-control " id="title"
                                                value="{{ $brand->translate()->title }}"
                                                placeholder="Название">
                                     </div>
-                                    @if (count($errors) > 0)
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                                    <div class="form-group">
+                                        <label for="title">Страна производитель</label>
+                                        <input type="text" name="made_in_country"
+                                               value="{{ $brand->translate()->made_in_country }}"
+                                               class="form-control" id="title" >
+
+                                    </div>
+
                                 </div>
 
                                 <div class="card-footer">

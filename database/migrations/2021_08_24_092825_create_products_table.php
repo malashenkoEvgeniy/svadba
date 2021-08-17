@@ -25,6 +25,16 @@ class CreateProductsTable extends Migration
             $table->tinyInteger('is_collection')->default(0);
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->bigInteger('brand_id')->unsigned();
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->bigInteger('silhouette_id')->unsigned();
+            $table->foreign('silhouette_id')->references('id')->on('silhouettes')->onDelete('cascade');
+            $table->bigInteger('colors_id')->unsigned();
+            $table->foreign('colors_id')->references('id')->on('colors')->onDelete('cascade');
+            $table->bigInteger('textile_id')->unsigned();
+            $table->foreign('textile_id')->references('id')->on('textiles')->onDelete('cascade');
+            $table->bigInteger('size_id')->unsigned();
+            $table->foreign('size_id')->references('id')->on('clothing_sizes')->onDelete('cascade');
             $table->timestamps();
         });
     }
