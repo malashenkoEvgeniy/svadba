@@ -1,5 +1,6 @@
 .slider-block {
     position: relative;
+    height: 100vh;
 }
 
 .slider-title {
@@ -41,6 +42,11 @@
     background-color: #ffffff;
 }
 
+.catalog {
+    height: 100vh;
+    box-sizing: border-box;
+}
+
 .catalog-title {
     font-family: 'Playfair Display', serif;
     font-weight: bold;
@@ -58,22 +64,20 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    height: 80%;
 }
 
 .catalog-item {
     position: relative;
-    height: 764px;
+    height: 100%;
     width: 33.3%;
 
 }
 
 .catalog-link {
+    position: relative;
     display: block;
-    font-size: 48px;
-    line-height: 56px;
-    text-decoration: none;
-    text-align: center;
-    color: #FFFFFF;
+
     outline: 2px solid black;
     background-repeat: no-repeat;
     background-position: center;
@@ -85,18 +89,24 @@
     filter: brightness(1);
 }
 
-.catalog-link span {
+.catalog-item-title {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%);
+    font-size: 48px;
+    line-height: 56px;
+    text-decoration: none;
+    text-align: center;
+    color: #FFFFFF;
 }
 
 
 .advantage {
-    min-height: 898px;
+    height: 100vh;
+    box-sizing: border-box;
     background: #ffffff url('../img/advantage-bg.png') no-repeat   100% 0;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 
 .advantage-block {
@@ -112,7 +122,7 @@
     line-height: 56px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 120px 0;
+    padding: 40px 0;
     color: #101010;
 }
 
@@ -126,7 +136,7 @@
 .advantage-item {
     display: flex;
     align-items: center;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
 }
 
 .advantage-img {
@@ -144,7 +154,9 @@
 }
 
 .brands {
-    margin-bottom: 200px;
+    margin-bottom: 100px;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 .brands-block {
@@ -159,7 +171,7 @@
     line-height: 56px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 80px 0;
+    padding: 40px 0;
     color: #101010;
 }
 
@@ -175,6 +187,7 @@
 .brands-item {
     width: 15%;
     box-sizing: border-box;
+    margin-right: 10px;
 }
 
 .brands-img {
@@ -183,9 +196,10 @@
 
 
 .feedback-form {
-    min-height: 898px;
+    height: 100vh;
+    box-sizing: border-box;
     background: #ffffff url('../img/feedback-bg.png') no-repeat   100% 0;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 
 .feedback-form-block {
@@ -200,7 +214,7 @@
     line-height: 56px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 80px 0 60px 0;
+    padding: 40px 0;
     color: #101010;
 }
 

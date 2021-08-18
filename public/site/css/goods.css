@@ -1,6 +1,8 @@
 .products {
     width: 1200px;
     margin: 0 auto;
+    height: 100vh;
+    box-sizing: border-box;
 
     margin-bottom: 50px;
 }
@@ -74,7 +76,7 @@
     font-family: 'Playfair Display', serif;
     font-weight: 400;
     font-size: 32px;
-    line-height: 56px;
+    line-height: 38px;
     color: #101010;
 }
 

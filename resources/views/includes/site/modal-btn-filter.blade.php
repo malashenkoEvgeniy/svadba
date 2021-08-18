@@ -88,5 +88,18 @@
                 </div>
             </div>
         </fieldset>
+        <fieldset>
+
+            <legend>Цена</legend>
+            <div class="polzunok-container">
+                <input type="text" class="js-range-slider" name="my_range"
+
+                       data-min="0"
+                       data-max="1000"
+                       data-from="200"
+                       data-to="500"
+                />
+            </div>
+        </fieldset>
     </form>
 </div>

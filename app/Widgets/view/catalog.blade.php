@@ -10,10 +10,11 @@
             {{$category->attachments[0]->img_d}}
             @endif
             )">
-                        <span>
-                           {{$category->translate()->title}}
-                        </span>
+
             </a>
+            <span class="catalog-item-title" >
+               {{$category->translate()->title}}
+            </span>
         </li>
         @endforeach
     </ul>

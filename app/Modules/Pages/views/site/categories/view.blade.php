@@ -2,6 +2,92 @@
 @section('links')
     <link rel="stylesheet" href="{{asset('site/css/page.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/modal.css')}}">
+    <style>
+        .irs {
+            top: 10px;
+        }
+        .irs--flat {
+            height: 60px;
+            width: 100%;
+        }
+        .irs--flat .irs-line {
+            top: 15px;
+            height: 1px;
+            background-color: #000000;
+            border-radius: 4px;
+        }
+
+        .irs--flat .irs-bar {
+            top: 23px;
+            height: 4px;
+            background-color: #000000;
+        }
+
+        .irs--flat .irs-handle>i:first-child {
+            position: absolute;
+            display: block;
+            top: -4px;
+            left: 50%;
+            width: 17px;
+            height: 17px;
+            margin-left: -1px;
+            background-color: #000;
+        }
+
+        .irs--flat .irs-from, .irs--flat .irs-to, .irs--flat .irs-single {
+            color: #000000;
+            font-size: 10px;
+            line-height: 1.333;
+            text-shadow: none;
+            padding: 1px 5px;
+            background-color: transparent;
+            border: 1px solid #000000;
+
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .irs-from {
+            visibility: visible;
+            left: 0px!important;
+            top: -30px!important;
+            border-radius: 0;
+            padding: 5px 65px;
+        }
+
+        .irs-to {
+            visibility: visible;
+            right: 0px;
+            top: -30px;
+            border-radius: 0;
+            padding: 5px 65px;
+        }
+
+        .irs--flat .irs-from:before, .irs--flat .irs-to:before, .irs--flat .irs-single:before {
+            position: absolute;
+            display: block;
+            content: "";
+            bottom: -6px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            margin-left: -3px;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+
+        .irs--flat .irs-min, .irs--flat .irs-max {
+            top: 0;
+            padding: 1px 3px;
+            color: #999;
+            font-size: 10px;
+            line-height: 1.333;
+            text-shadow: none;
+            background-color: #e1e4e9;
+            border-radius: 4px;
+            visibility: visible!important;
+        }
+    </style>
 @endsection
 @section('content')
     <main>
@@ -79,4 +165,12 @@
 
 @section('scripts')
     <script src="{{asset('site/js/rubric.js')}}"></script>
+    <script>
+        $(".js-range-slider").ionRangeSlider({
+            grid: false,
+            type: "double",
+
+        });
+    </script>
+
 @endsection
