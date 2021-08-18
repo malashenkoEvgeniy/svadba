@@ -90,8 +90,8 @@
                 </ul>
             </li>
             <li class="nav-item nav-item-search">
-                <form class="search-form search-input-close">
-                    <input id="search" placeholder="Введите название платья или бренда" name="serch" type="text" >
+                <form class="search-form search-input-close" action="{{ route('search')}}">
+                    <input id="search" placeholder="Введите название платья или бренда" name="q" type="text" >
                     <button type="submit" class="search-form-btn">
                         @include('svg.search')
                     </button>

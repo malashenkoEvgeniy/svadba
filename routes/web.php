@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ShopController;
 use App\Http\Controllers\Admin\SilhouetteController;
 use App\Http\Controllers\Admin\TextileController;
+use App\Http\Controllers\Select2SearchController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -56,8 +57,7 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){
 
-//    Route::group(["namespace"=>"App\Http\Controllers\Site", "prefix" => "/"], function() {
-//        Route::get('catalog','CategoryController@index')->name('catalog.index');
-//    });
+    Route::get('search', [Select2SearchController::class, 'index'])->name('search');
+    Route::get('ajax-autocomplete-search', [Select2SearchController::class, 'selectSearch'])->name('ajax-autocomplete-search');
 
 });
