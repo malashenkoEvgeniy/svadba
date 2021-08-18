@@ -6,7 +6,7 @@
     transform: translate(-50%, -50%);
     width: 50%;
     background-color: #FFFFFF;
-    overflow: hidden;
+    overflow: auto;
     z-index: 99;
     box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, .8);
 }
