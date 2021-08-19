@@ -10,11 +10,11 @@
             <div class="order-wrap">
                 <div class="order-form">
                     <div class="order-form-header">
-                        <a href="#" class="make-order-link make-order " data-tab="order">Оформить заказ</a>
-                        <a href="#" class="make-order-link make-fitting active" data-tab="fitting">Записаться на примерку</a>
+                        <a href="#" class="make-order-link make-order active" data-tab="order">Оформить заказ</a>
+                        <a href="#" class="make-order-link make-fitting " data-tab="fitting">Записаться на примерку</a>
                     </div>
-                    <div class="order-wrap order-block">@widget('order-form')</div>
-                    <div class="order-wrap fitting-block active">@widget('fitting-form')</div>
+                    <div class="order-wrap order-block active">@widget('order-form')</div>
+                    <div class="order-wrap fitting-block ">@widget('fitting-form')</div>
 
                 </div>
                 <div class="order-products">@widget('product-cart')</div>
@@ -30,11 +30,53 @@
             evt.preventDefault();
             let pref = $(this).attr('data-tab'),
                 content = $('.'+ pref +'-block');
-            console.log(content);
+
             $('.make-order-link.active').removeClass('active');
             $(this).addClass('active');
             $('.order-wrap.active').removeClass('active');
             content.addClass('active');
         });
+
+        // function validate_form() {
+        //     valid = true;
+        //     if ($('#name').value == "") {
+        //         alert("Вы не ввели своё имя");
+        //         valid = false;
+        //     }
+        //TODO: закончить валидацию формы
+        //     return valid;
+        //
+        // }
+
+
+        //Табы в форме заказа
+        $('.btn-order').click(function (evt) {
+            evt.preventDefault();
+            let postf = $(this).attr('data-order'),
+                content = $('.order-form-level'+ postf);
+            // if(!validate_form()){
+            //     console.log('ssss');
+            // }
+
+            $('.order-form-level.active').removeClass('active');
+            content.addClass('active');
+        });
+
+        //Отображение блока инпутов для апи новой почты
+        $('#new_post').change(function (evt) {
+            $('.new-post-order-block').addClass('active');
+        });
+        $('#pickup').change(function (evt) {
+            if( $('.new-post-order-block').hasClass('active')){
+                $('.new-post-order-block').removeClass('active');
+            }
+
+        });
+        $('#courier').change(function (evt) {
+            if( $('.new-post-order-block').hasClass('active')){
+                $('.new-post-order-block').removeClass('active');
+            }
+        });
+
     </script>
 @endsection

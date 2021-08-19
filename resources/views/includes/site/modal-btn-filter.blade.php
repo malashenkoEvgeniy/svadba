@@ -101,5 +101,12 @@
                 />
             </div>
         </fieldset>
+            <fieldset>
+
+                <legend>Цена</legend>
+                <div class="polzunok-container">
+                    <div class="slider-non-linear-step"></div>
+                </div>
+            </fieldset>
     </form>
 </div>

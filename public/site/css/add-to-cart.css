@@ -1,7 +1,7 @@
 .modal-add-to-cart {
     display: none;
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
@@ -181,4 +181,217 @@
     left: 0;
     background-color: rgba(204,204,204,0.8);
     z-index: 4;
+}
+
+
+.order-wrap {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+div.order-form {
+    width: 58%;
+    border: 1px solid #101010;
+    padding: 30px;
+}
+
+.order-form legend {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #000000;
+}
+
+.order-form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #C8C8C8;
+    margin-bottom: 30px;
+}
+
+.order-form-header a {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: right;
+    color: #101010;
+    text-decoration: none;
+}
+
+.order-form-header a.active {
+    text-decoration: underline;
+    color: #790C5A;
+}
+
+
+.order-form .feedback-form-form {
+    width: 100%;
+}
+
+.order-products {
+    width: 40%;
+    border: 1px solid #101010;
+    margin-left: auto;
+    padding: 30px;
+}
+
+.order-block,
+.fitting-block {
+    display: none;
+}
+
+.order-block.active,
+.fitting-block.active {
+    display: flex;
+}
+
+.order-form-level {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.order-form-first .input-block {
+    width: 48%;
+}
+
+.order-form-first .input-block  input {
+    width: 100%;
+    height: 50px;
+}
+
+.btn-next-order {
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 32px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background-color: #790C5A;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.order-form-second-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-block-radio {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+}
+
+.input-block-radio label {
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+    cursor: pointer;
+    position: relative;
+}
+
+.input-block-radio label::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    left: -17px;
+    top: 5px;
+    border: 1px solid #790C5A;
+    border-radius: 50%;
+}
+
+.input-block-radio input[type=radio]:checked + label:after {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: -15px;
+    top: 7px;
+    background-color: #790C5A;
+    border-radius: 50%;
+}
+
+.input-block-radio input[type=radio] {
+    display: none;
+}
+
+.new-post-order-block {
+    display: none;
+    width: 100%;
+}
+
+.new-post-order-block.active {
+    display: block;
+}
+
+.new-post-order-block label {
+    font-family: 'Vollkorn', serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #484848;
+}
+
+.new-post-order-block .input-block {
+    width: 48%;
+}
+
+.new-post-order-block .input-block input {
+    width: 100%;
+    height: 45px;
+}
+
+.order-form-btn-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-form-btn-wrap .btn-prev-order {
+    padding: 14px;
+    width: 35%;
+    height: 56px;
+    background: #FFFFFF;
+    border: 1px solid #790C5A;
+    color: #790C5A;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+}
+
+.order-form-btn-wrap .btn-next-order {
+    width: 35%;
+}
+
+.label-payment {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.order-form-level {
+    display: none;
+}
+.order-form-level.active {
+    display: flex;
 }

@@ -9,7 +9,7 @@ Route::group(
 
     Route::group(["namespace"=>"App\Modules\Order\Controllers\Site"], function() {
 
-        Route::get('/order','CartController@index')->name('order.index');
+        Route::get('/order','OrderController@index')->name('order.index');
     });
 
 });

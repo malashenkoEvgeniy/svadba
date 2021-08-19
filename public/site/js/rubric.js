@@ -1,3 +1,8 @@
+
+import noUiSlider from 'nouislider';
+// window.noUiSlider = noUiSlider
+
+
 //fulter
 $('.filter-btn-filter').click(function(){
     $('.modal-btn-filter').addClass('active');

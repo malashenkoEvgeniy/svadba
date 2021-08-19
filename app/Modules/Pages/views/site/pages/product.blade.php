@@ -119,20 +119,19 @@
             }
         });
 
-        // //Открывает попап корзины
-        // TODO:Не забудь раскомментировать
-        // function cartOpen(){
-        //     $('.modal-add-to-cart').addClass('active');
-        //     $('body').addClass('overflow-bg');
-        // }
-        // //Закрывает попап корзины
-        // function cartClose(){
-        //     $('.modal-add-to-cart').removeClass('active');
-        //     $('body').removeClass('overflow-bg');
-        // }
-        //
-        // $('.product-add-cart').click(cartOpen);
-        // $('.btn-close-modal-add-to-cart').click(cartClose);
-        // // $('.product-add-cart').click(cartClose);
+
+        function cartOpen(){
+            $('.modal-add-to-cart').addClass('active');
+            $('body').addClass('overflow-bg');
+        }
+        //Закрывает попап корзины
+        function cartClose(){
+            $('.modal-add-to-cart').removeClass('active');
+            $('body').removeClass('overflow-bg');
+        }
+
+        $('.product-add-cart').click(cartOpen);
+        $('.btn-close-modal-add-to-cart').click(cartClose);
+        // $('.product-add-cart').click(cartClose);
     </script>
 @endsection

@@ -5,7 +5,7 @@
 
 .slider-title {
     position: absolute;
-    bottom: 15%;
+    bottom: 30%;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -297,6 +297,8 @@
 
 .seo {
     margin-bottom: 140px;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 .seo-block {

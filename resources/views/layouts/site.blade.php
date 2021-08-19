@@ -11,6 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+    <link href="nouislider.css" rel="stylesheet">
+{{--    <link rel="stylesheet" href="{{asset('site/libs/nouislider/dist/nouislider.css')}}">--}}
     <link rel="stylesheet" href="{{asset('site/libs/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/breadcrumbs.css')}}">
@@ -36,6 +38,7 @@
 <script src="{{ asset('site/js/jquery.js')}}"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+{{--<script src="{{asset('site/libs/nouislider/dist/nouislider.js')}}"></script>--}}
 <script src="{{asset('site/js/script.js')}}"></script>
 <script src="{{asset('site/js/home.js')}}"></script>
 @yield('scripts')
