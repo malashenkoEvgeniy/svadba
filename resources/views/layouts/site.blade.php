@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{asset('site/img/favicon.png')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/png" href="{{ asset('site/img/favicon.png')}}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,15 +12,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
-    <link href="nouislider.css" rel="stylesheet">
+{{--    <link href="nouislider.css" rel="stylesheet">--}}
 {{--    <link rel="stylesheet" href="{{asset('site/libs/nouislider/dist/nouislider.css')}}">--}}
-    <link rel="stylesheet" href="{{asset('site/libs/fontawesome-free/css/all.min.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/breadcrumbs.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/home.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/goods.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/pagination.css')}}">
-    <link rel="stylesheet" href="{{asset('site/css/add-to-cart.css')}}">
+    <link rel="stylesheet" href="{{ asset('site/libs/fontawesome-free/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('site/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('site/css/breadcrumbs.css')}}">
+    <link rel="stylesheet" href="{{ asset('site/css/home.css')}}">
+    <link rel="stylesheet" href="{{ asset('site/css/goods.css')}}">
+    <link rel="stylesheet" href="{{ asset('site/css/pagination.css')}}">
+    <link rel="stylesheet" href="{{ asset('site/css/add-to-cart.css')}}">
     @yield('links')
     <title>Svadba-Kiev</title>
 </head>

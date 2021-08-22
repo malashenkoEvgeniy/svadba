@@ -1,4 +1,4 @@
-<div class="modal-btn-filter">
+<div class="modal-btn-filter ">
     <div class="modal-btn-filter-header">
         <h3 class="modal-btn-filter-title">@lang('main.filter')</h3>
         <button class="filter-modal-btn-close"><i class="fas fa-times"></i></button>

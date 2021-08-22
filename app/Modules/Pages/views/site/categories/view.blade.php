@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{asset('site/css/page.css')}}">
     <link rel="stylesheet" href="{{asset('site/css/modal.css')}}">
     <style>
+        /*TODO: стили ранжслайдер а - удалить*/
         .irs {
             top: 10px;
         }
@@ -132,16 +133,16 @@
                 <button class="filter-btn filter-btn-sort">Сортировать по<i class="fas fa-chevron-down"></i></button>
                 <ul class="filter-btn-sort-list">
                     <li class="filter-btn-sort-item">
-                        <a href="#" class="filter-btn-sort-link">акционные</a>
+                        <a href="#" class="filter-btn-sort-link" data-order="sort-promotion">акционные</a>
                     </li>
                     <li class="filter-btn-sort-item">
-                        <a href="#" class="filter-btn-sort-link">новинки</a>
+                        <a href="#" class="filter-btn-sort-link" data-order="sort-new">новинки</a>
                     </li>
                     <li class="filter-btn-sort-item">
-                        <a href="#" class="filter-btn-sort-link">возростанию цен</a>
+                        <a href="#" class="filter-btn-sort-link" data-order="sort-price-asc">возростанию цен</a>
                     </li>
                     <li class="filter-btn-sort-item">
-                        <a href="#" class="filter-btn-sort-link">убыванию цен</a>
+                        <a href="#" class="filter-btn-sort-link" data-order="sort-price-desc">убыванию цен</a>
                     </li>
                 </ul>
             </section>
@@ -149,7 +150,6 @@
                     <ul class="rubric-products-list">
                         @foreach( $products as $product)
                             @widget('product', ['model'=> $product])
-
                         @endforeach
                     </ul>
                 <div class="block-pagination">
@@ -164,7 +164,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{asset('site/js/rubric.js')}}"></script>
+    <script src="{{  asset('site/js/rubric.js')}}"></script>
     <script>
         $(".js-range-slider").ionRangeSlider({
             grid: false,
@@ -175,15 +175,50 @@
 
         let nonLinearStepSlider = document.getElementById('slider-non-linear-step');
 
-        noUiSlider.create(nonLinearStepSlider, {
-            start: [500, 4000],
-            range: {
-                'min': [0],
-                '10%': [500, 500],
-                '50%': [4000, 1000],
-                'max': [10000]
-            }
+        // noUiSlider.create(nonLinearStepSlider, {
+        //     start: [500, 4000],
+        //     range: {
+        //         'min': [0],
+        //         '10%': [500, 500],
+        //         '50%': [4000, 1000],
+        //         'max': [10000]
+        //     }
+        // });=========================================================================================
+        $(document).ready(function () {
+            $('.filter-btn-sort-link').click(function (evt) {
+                evt.preventDefault();
+                $('.filter-btn-sort-list').removeClass('active');
+                let orderBy = $(this).data('order');
+                // console.log(orderBy);
+                $.ajax({
+                    url: "{{ route('view-sort', $rubric->slug) }}",
+                    type: "get",
+                    data: {
+                        orderBy: orderBy
+                    },
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        let positionParameters = location.pathname.indexOf('?');
+                        let url = location.pathname.substring(positionParameters, location.pathname.length);
+                        let newUrl = url + '?';
+                        newUrl += 'orderBy=' + orderBy;
+                        history.pushState({}, newUrl);
+                        $('.rubric-products-list').html(data);
+                    },
+                    error: function (msg) {
+                        debugger;
+                        console.log(msg.responseText);
+                        // alert('Ошибка');
+                    }
+
+                });
+            });
+
         });
+
+
     </script>
 
 @endsection

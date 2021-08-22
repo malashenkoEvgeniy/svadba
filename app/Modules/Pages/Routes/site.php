@@ -11,6 +11,7 @@ Route::group(
 
         Route::get('/{slug}','PageController@view')->name('page.view');
         Route::get('category/{slug}','CategoryController@view')->name('page.category.view');
+        Route::get('sort/{slug}', 'CategoryController@viewSort')->name('view-sort');
     });
 
 });
