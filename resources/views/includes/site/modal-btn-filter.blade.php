@@ -1,4 +1,4 @@
-<div class="modal-btn-filter ">
+<div class="modal-btn-filter active ">
     <div class="modal-btn-filter-header">
         <h3 class="modal-btn-filter-title">@lang('main.filter')</h3>
         <button class="filter-modal-btn-close"><i class="fas fa-times"></i></button>
@@ -73,39 +73,48 @@
             <button class="filter-show-more">+ показать меньше</button>
         </fieldset>
         @endif
-        <fieldset>
+{{--        <fieldset>--}}
 
-            <legend>Цена</legend>
-            <div class="polzunok-container">
-                <div class="polzunok-wrapper">
-                    <input type="number" class="polzunok-input-left" min="0" max="50000" step="500" value="0">
-                    <span>-</span>
-                    <input type="number" class="polzunok-input-left" min="0" max="50000" step="500" value="25000">
-                </div>
-                <div class="polzunok">
-                    <span class="polzunok-indecator polzunok-indecator-min"></span>
-                    <span class="polzunok-indecator polzunok-indecator-max"></span>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset>
+{{--            <legend>Цена</legend>--}}
+{{--            <div class="polzunok-container">--}}
+{{--                <div class="polzunok-wrapper">--}}
+{{--                    <input type="number" class="polzunok-input-left" min="0" max="50000" step="500" value="0">--}}
+{{--                    <span>-</span>--}}
+{{--                    <input type="number" class="polzunok-input-left" min="0" max="50000" step="500" value="25000">--}}
+{{--                </div>--}}
+{{--                <div class="polzunok">--}}
+{{--                    <span class="polzunok-indecator polzunok-indecator-min"></span>--}}
+{{--                    <span class="polzunok-indecator polzunok-indecator-max"></span>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </fieldset>--}}
+{{--        <fieldset>--}}
 
-            <legend>Цена</legend>
-            <div class="polzunok-container">
-                <input type="text" class="js-range-slider" name="my_range"
+{{--            <legend>Цена</legend>--}}
+{{--            <div class="polzunok-container">--}}
+{{--                <input type="text" class="js-range-slider" name="my_range"--}}
 
-                       data-min="0"
-                       data-max="1000"
-                       data-from="200"
-                       data-to="500"
-                />
-            </div>
-        </fieldset>
+{{--                       data-min="0"--}}
+{{--                       data-max="1000"--}}
+{{--                       data-from="200"--}}
+{{--                       data-to="500"--}}
+{{--                />--}}
+{{--            </div>--}}
+{{--        </fieldset>--}}
             <fieldset>
+                <div class="filters__item filters-price">
+                    <h3 class="filters-price__title">Цена</h3>
+                    <div class="filters-price__inputs">
+                        <label class="filters-price__label">
+                            <input type="number" min="100" max="50000" placeholder="100" class="filters-price__input" id="input-0">
+                        </label>
+                        --
+                        <label class="filters-price__label">
+                            <input type="number" min="100" max="50000" placeholder="50000" class="filters-price__input" id="input-1">
+                        </label>
+                    </div>
+                    <div class="filters-price__slider" id="range-slider"></div>
 
-                <legend>Цена</legend>
-                <div class="polzunok-container">
-                    <div class="slider-non-linear-step"></div>
                 </div>
             </fieldset>
     </form>

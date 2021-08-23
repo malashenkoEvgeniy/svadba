@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Page;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class BaseController extends Controller
@@ -14,7 +15,8 @@ class BaseController extends Controller
         $h_contacts = Contact::where('id', 1)->first();
         $h_pages = Page::where('parent_id', 0)->with('children')->get();
         $h_categories = Category::where('parent_id', 0)->with('children')->get();
-        view()->share(compact('h_contacts', 'h_pages', 'h_categories'));
+        $test = Product::where('is_promotion', 1)->get();
+        view()->share(compact('h_contacts', 'h_pages', 'h_categories', 'test'));
     }
 //    function __construct(){
 //        $settings = Settings::find(1);

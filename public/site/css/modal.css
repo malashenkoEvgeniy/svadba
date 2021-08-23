@@ -8,7 +8,7 @@
     width: 400px;
     background-color: #fff;
     box-shadow: 0 0 10px 0 #cccccc;
-    padding-bottom: 50px;
+    padding: 50px 30px;
     z-index: 2;
     transition: left 1s ease 0s;
 }
@@ -42,7 +42,7 @@
     line-height: 32px;
     background-color: transparent;
     border: none;
-    color: #C8C8C8;        
+    color: #C8C8C8;
 }
 
 .modal-btn-filter fieldset {
@@ -62,7 +62,7 @@
     left: -9999px;
 }
 
-.modal-btn-filter input[type="checkbox"]:checked + label, 
+.modal-btn-filter input[type="checkbox"]:checked + label,
 .modal-btn-filter input[type="checkbox"]:not(:checked) + label {
    display: inline-block;
     position: relative;
@@ -79,7 +79,7 @@
     color: #101010;
 }
 
-.modal-btn-filter input[type="checkbox"]:checked + label:before, 
+.modal-btn-filter input[type="checkbox"]:checked + label:before,
 .modal-btn-filter input[type="checkbox"]:not(:checked) + label:before {
     content: "";
     position: absolute;
@@ -92,7 +92,7 @@
     border-radius: 2px;
 }
 
-.modal-btn-filter input[type="checkbox"]:checked + label:after, 
+.modal-btn-filter input[type="checkbox"]:checked + label:after,
 .modal-btn-filter input[type="checkbox"]:not(:checked) + label:after {
     content: "";
     position: absolute;
@@ -216,7 +216,7 @@
 
 .filter-btn-sort-list {
     position: absolute;
-    
+
     top: 100%;
     right: 0;
     background-color: #ffffff;
@@ -226,7 +226,7 @@
     display: none;
     align-items: flex-start;
     justify-content: flex-start;
-    flex-direction: column;   
+    flex-direction: column;
 }
 
 .filter-btn-sort-list.active {
@@ -324,7 +324,7 @@
     justify-content: flex-start;
     flex-direction: column;
     align-self: flex-end;
-    
+
 }
 
 .modal-curt-item-btn button {

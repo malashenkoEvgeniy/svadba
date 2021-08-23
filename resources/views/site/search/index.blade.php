@@ -17,31 +17,31 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script type="text/javascript">
-        $('.livesearch').select2({
-            placeholder: 'Select movie',
-            ajax: {
-                url: "{{ route('ajax-autocomplete-search')}}",
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    // debugger;
-                    console.log(data);
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                text: item.name,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                errors() {
-                    debugger;
-                },
-                cache: true
-            }
-        });
-    </script>
+{{--    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>--}}
+{{--    <script type="text/javascript">--}}
+{{--        $('.livesearch').select2({--}}
+{{--            placeholder: 'Select movie',--}}
+{{--            ajax: {--}}
+{{--                url: "{{ route('ajax-autocomplete-search')}}",--}}
+{{--                dataType: 'json',--}}
+{{--                delay: 250,--}}
+{{--                processResults: function (data) {--}}
+{{--                    // debugger;--}}
+{{--                    console.log(data);--}}
+{{--                    return {--}}
+{{--                        results: $.map(data, function (item) {--}}
+{{--                            return {--}}
+{{--                                text: item.name,--}}
+{{--                                id: item.id--}}
+{{--                            }--}}
+{{--                        })--}}
+{{--                    };--}}
+{{--                },--}}
+{{--                errors() {--}}
+{{--                    debugger;--}}
+{{--                },--}}
+{{--                cache: true--}}
+{{--            }--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection
