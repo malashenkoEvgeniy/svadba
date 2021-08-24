@@ -10,6 +10,7 @@ use App\Models\Colors;
 use App\Models\MainPage;
 use App\Models\MediaProject;
 use App\Models\Product;
+use App\Models\ProductOption;
 use App\Models\Silhouette;
 use App\Models\Textile;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -51,9 +52,8 @@ class ProductController extends BaseController
         $parent = Category::get();
         $brands = Brand::all();
         $textiles = Textile::all();
-        $colors = Colors::all();
         $silhouettes = Silhouette::all();
-        return view('admin.products.create', compact('parent', 'brands', 'textiles', 'colors', 'silhouettes'));
+        return view('admin.products.create', compact('parent', 'brands', 'textiles',  'silhouettes'));
     }
 
     /**
@@ -64,18 +64,12 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-//        $this->validate($request, [
-//            'title' => 'required|max:255',
-//        ]);
 
-        $req = request()->only( 'category_id', 'price',   'new_price', 'brand_id', 'textile_id', 'colors_id', 'silhouette_id' );
+
+        $req = request()->only( 'category_id', 'price',   'new_price', 'brand_id', 'textile_id',  'silhouette_id' );
         $req['slug'] = SlugService :: createSlug ( Product :: class, 'slug' , $request->title );
         $req['is_promotion'] =  $request->has('is_promotion') ? 1 : 0;
-        $clothingSize = ClothingSize::where('size',$request->size_id)->first();
-        if ($clothingSize == null) {
-            $clothingSize = ClothingSize::create(['size' =>$request->size_id]);
-        }
-        $req['size_id'] = $clothingSize->id;
+
         if($req['is_promotion'] ==0){
             $req['new_price'] = 0;
         }
@@ -113,8 +107,13 @@ class ProductController extends BaseController
     {
 
         $parent = Category::get();
-        $product = Product::where('id', $id)->first();
-        return view('admin.products.edit', compact('product', 'parent'));
+        $product = Product::where('id', $id)
+            ->with('options')
+            ->first();
+        $colors = Colors::all();
+
+
+        return view('admin.products.edit', compact('product', 'parent', 'colors'));
     }
 
     /**
@@ -170,6 +169,41 @@ class ProductController extends BaseController
 
 
         return redirect()->route('products.index')->with('success', 'Изменения сохранены');
+    }
+
+    public function requestProductOption(Request $request)
+    {
+        $size = ClothingSize::where([
+            'size' =>$request->size,
+        ])->first();
+        if($size == null) {
+            $size = ClothingSize::create(['size'=>$request->size]);
+        }
+
+        $option = ProductOption::where([
+            'product_id' => $request->id,
+            'colors_id' => $request->color_id,
+            'size_id' =>$size->id
+        ])->first();
+        if($option == null) {
+            ProductOption::create([
+                'product_id' => $request->id,
+                'colors_id' => $request->color_id,
+                'size_id' =>$size->id,
+                'available_quantity'=> $request->available_quantity,
+            ]);
+        } else {
+            $option->available_quantity +=  $request->available_quantity;
+            $option->update();
+        }
+
+        $product = Product::where('id', $request->id)
+            ->with('options')
+            ->first();
+
+        if($request->ajax()){
+            return view('ajax-tpl.edit_options', compact('product'))->render();
+        }
     }
 
     /**

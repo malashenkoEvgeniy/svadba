@@ -64,10 +64,10 @@ class CategoryController extends BaseController
             ->paginate(12);
 
         $brands = Brand::whereIn('id', ProductService::getArrayItems($products, 'brand'))->get();
-        $colors = Colors::whereIn('id', ProductService::getArrayItems($products, 'color'))->get();
+        $colors = Colors::whereIn('id', ProductService::getArrayItemsOptions($products))->get();
         $silhouettes = Silhouette::whereIn('id', ProductService::getArrayItems($products, 'silhouette'))->get();
         $textiles = Textile::whereIn('id', ProductService::getArrayItems($products, 'textile'))->get();
-        $sizes = ClothingSize::whereIn('id', ProductService::getArrayItems($products, 'size'))->get();
+        $sizes = ClothingSize::whereIn('id', ProductService::getArrayItemsOptions($products, 'size_id'))->get();
 
           return view('Pages::site.categories.view', compact(
               'categories',

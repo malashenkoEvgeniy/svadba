@@ -80,12 +80,12 @@
 @endsection
 
 @section('scripts')
-{{--    <link rel="stylesheet" href="{{ asset('site/libs/nouislider/nouislider.min.js')}}">--}}
     <script src="{{  asset('site/js/rubric.js')}}"></script>
     <script src="{{  asset('site/js/range-slider.js')}}" async></script>
     <script>
 
         $(document).ready(function () {
+            //Отработка сортировки
             $('.filter-btn-sort-link').click(function (evt) {
                 evt.preventDefault();
                 $('.filter-btn-sort-list').removeClass('active');
@@ -113,8 +113,22 @@
                         console.log(msg.responseText);
                         // alert('Ошибка');
                     }
-
                 });
+            });
+
+            //Отработка фильтрации
+            $("#filter-form").change(function(){
+                // для читаемости кода
+                let $form = $(this);
+                console.log( $form.serializeArray() )
+                // вы же понимаете, о чём я тут толкую?
+                // это ведь одна из ипостасей AJAX-запроса
+                // $.post(
+                //     $form.attr("action"), // ссылка куда отправляем данные
+                //     $form.serialize()     // данные формы
+                // );
+                // отключаем действие по умолчанию
+                return false;
             });
 
         });

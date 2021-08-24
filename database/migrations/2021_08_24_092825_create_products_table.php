@@ -16,7 +16,6 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->char('vendor_code',255);
-//            $table->boolean('aviability')->default(0);
             $table->char('slug',150);
             $table->integer('price')->default(0);
             $table->integer('new_price')->default(0);
@@ -29,12 +28,9 @@ class CreateProductsTable extends Migration
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->bigInteger('silhouette_id')->unsigned();
             $table->foreign('silhouette_id')->references('id')->on('silhouettes')->onDelete('cascade');
-            $table->bigInteger('colors_id')->unsigned();
-            $table->foreign('colors_id')->references('id')->on('colors')->onDelete('cascade');
             $table->bigInteger('textile_id')->unsigned();
             $table->foreign('textile_id')->references('id')->on('textiles')->onDelete('cascade');
-            $table->bigInteger('size_id')->unsigned();
-            $table->foreign('size_id')->references('id')->on('clothing_sizes')->onDelete('cascade');
+            $table->integer('available')->default(0);
             $table->timestamps();
         });
     }

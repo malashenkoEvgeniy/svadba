@@ -55,23 +55,40 @@
                                 <h3 class="product-characteristics-item-title">Ткань:&#8195; </h3>
                                 <span class="product-characteristics-item-decription"> {{$product->textile->translate()->title}}</span>
                             </li>
-                            <li class="product-characteristics-item">
-                                <h3 class="product-characteristics-item-title">Цвет:&#8195; </h3>
-                                <span class="product-characteristics-item-decription"> {{$product->color->translate()->title}}</span>
+{{--                            <li class="product-characteristics-item">--}}
+{{--                                <h3 class="product-characteristics-item-title">Цвет:&#8195; </h3>--}}
+{{--                                <span class="product-characteristics-item-decription"> {{$product->color->translate()->title}}</span>--}}
+{{--                            </li>--}}
+{{--                            <li class="product-characteristics-item">--}}
+{{--                                <h3 class="product-characteristics-item-title">Размер:&#8195; </h3>--}}
+{{--                                <span class="product-characteristics-item-decription"> {{$product->size->size}}</span>--}}
+{{--                            </li>--}}
+                        </ul>
+                        <ul class="product-options">
+                            <li class="product-options-item">
+                                <h4 class="product-options-item-title">Доступно в размере:</h4>
+                                @foreach( $product->options as $option )
+
+                                    <input type="checkbox" name="size" value="{{ $option->size_id }}" id="size{{ $option->size_id }}" @if($loop->first) checked @endif>
+                                    <label for="size{{ $option->size_id }}">{{ $option->sizes->size }}</label>
+                                @endforeach
                             </li>
-                            <li class="product-characteristics-item">
-                                <h3 class="product-characteristics-item-title">Размер:&#8195; </h3>
-                                <span class="product-characteristics-item-decription"> {{$product->size->size}}</span>
+                            <li class="product-options-item">
+                                <h4 class="product-options-item-title">Доступно в цвете:</h4>
+                                @foreach( $product->options as $option )
+                                    <input type="checkbox" name="color" value="{{ $option->colors_id }}" id="size{{ $option->colors_id }}" @if($loop->first) checked @endif>
+                                    <label for="size{{ $option->colors_id }}">{{ $option->colors->translate()->title }}</label>
+                                @endforeach
                             </li>
                         </ul>
                         @if($product->is_promotion)
                             <div class="product-price">
-                                <span class="product-new-price">{{$product->new_price}} грн.</span>
-                                <span class="product-old-price">{{$product->price}} грн.</span>
+                                <span class="product-new-price">{{ $product->new_price}} грн.</span>
+                                <span class="product-old-price">{{ $product->price}} грн.</span>
                             </div>
                         @else
                             <div class="product-price">
-                                <span class="product-new-price">{{$product->price}} грн.</span>
+                                <span class="product-new-price">{{ $product->price}} грн.</span>
                             </div>
                         @endif
 
@@ -107,6 +124,8 @@
 @section('scripts')
     <script src="{{asset('site/js/product.js')}}"></script>
     <script>
+
+
         // Переключает табы в карточке товара
         $('.product-tabs-header-btn').click(function (){
             if($(this).children('i').hasClass('fa-chevron-up')) {
@@ -118,20 +137,52 @@
                 $(this).siblings('.product-tabs-header-description').addClass('active');
             }
         });
+// ==============================================Корзина=====================================================================
+        function modalAddToCart(teg) {
+            function cartOpen(evt){
+                evt.preventDefault();
+                $('.modal-add-to-cart').addClass('active');
+                if(teg == '.product-add-cart'){
+                    addProductToCart();
+                }
+                $('body').addClass('overflow-bg');
+            }
+            //Закрывает попап корзины
+            function cartClose(){
+                $('.modal-add-to-cart').removeClass('active');
+                $('body').removeClass('overflow-bg');
+            }
 
+            $(teg).click(cartOpen);
+            $('.btn-close-modal-add-to-cart').click(cartClose);
 
-        function cartOpen(){
-            $('.modal-add-to-cart').addClass('active');
-            $('body').addClass('overflow-bg');
         }
-        //Закрывает попап корзины
-        function cartClose(){
-            $('.modal-add-to-cart').removeClass('active');
-            $('body').removeClass('overflow-bg');
+
+        function addProductToCart(){
+            $.ajax({
+                url: "{{ route('cart.add-to-cart') }}",
+                type: "post",
+                data: {
+                    id: {{ $product->id }},
+                    size: $("input[name='size']").val(),
+                    color: $("input[name='color']").val()
+                },
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    console.log(data);
+
+                },
+                error: function (msg) {
+                    debugger;
+                    console.log(msg.responseText);
+                    // alert('Ошибка');
+                }
+            });
         }
 
-        $('.product-add-cart').click(cartOpen);
-        $('.btn-close-modal-add-to-cart').click(cartClose);
-        // $('.product-add-cart').click(cartClose);
+        modalAddToCart('.product-add-cart')
+        modalAddToCart('.nav-item-cart-btn')
     </script>
 @endsection

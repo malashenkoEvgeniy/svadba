@@ -101,19 +101,6 @@
                                         </select>
                                     </div>
                                 @endif
-                                @if(count($colors)>0)
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Цвета</span>
-                                        </div>
-
-                                        <select name="colors_id"  >
-                                            @foreach($colors as  $color)
-                                                <option value="{{$color->id}}" style="background-color: {{$color->meaning}}">{{$color->translate()->title}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endif
                                 @if(count($silhouettes)>0)
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -130,8 +117,6 @@
                                         </select>
                                     </div>
                                 @endif
-                                <label for="size_id">Размер одежды</label>
-                                <input type="number" min="25" name="size_id" id="size_id">
                                 <div class="form-group">
                                     <label for="title">Название</label>
                                     <input type="text" name="title"

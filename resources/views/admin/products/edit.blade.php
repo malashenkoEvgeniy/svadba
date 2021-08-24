@@ -82,70 +82,6 @@
                                 @endif
                             </div>
 
-
-                            <hr>
-{{--                            <h4>Available Colors</h4>--}}
-{{--                            <div class="btn-group btn-group-toggle" data-toggle="buttons">--}}
-{{--                                <label class="btn btn-default text-center active">--}}
-{{--                                    <input type="radio" name="color_option" id="color_option_a1" autocomplete="off" checked>--}}
-{{--                                    Green--}}
-{{--                                    <br>--}}
-{{--                                    <i class="fas fa-circle fa-2x text-green"></i>--}}
-{{--                                </label>--}}
-{{--                                <label class="btn btn-default text-center">--}}
-{{--                                    <input type="radio" name="color_option" id="color_option_a2" autocomplete="off">--}}
-{{--                                    Blue--}}
-{{--                                    <br>--}}
-{{--                                    <i class="fas fa-circle fa-2x text-blue"></i>--}}
-{{--                                </label>--}}
-{{--                                <label class="btn btn-default text-center">--}}
-{{--                                    <input type="radio" name="color_option" id="color_option_a3" autocomplete="off">--}}
-{{--                                    Purple--}}
-{{--                                    <br>--}}
-{{--                                    <i class="fas fa-circle fa-2x text-purple"></i>--}}
-{{--                                </label>--}}
-{{--                                <label class="btn btn-default text-center">--}}
-{{--                                    <input type="radio" name="color_option" id="color_option_a4" autocomplete="off">--}}
-{{--                                    Red--}}
-{{--                                    <br>--}}
-{{--                                    <i class="fas fa-circle fa-2x text-red"></i>--}}
-{{--                                </label>--}}
-{{--                                <label class="btn btn-default text-center">--}}
-{{--                                    <input type="radio" name="color_option" id="color_option_a5" autocomplete="off">--}}
-{{--                                    Orange--}}
-{{--                                    <br>--}}
-{{--                                    <i class="fas fa-circle fa-2x text-orange"></i>--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-
-{{--                            <h4 class="mt-3">Size <small>Please select one</small></h4>--}}
-{{--                            <div class="btn-group btn-group-toggle" data-toggle="buttons">--}}
-{{--                                <label class="btn btn-default text-center">--}}
-{{--                                    <input type="radio" name="color_option" id="color_option_b1" autocomplete="off">--}}
-{{--                                    <span class="text-xl">S</span>--}}
-{{--                                    <br>--}}
-{{--                                    Small--}}
-{{--                                </label>--}}
-{{--                                <label class="btn btn-default text-center">--}}
-{{--                                    <input type="radio" name="color_option" id="color_option_b2" autocomplete="off">--}}
-{{--                                    <span class="text-xl">M</span>--}}
-{{--                                    <br>--}}
-{{--                                    Medium--}}
-{{--                                </label>--}}
-{{--                                <label class="btn btn-default text-center">--}}
-{{--                                    <input type="radio" name="color_option" id="color_option_b3" autocomplete="off">--}}
-{{--                                    <span class="text-xl">L</span>--}}
-{{--                                    <br>--}}
-{{--                                    Large--}}
-{{--                                </label>--}}
-{{--                                <label class="btn btn-default text-center">--}}
-{{--                                    <input type="radio" name="color_option" id="color_option_b4" autocomplete="off">--}}
-{{--                                    <span class="text-xl">XL</span>--}}
-{{--                                    <br>--}}
-{{--                                    Xtra-Large--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-
                             <div class="bg-gray py-2 px-3 mt-4">
                                 <h2 class="mb-0">
                                     Цена {{ $product->price }}
@@ -162,30 +98,33 @@
                             </div>
 
                             <div class="mt-4">
-                                <div class="btn btn-primary btn-lg btn-flat">
-                                    <i class="fas fa-cart-plus fa-lg mr-2"></i>
-                                    Add to Cart
+                                <div id="body-table-options">
+                                <label for="main_available">
+                                    Товар доступен на сайте
+                                    <input type="checkbox" name="main-available" id="main_available">
+                                </label>
+                                <table class="table table-bordered table-hover text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 30px">#</th>
+                                        <th>Цвет</th>
+                                        <th>Размер</th>
+                                        <th>Количество</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach( $product->options as $option)
+                                        <tr>
+                                            <td>{{ $loop->index}}</td>
+                                            <td>{{ $option->colors->translate()->title }}</td>
+                                            <td>{{ $option->sizes->size }}</td>
+                                            <td>{{ $option->available_quantity }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <h5>Общее количество доступных товаров <span id="count-products">{{ \App\Services\ProductService::getCountProducts($product) }}</span></h5>
                                 </div>
-
-                                <div class="btn btn-default btn-lg btn-flat">
-                                    <i class="fas fa-heart fa-lg mr-2"></i>
-                                    Add to Wishlist
-                                </div>
-                            </div>
-
-                            <div class="mt-4 product-share">
-                                <a href="#" class="text-gray">
-                                    <i class="fab fa-facebook-square fa-2x"></i>
-                                </a>
-                                <a href="#" class="text-gray">
-                                    <i class="fab fa-twitter-square fa-2x"></i>
-                                </a>
-                                <a href="#" class="text-gray">
-                                    <i class="fas fa-envelope-square fa-2x"></i>
-                                </a>
-                                <a href="#" class="text-gray">
-                                    <i class="fas fa-rss-square fa-2x"></i>
-                                </a>
                             </div>
 
                         </div>
@@ -193,13 +132,31 @@
                     <div class="row mt-4">
                         <nav class="w-100">
                             <div class="nav nav-tabs" id="product-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Description</a>
+                                <a class="nav-item nav-link active" id="product-options-tab" data-toggle="tab" href="#product-options" role="tab" aria-controls="product-options" aria-selected="false">Options</a>
+                                <a class="nav-item nav-link " id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Description</a>
                                 <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Seo</a>
-                                <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Rating</a>
+
                             </div>
                         </nav>
                         <div class="tab-content p-3" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
+                            <div class="tab-pane fade show active" id="product-options" role="tabpanel" aria-labelledby="product-options-tab">
+                                <form action="{{ route('request-product-option') }}" method="post" name="product-option-form" id="product-option-form">
+                                    <label for="color_id">Цвета</label>
+                                    <select name="color_id" id="color_id"  >
+                                        @foreach($colors as  $color)
+                                            <option value="{{$color->id}}">{{$color->translate()->title}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="size_id">Размер</label>
+                                    <input name="size" id="size_id" type="number" min="30" value="30" >
+                                    <label for="available_quantity_id">Количество</label>
+                                    <input name="available_quantity" id="available_quantity_id" type="number" value="1" >
+                                    <button type="button" class="btn btn-primary product-option-form-btn">Добавить</button>
+
+
+                                </form>
+                            </div>
+                            <div class="tab-pane fade " id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab">
                                 <label>Текст</label>
                                 <textarea  class="form-control editor" name="body" >{!! $product->translate()->bogy !!}</textarea >
                             </div>
@@ -224,7 +181,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> Cras ut ipsum ornare, aliquam ipsum non, posuere elit. In hac habitasse platea dictumst. Aenean elementum leo augue, id fermentum risus efficitur vel. Nulla iaculis malesuada scelerisque. Praesent vel ipsum felis. Ut molestie, purus aliquam placerat sollicitudin, mi ligula euismod neque, non bibendum nibh neque et erat. Etiam dignissim aliquam ligula, aliquet feugiat nibh rhoncus ut. Aliquam efficitur lacinia lacinia. Morbi ac molestie lectus, vitae hendrerit nisl. Nullam metus odio, malesuada in vehicula at, consectetur nec justo. Quisque suscipit odio velit, at accumsan urna vestibulum a. Proin dictum, urna ut varius consectetur, sapien justo porta lectus, at mollis nisi orci et nulla. Donec pellentesque tortor vel nisl commodo ullamcorper. Donec varius massa at semper posuere. Integer finibus orci vitae vehicula placerat. </div>
+
                         </div>
                     </div>
                 </div>
@@ -254,69 +211,95 @@
             $('#prom').change(function (){
                 $('.new_price_block').toggleClass('active');
             });
+
+            $('.product-option-form-btn').click( function () {
+                    $.ajax({
+                        url: "{{ route('request-product-option') }}",
+                        type: "post",
+                        data: {
+                            id: {{ $product->id  }},
+                            color_id: $('#color_id').val(),
+                            size:  $('#size_id').val(),
+                            available_quantity:  $('#available_quantity_id').val(),
+
+                        },
+                        headers: {
+                            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            $('#body-table-options').html(data);
+                        },
+                        error: function (msg) {
+                            debugger;
+                            console.log(msg.responseText);
+                            // alert('Ошибка');
+                        }
+                    });
+                }
+            );
         });
-        ClassicEditor
-            .create( document.querySelector( '.editor' ), {
-                ckfinder: {
-                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-                },
-                alignment: {
-                    options: [ 'left', 'right', 'center', 'justify' ]
-                },
-                image: {
-                    // You need to configure the image toolbar, too, so it uses the new style buttons.
-                    toolbar: [ 'imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight' ],
-
-                    styles: [
-                        // This option is equal to a situation where no style is applied.
-                        'full',
-
-                        // This represents an image aligned to the left.
-                        'alignLeft',
-
-                        // This represents an image aligned to the right.
-                        'alignRight'
-                    ]
-                },
-                toolbar: {
-                    items: [
-                        'heading',
-                        '|',
-                        'bold',
-                        'italic',
-                        'link',
-                        'bulletedList',
-                        'numberedList',
-                        '|',
-                        'CKFinder',
-                        'outdent',
-                        'indent',
-                        '|',
-                        'blockQuote',
-                        'insertTable',
-                        'mediaEmbed',
-                        'undo',
-                        'redo',
-                        'alignment',
-                        'fontBackgroundColor',
-                        'fontColor',
-                        'fontSize',
-                        'fontFamily'
-                    ]
-                },
-                language: 'ru',
-                table: {
-                    contentToolbar: [
-                        'tableColumn',
-                        'tableRow',
-                        'mergeTableCells'
-                    ]
-                },
-                licenseKey: '',
-            } )
-            .catch( function( error ) {
-                console.error( error );
-            } );
+        // ClassicEditor
+        //     .create( document.querySelector( '.editor' ), {
+        //         ckfinder: {
+        //             uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+        //         },
+        //         alignment: {
+        //             options: [ 'left', 'right', 'center', 'justify' ]
+        //         },
+        //         image: {
+        //             // You need to configure the image toolbar, too, so it uses the new style buttons.
+        //             toolbar: [ 'imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight' ],
+        //
+        //             styles: [
+        //                 // This option is equal to a situation where no style is applied.
+        //                 'full',
+        //
+        //                 // This represents an image aligned to the left.
+        //                 'alignLeft',
+        //
+        //                 // This represents an image aligned to the right.
+        //                 'alignRight'
+        //             ]
+        //         },
+        //         toolbar: {
+        //             items: [
+        //                 'heading',
+        //                 '|',
+        //                 'bold',
+        //                 'italic',
+        //                 'link',
+        //                 'bulletedList',
+        //                 'numberedList',
+        //                 '|',
+        //                 'CKFinder',
+        //                 'outdent',
+        //                 'indent',
+        //                 '|',
+        //                 'blockQuote',
+        //                 'insertTable',
+        //                 'mediaEmbed',
+        //                 'undo',
+        //                 'redo',
+        //                 'alignment',
+        //                 'fontBackgroundColor',
+        //                 'fontColor',
+        //                 'fontSize',
+        //                 'fontFamily'
+        //             ]
+        //         },
+        //         language: 'ru',
+        //         table: {
+        //             contentToolbar: [
+        //                 'tableColumn',
+        //                 'tableRow',
+        //                 'mergeTableCells'
+        //             ]
+        //         },
+        //         licenseKey: '',
+        //     } )
+        //     .catch( function( error ) {
+        //         console.error( error );
+        //     } );
 
     </script>
 @endsection

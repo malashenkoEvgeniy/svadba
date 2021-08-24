@@ -48,6 +48,11 @@ class Product extends BaseModel
         return $this->belongsTo(Category::class);
     }
 
+    public function options()
+    {
+        return $this->hasMany(ProductOption::class, 'product_id');
+    }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);
@@ -99,15 +104,25 @@ class Product extends BaseModel
             'category_id'=>$category_id,
             'brand_id' => $brand_id,
             'silhouette_id' => $silhouette_id,
-            'colors_id' => $colors_id,
             'textile_id' => $textile_id,
-            'size_id' => $size_id,
+            'available' => 1,
             'is_promotion'=>$is_promotion,
             'new_price'=>$new_price,
             'is_new'=>$is_new,
             'is_collection'=>$is_collection
 
         ]);
+
+        ProductOption::create([
+            'product_id'=>$product->id,
+            'colors_id' => $colors_id,
+            'size_id' => $size_id,
+            'available_quantity' =>3
+        ]);
+
+
+
+
         $product->translations()->create([
             'title'=>$title,
             'language'=>'ru'

@@ -46,6 +46,7 @@
                                                 <th>Товар акционный</th>
                                                 <th>Товар-новинка</th>
                                                 <th>Товар коллекция</th>
+                                                <th>Товар доступный</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
@@ -69,6 +70,7 @@
                                                     </td>
                                                     <td>@if($product->is_new) + @else - @endif </td>
                                                     <td>@if($product->is_collection) + @else - @endif </td>
+                                                    <td>@if($product->available) Да @else Нет @endif </td>
                                                     <td>
                                                         <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                                             <i class="fas fa-pencil-alt"></i>

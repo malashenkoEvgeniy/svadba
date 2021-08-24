@@ -40,6 +40,7 @@ Route::group(
         Route::resource('brands', BrandsController::class);
         Route::resource('colors', ColorsController::class);
         Route::resource('products', ProductController::class);
+        Route::post('/request-product-option', [ProductController::class, 'requestProductOption'])->name('request-product-option');
         Route::resource('pages', PageController::class);
         Route::resource('shops', ShopController::class);
         Route::resource('cities', CityController::class);

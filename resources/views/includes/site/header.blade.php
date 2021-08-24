@@ -113,6 +113,12 @@
                 </a>
                 <div class="counter-orders">10</div>
             </li>
+            <li class="nav-item nav-item-temp-cart">
+                <a href="{{ route('cart.index') }}" class="nav-item-temp-cart-btn">
+                    Корзина временно
+                </a>
+                <div class="counter-orders">10</div>
+            </li>
         </ul>
     </nav>
 </header>
