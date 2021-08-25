@@ -11,6 +11,7 @@ use App\Models\MainSlider;
 use App\Models\Product;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends BaseController
 {
@@ -25,28 +26,30 @@ class CartController extends BaseController
     {
 
         $product = Product::where('id', $request->id)->first();
-        if(!isset($_COOKIE['cart_id'])) {
-            setcookie('cart_id', uniqid());
-        }
-            $cart_id = $_COOKIE['cart_id'];
-            \Cart::session($cart_id);
 
-            \Cart::add([
-                'id' => $product->id,
-                'name' => $product->translate()->title,
-                'price' => ($product->is_promotion) ? $product->new_price : $product->price,
-                'quantity' => 1,
-                'attributes' => [
-                    'img' => $product->attachments[0]->img_prev,
-                    'size'=>$request->size,
-                    'color'=>$request->color
-                ]
-            ]);
+//        if(!isset($_COOKIE['cart_id'])) {
+//            setcookie('cart_id', uniqid());
+//        }
+//        $cart_id = $_COOKIE['cart_id'];
+
+        $cart_id = Session::getId();
+
+        \Cart::session($cart_id);
 
 
+        \Cart::add([
+            'id' => $product->id,
+            'name' => $product->translate()->title,
+            'price' => ($product->is_promotion) ? $product->new_price : $product->price,
+            'quantity' => (int)$request->quantity,
+            'attributes' => [
+                'img' => $product->attachments[0]->img_prev,
+                'size'=>$request->size,
+                'color'=>$request->color
+            ]
+        ]);
 
 
-//        return response()->json($request->id);
         return response()->json(\Cart::getContent());
 
     }

@@ -8,6 +8,7 @@ use App\Models\City;
 use App\Models\Contact;
 use App\Models\Page;
 use App\Models\Product;
+use App\Services\NewPostServices;
 
 class PageController extends BaseController
 {
@@ -26,6 +27,7 @@ class PageController extends BaseController
                 dd(4);
                 abort('404');
             }
+            NewPostServices::areas();
             return view('Pages::site.pages.product', compact('product'));
         }
 

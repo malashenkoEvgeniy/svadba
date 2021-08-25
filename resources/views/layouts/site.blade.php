@@ -15,8 +15,8 @@
 {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>--}}
 {{--    <link href="nouislider.css" rel="stylesheet">--}}
 {{--    <link rel="stylesheet" href="{{asset('site/libs/nouislider/dist/nouislider.css')}}">--}}
-    <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+{{--    <link rel="stylesheet" type="text/css"--}}
+{{--          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">--}}
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('site/libs/fontawesome-free/css/all.min.css')}}">

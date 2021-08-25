@@ -165,7 +165,8 @@
                 data: {
                     id: {{ $product->id }},
                     size: $("input[name='size']").val(),
-                    color: $("input[name='color']").val()
+                    color: $("input[name='color']").val(),
+                    quantity: 1
                 },
                 headers: {
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
