@@ -1,3 +1,4 @@
+
 <footer class="footer">
     <div class="footer-top">
         <ul class="footer-catalog-list">
@@ -31,3 +32,4 @@
         </div>
     </div>
 </footer>
+

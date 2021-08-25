@@ -9,7 +9,7 @@
                 @foreach($slider as $slide)
                     @foreach($slide->attachments as $slide_img)
                         <div class="slider-item">
-                            <img src="{{$slide_img->img_f }}" alt="">
+                            <img src="{{$slide_img->img_f }}" alt="" class="slider-item-img">
                         </div>
                     @endforeach
                 @endforeach

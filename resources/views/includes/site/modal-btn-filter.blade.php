@@ -1,7 +1,7 @@
-<div class="modal-btn-filter ">
+<div class="modal-btn-filter">
     <div class="modal-btn-filter-header">
         <h3 class="modal-btn-filter-title">@lang('main.filter')</h3>
-        <button class="filter-modal-btn-close"><i class="fas fa-times"></i></button>
+        <button class="filter-modal-btn-close">@include('svg.filter-close')</button>
     </div>
     <form action="" class="filter-form" id="filter-form" name="filters-form">
         @if(count($brands))
@@ -15,7 +15,7 @@
                 </div>
                 @endforeach
             </div>
-            <button class="filter-show-more">+ показать меньше</button>
+            <button class="filter-show-more">+ показать больше</button>
         </fieldset>
         @endif
         @if(count($colors))
@@ -29,7 +29,7 @@
                 </div>
                 @endforeach
             </div>
-            <button class="filter-show-more">+ показать меньше</button>
+            <button class="filter-show-more">+ показать больше</button>
         </fieldset>
         @endif
         @if(count($silhouettes))
@@ -56,7 +56,7 @@
                     </div>
                 @endforeach
             </div>
-            <button class="filter-show-more">+ показать меньше</button>
+            <button class="filter-show-more">+ показать больше</button>
         </fieldset>
         @endif
         @if(count($sizes))
@@ -65,12 +65,12 @@
             <div class="group-inputs">
                 @foreach($sizes as $size)
                     <div class="group-input">
-                        <input type="checkbox" id="size{{$size->id}}" name="size-{{$size->id}}" value="{{$size->id}}">
+                        <input type="checkbox" id="size{{$size->id}}" name="size" value="{{$size->id}}">
                         <label for="size{{$size->id}}">{{$size->size}}</label>
                     </div>
                 @endforeach
             </div>
-            <button class="filter-show-more">+ показать меньше</button>
+            <button class="filter-show-more">+ показать больше</button>
         </fieldset>
         @endif
 
@@ -81,10 +81,10 @@
                         <label class="filters-price__label">
                             <input type="number" min="100" max="50000" placeholder="100" name="price_min" class="filters-price__input" id="input-0">
                         </label>
-                        --
                         <label class="filters-price__label">
                             <input type="number" min="100" max="50000" placeholder="50000" name="price_max" class="filters-price__input" id="input-1">
                         </label>
+                        <button type="submit" class="filter-submit">OK</button>
                     </div>
                     <div class="filters-price__slider" id="range-slider"></div>
 

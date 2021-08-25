@@ -93,7 +93,7 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript">
+    <script type="text/javascript" async>
         ClassicEditor
             .create( document.querySelector( '.editor' ), {
                 ckfinder: {

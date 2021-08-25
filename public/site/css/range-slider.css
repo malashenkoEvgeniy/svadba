@@ -79,3 +79,10 @@ input[type=number] {
 .noUi-horizontal .noUi-handle-upper {
     right: 0;
 }
+
+.filter-submit {
+    border: 2px solid #000000;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+}

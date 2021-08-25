@@ -36,7 +36,7 @@
 
 
     @yield('content')
-
+    @include('includes.site.modal-add-to-cart')
     @include('includes.site.footer')
 
 

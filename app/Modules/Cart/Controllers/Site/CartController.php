@@ -23,32 +23,29 @@ class CartController extends BaseController
 
     public function addToCart(Request $request)
     {
+
         $product = Product::where('id', $request->id)->first();
-        if(!isset($_COOKIE['cart_id'])){
+        if(!isset($_COOKIE['cart_id'])) {
             setcookie('cart_id', uniqid());
+        }
             $cart_id = $_COOKIE['cart_id'];
             \Cart::session($cart_id);
-//            \Cart::add([
-//                'id' => $product->id,
-////                'name' => $product->translate()->title,
-////                'price' => ($product->is_promotion) ? $product->new_price : $product->price,
-//                'quantity' => 1,
-//                'attributes' => [
-////                    'img' => $product->attachments[0]->img_prev,
-////                    'size'=>$request->size,
-////                    'color'=>$request->color
-//                ]
-//            ]);
-            Cart::add( 455 , 'Sample Item' , 100.99 , 2 , array ());
-//            \Cart::add(array(
-//                'id' => 456, // inique row ID
-//                'name' => 'Sample Item',
-//                'price' => 67.99,
-//                'quantity' => 4,
-//                'attributes' => array()
-//            ));
 
-        }
+            \Cart::add([
+                'id' => $product->id,
+                'name' => $product->translate()->title,
+                'price' => ($product->is_promotion) ? $product->new_price : $product->price,
+                'quantity' => 1,
+                'attributes' => [
+                    'img' => $product->attachments[0]->img_prev,
+                    'size'=>$request->size,
+                    'color'=>$request->color
+                ]
+            ]);
+
+
+
+
 //        return response()->json($request->id);
         return response()->json(\Cart::getContent());
 

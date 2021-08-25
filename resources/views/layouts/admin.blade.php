@@ -204,6 +204,12 @@
 <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+
+{{--<script src="{{ asset('admin/ckeditor5/build/ckeditor.js') }}"></script>--}}
+<script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+<script src="{{ asset('admin/ckfinder/ckfinder.js') }}"></script>
+<script src="{{ asset('admin/js/ckeditor-my.js') }}"></script>
+
 <script>
     // TODO:Пытался сделать активный пункт меню в админке
     // var url = window.location;

@@ -1,13 +1,58 @@
 "use strict";
+
+function openSearchForm(evt){
+    evt.stopPropagation();
+    $('.nav-item-nav-menu').addClass('nav-item-nav-menu-close');
+    $('.search-form').removeClass('search-input-close');
+    $(this).addClass('passive');
+}
+
+function closeSearchForm(){
+    $('.nav-item-nav-menu').removeClass('nav-item-nav-menu-close');
+    $('.search-form').addClass('search-input-close');
+    $('.search-form-btn-open').removeClass('passive');
+}
+
+
+function modalAddToCart(teg) {
+    //Открывает попап корзины
+    function cartOpen(evt){
+        evt.preventDefault();
+        $('.modal-add-to-cart').addClass('active');
+        if(teg == '.product-add-cart'){
+            addProductToCart();
+        }
+        $('body').addClass('overflow-bg');
+    }
+    //Закрывает попап корзины
+    function cartClose(){
+        $('.modal-add-to-cart').removeClass('active');
+        $('body').removeClass('overflow-bg');
+    }
+
+    $(teg).click(cartOpen);
+    $('.btn-close-modal-add-to-cart').click(cartClose);
+
+}
+
 if($(document).width() > 1200) {
 
 //    Открытие -закрытие формы поиска
-    $('.search-form-btn-open').click(function(evt){
-        evt.stopPropagation();
-        $('.nav-item-nav-menu').addClass('nav-item-nav-menu-close');
-        $('.search-form').removeClass('search-input-close');
-        $(this).addClass('passive');
+    $('.search-form-btn-open').click(openSearchForm);
+
+    $(document).mouseup(function (e){ // событие клика по веб-документу
+        let div = $(".search-form"); // тут указываем ID элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            closeSearchForm();
+        }
     });
+
+//    Открытие -закрытие попап корзины
+    modalAddToCart('.nav-item-cart-btn');
+
+
+
 //    Ховер меню категорий
 
     $('.nav-menu-link-catalog').hover(function(){

@@ -1,10 +1,8 @@
 .products {
-    width: 1200px;
+    width: 1396px;
     margin: 0 auto;
     height: 100vh;
     box-sizing: border-box;
-
-    margin-bottom: 50px;
 }
 
 .products-title {
@@ -15,6 +13,7 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: #000000;
+    margin-bottom: 74px;
 }
 
 .products-list {
@@ -31,7 +30,7 @@
 .products-list .slick-prev {
     position: absolute;
     top: 50%;
-    left: -15%;
+    left: -5%;
     transform: translateY(-50%);
     width: 40px;
     height: 80px;
@@ -43,7 +42,7 @@
 .products-list .slick-next {
     position: absolute;
     top: 50%;
-    right: -15%;
+    right: -5%;
     transform: translateY(-50%);
     width: 40px;
     height: 80px;
@@ -78,6 +77,7 @@
     font-size: 32px;
     line-height: 38px;
     color: #101010;
+    padding-top: 15px;
 }
 
 .products-price {
@@ -118,34 +118,28 @@
     height: 40px;
 }
 
-@media all and (max-width: 1366px){
+@media all and (max-width: 1396px){
     .products {
-        width: 90%;
-        margin: 0 auto 60px auto;
-        box-sizing: border-box;
+        max-width: calc( 100% - 200px);
+        margin-bottom: 40px;
     }
 
-    .products-block {
-        width: calc(100% - 80px);
-        box-sizing: border-box;
-    }
-
-    .products-list {
-        width: calc(80% - 80px);
-        margin: 0 auto 40px auto;
+    .products-title {
+        margin-bottom: 40px;
     }
 }
-
 
 @media all and (max-width: 1200px){
 
 
     .products {
-        margin-bottom: 60px;
+        margin-bottom: 0;
+        height: 80vh;
     }
 
     .products-block {
         width: calc(100% - 80px);
+        margin: 0 auto;
     }
 
     .products-title {
@@ -162,12 +156,22 @@
         font-size: 18px;
     }
 
+    .products-list .slick-prev {
+        left: -10%;
+    }
+
+    .products-list .slick-next {
+        right: -10%;
+    }
+
+
 }
 
 @media all and (max-width: 768px){
     .products-title {
         position: static;
         text-align: center;
+        margin-bottom: 25px;
     }
 
     .products-img {
@@ -175,6 +179,8 @@
         object-fit: cover;
         max-width: 100%;
     }
+
+
 
 
 }

@@ -46,7 +46,7 @@
             </section>
             <section class="filter">
                 <button class="filter-btn filter-btn-filter">Фильтр</button>
-                <button class="filter-btn filter-btn-sort">Сортировать по<i class="fas fa-chevron-down"></i></button>
+                <button class="filter-btn filter-btn-sort">Сортировать по @include('svg.arrow-sort') </button>
                 <ul class="filter-btn-sort-list">
                     <li class="filter-btn-sort-item">
                         <a href="#" class="filter-btn-sort-link" data-order="sort-promotion">акционные</a>

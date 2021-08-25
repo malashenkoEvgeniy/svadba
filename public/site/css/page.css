@@ -105,7 +105,7 @@
 }
 
 .form-block-input {
-    width: 45%;
+    width: 49%;
 }
 
 .form-block input,
@@ -130,16 +130,16 @@
 }
 
 .contacts-feedback-btn {
-    width: 360px;
+    width: 340px;
     height: 50px;
     background-color: #790C5A;
+    border: 2px solid transparent;
     font-weight: bold;
     font-size: 18px;
     line-height: 32px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: #FFFFFF;
-    border-color: #FFFFFF;
     text-align: center;
     display: block;
     margin: 0 auto;
@@ -287,7 +287,7 @@
     line-height: 24px;
     text-transform: uppercase;
     color: #101010;
-
+    margin: 8px 0 38px 0;
     text-align: center;
 }
 
@@ -322,6 +322,8 @@
 .filter-btn-sort {
     font-weight: 300;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .filter-btn-sort:hover {
