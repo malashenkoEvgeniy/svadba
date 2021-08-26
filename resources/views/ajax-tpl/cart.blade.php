@@ -1,0 +1,2 @@
+@if(!empty($data))
+@endif

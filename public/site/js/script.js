@@ -14,6 +14,8 @@ function closeSearchForm(){
 }
 
 
+
+
 function modalAddToCart(teg) {
     //Открывает попап корзины
     function cartOpen(evt){

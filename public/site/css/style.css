@@ -212,7 +212,7 @@ h1.slider-title {
 .counter-orders {
     position: absolute;
     top: 10%;
-    left: 65%;
+    left: 70%;
     font-size: 14px;
     line-height: 16px;
     color: #ffffff;
@@ -223,7 +223,7 @@ h1.slider-title {
     content: "";
     position: absolute;
     top: -50%;
-    left: -50%;
+    left: -80%;
     width: 30px;
     height: 30px;
     background-color: #790C5A;

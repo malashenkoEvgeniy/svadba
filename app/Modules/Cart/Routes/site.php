@@ -4,7 +4,7 @@
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'web' ]
     ], function(){
 
     Route::group(["namespace"=>"App\Modules\Cart\Controllers\Site"], function() {

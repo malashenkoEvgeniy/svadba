@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\MainPage;
 use App\Models\MainSlider;
 use App\Models\Product;
+use App\Models\ProductOption;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -25,27 +26,32 @@ class CartController extends BaseController
     public function addToCart(Request $request)
     {
 
-        $product = Product::where('id', $request->id)->first();
+        $product = ProductOption::where([
+            'product_id'=> $request->id,
+            'colors_id'=>$request->color,
+            'size_id'=>$request->size
+        ])->first();
+        if(!$product){
+            return  false;
+        }
 
-//        if(!isset($_COOKIE['cart_id'])) {
-//            setcookie('cart_id', uniqid());
-//        }
-//        $cart_id = $_COOKIE['cart_id'];
-
-        $cart_id = Session::getId();
+        if(!isset($_COOKIE['cart_id'])) {
+            setcookie('cart_id', uniqid());
+        }
+        $cart_id = $_COOKIE['cart_id'];
 
         \Cart::session($cart_id);
 
 
         \Cart::add([
             'id' => $product->id,
-            'name' => $product->translate()->title,
-            'price' => ($product->is_promotion) ? $product->new_price : $product->price,
+            'name' => $product->product->translate()->title,
+            'price' => ($product->product->is_promotion) ? $product->product->new_price : $product->product->price,
             'quantity' => (int)$request->quantity,
             'attributes' => [
-                'img' => $product->attachments[0]->img_prev,
-                'size'=>$request->size,
-                'color'=>$request->color
+                'img' => $product->product->attachments[0]->img_prev,
+                'size'=>$product->sizes->size,
+                'color'=>$product->colors->translate()->title
             ]
         ]);
 

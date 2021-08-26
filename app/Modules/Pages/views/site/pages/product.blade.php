@@ -62,7 +62,7 @@
                                 <h4 class="product-options-item-title">Размер:</h4>
                                 <div class="product-options-size-wrap">
                                     @foreach( $product->options as $option )
-                                        <input type="radio" name="size" value="{{ $option->size_id }}" id="size{{ $option->size_id }}" @if($loop->first) checked @endif>
+                                        <input type="radio" name="size" data-size="{{ $option->size_id }}" id="size{{ $option->size_id }}" @if($loop->first) checked @endif>
                                         <label for="size{{ $option->size_id }}">{{ $option->sizes->size }}</label>
                                     @endforeach
                                 </div>
@@ -72,7 +72,7 @@
                                 <div class="product-options-color-wrap">
                                 @foreach( $product->options as $option )
                                     <div class="color-input-block">
-                                        <input type="radio" name="color" value="{{ $option->colors_id }}" id="color{{ $option->colors_id }}" @if($loop->first) checked @endif>
+                                        <input type="radio" name="color" data-color="{{ $option->colors_id }}" id="color{{ $option->colors_id }}" @if($loop->first) checked @endif>
                                         <label for="color{{ $option->colors_id }}">
                                             <span class="colors-value-block" style="background-color: {{ $option->colors->meaning }}"></span>
                                             {{ $option->colors->translate()->title }}
@@ -93,7 +93,7 @@
                             </div>
                         @endif
 
-                        <button class="product-add-cart " >Добавить в корзину</button>
+                        <button class="product-add-cart" data-cart="{{ $product->id }}" >Добавить в корзину</button>
 
                     </div>
                 </div>
@@ -160,14 +160,21 @@
 //         }
 
         function addProductToCart(){
+            let total_qty = parseInt($('.counter-orders').text());
+            total_qty++;
+            $('.counter-orders').text(total_qty);
+            let prodSize = $('input[name=size]:checked').data('size');
+            let prodColor = $('input[name=color]:checked').data('color');
+            console.log(prodColor);
+
             $.ajax({
                 url: "{{ route('cart.add-to-cart') }}",
                 type: "post",
                 data: {
-                    id: {{ $product->id }},
-                    size: $("input[name='size']").val(),
-                    color: $("input[name='color']").val(),
-                    quantity: 1
+                    id: $('.product-add-cart').data('cart'),
+                    quantity: 1,
+                    size: prodSize,
+                    color: prodColor
                 },
                 headers: {
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')

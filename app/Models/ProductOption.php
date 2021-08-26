@@ -20,4 +20,9 @@ class ProductOption extends BaseModel
     {
         return $this->belongsTo(ClothingSize::class, 'size_id');
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 }

@@ -8,7 +8,9 @@ use App\Models\City;
 use App\Models\Contact;
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\ProductOption;
 use App\Services\NewPostServices;
+use Illuminate\Http\Request;
 
 class PageController extends BaseController
 {
@@ -16,8 +18,9 @@ class PageController extends BaseController
         parent::__construct();
     }
 
-    public function view($slug)
+    public function view(Request $request, $slug)
     {
+
         $page = Page::where('slug', $slug)->first();
         if ($page == null){
             $product = Product::where('slug', $slug)
@@ -27,7 +30,12 @@ class PageController extends BaseController
                 dd(4);
                 abort('404');
             }
-            NewPostServices::areas();
+//            $product = ProductOption::where('product_id', 1)->first();
+//            dd($product->product->translate()->title);
+//            NewPostServices::areas();
+//            $request->session()->put('korzina.product.id', 325);
+//            $res = $request->session()->all();
+//            dd($res);
             return view('Pages::site.pages.product', compact('product'));
         }
 

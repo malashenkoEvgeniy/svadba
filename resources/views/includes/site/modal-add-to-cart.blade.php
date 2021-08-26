@@ -7,7 +7,7 @@
         @widget('product-cart')
         <div class="footer-modal-add-to-cart">
             <button class="btn-close-modal-add-to-cart footer-btn-close-modal-add-to-cart">Продолжить покупки</button>
-            <a href="{{route('order.index')}}" class="footer-modal-add-to-cart-order">Оформить заказ</a>
+            <a href="{{ route('order.index')}}" class="footer-modal-add-to-cart-order">Оформить заказ</a>
         </div>
 
 
