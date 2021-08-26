@@ -1,5 +1,5 @@
 .content {
-    width: 1200px;
+    width: 1396px;
     margin: 0 auto 100px auto;
 }
 
@@ -293,7 +293,7 @@
 
 .filter {
     position: relative;
-    width: 1200px;
+    width: 1396px;
     margin: 0 auto;
     display: flex;
     align-items: flex-start;
@@ -333,7 +333,7 @@
 
 
 .rubric-products {
-    width: 1200px;
+    width: 1396px;
     margin: 0 auto;
 
     margin-bottom: 50px;
@@ -343,7 +343,7 @@
     width: 100%;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
     list-style: none;
     padding: 0;
@@ -391,4 +391,65 @@
     text-decoration-line: line-through;
     color: #A9A9A9;
 }
+
+@media all and (max-width: 1396px){
+    .content,
+    .filter,
+    .rubric-products  {
+
+        max-width: calc( 100% - 200px);
+    }
+}
+
+@media all and (max-width: 1200px){
+    .content,
+    .filter,
+    .rubric-products  {
+
+        max-width: calc( 100% - 80px);
+    }
+
+    .contacts-feedback-top {
+        display: none;
+    }
+
+    .contacts-social-block {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .contacts-block-title {
+        width: 100%;
+    }
+
+    .shops-body {
+        width: 100%;
+    }
+
+    .shops-element {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media all and (max-width: 768px){
+    .content-title {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .filter-btn {
+        font-size: 16px;
+        line-height: 32px;
+    }
+
+    .modal-btn-filter {
+        left: -150%;
+    }
+}
+@media all and (max-width: 568px){}
+
+
 

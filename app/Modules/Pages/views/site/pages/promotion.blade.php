@@ -8,51 +8,16 @@
 @section('content')
     <main>
         @include('includes.site.breadcrumbs')
-
+        <section class="content">
 
             <section class="content">
-                <h2 class="content-title page-title">{{ $rubric->translate()->title }}</h2>
-                @if( count($categories))
-                    <ul class="content-brands-list">
-                        <li class="content-brands-item">@lang('main.categories'):</li>
-                        <li class="content-brands-item">
-                            <a href="#" class="content-brands-link">Все</a>
-                        </li>
+                <h2 class="content-title page-title">{{ $page->translate()->title }}</h2>
 
-                        @foreach( $categories as $category)
-                            <li class="content-brands-item">
-                                <a href="{{ route('page.category.view', ['slug'=>$category->slug])}}" class="content-brands-link">{{$category->translate()->title}}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-                @if($silhouettes !== null)
-                <div class="silhouette">
-                    <h3 class="silhouette-title">Силуэт</h3>
-                    <ul class="silhouette-list">
-                        @foreach( $silhouettes as $silhouette)
-                        <li class="silhouette-item">
-                            <a href="#" class="silhouette-link">
-                                <img src="{{$silhouette->attachments[0]->img_d}}" alt="" class="silhouette-img">
-                                <h4 class="silhouette-link-title">{{ $silhouette->translate()->title }}</h4>
-
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
             </section>
             <section class="filter">
                 <button class="filter-btn filter-btn-filter">Фильтр</button>
                 <button class="filter-btn filter-btn-sort">Сортировать по @include('svg.arrow-sort') </button>
                 <ul class="filter-btn-sort-list">
-                    <li class="filter-btn-sort-item">
-                        <a href="#" class="filter-btn-sort-link" data-order="sort-promotion">акционные</a>
-                    </li>
-                    <li class="filter-btn-sort-item">
-                        <a href="#" class="filter-btn-sort-link" data-order="sort-new">новинки</a>
-                    </li>
                     <li class="filter-btn-sort-item">
                         <a href="#" class="filter-btn-sort-link" data-order="sort-price-asc">возростанию цен</a>
                     </li>
@@ -62,16 +27,16 @@
                 </ul>
             </section>
             <section class="rubric-products">
-                    <ul class="rubric-products-list">
-                        @foreach( $products as $product)
-                            @widget('product', ['model'=> $product])
-                        @endforeach
-                    </ul>
+                <ul class="rubric-products-list">
+                    @foreach( $products as $product)
+                        @widget('product', ['model'=> $product])
+                    @endforeach
+                </ul>
                 <div class="block-pagination">
                     {{ $products->links() }}
                 </div>
             </section>
-
+        </section>
 
 
     </main>
@@ -91,7 +56,7 @@
                 let orderBy = $(this).data('order');
                 // console.log(orderBy);
                 $.ajax({
-                    url: "{{ route('view-sort', $rubric->slug) }}",
+                    url: "{{ route('promotion-sort') }}",
                     type: "get",
                     data: {
                         orderBy: orderBy
@@ -100,6 +65,9 @@
                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function (data) {
+                        // console.log(data);
+                        // debugger;
+
                         let positionParameters = location.pathname.indexOf('?');
                         let url = location.pathname.substring(positionParameters, location.pathname.length);
                         let newUrl = url + '?';

@@ -1,5 +1,5 @@
 .bredcrumbs {
-    width: 1200px;
+    width: 1396px;
     margin: 0 auto 40px auto;
 }
 
@@ -22,7 +22,37 @@
     color: #000000;
 }
 
-.bredcrumbs-link:hover, 
+.bredcrumbs-link:hover,
 .bredcrumbs-current {
     color: #790C5A;
-} 
+}
+
+
+@media all and (max-width: 1396px){
+    .bredcrumbs  {
+        max-width: calc( 100% - 200px);
+    }
+
+
+
+}
+
+@media all and (max-width: 1200px){
+
+    .bredcrumbs  {
+        width: calc(100% - 80px);
+        max-width: unset;
+    }
+
+}
+
+
+
+@media all and (max-width: 700px){
+
+    .bredcrumbs {
+        width: calc( 100% - 20px)!important;
+        max-width: unset!important;
+    }
+
+}
