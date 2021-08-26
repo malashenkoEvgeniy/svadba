@@ -8,12 +8,12 @@
             <a href="{{route('page.view', ['slug'=>$service->slug])}}" class="catalog-link" style="background-image: url(
             @if(count($service->attachments))
             {{$service->attachments[0]->img_d}}
-            @endif
-            )">
-                        <span>
+            @endif">
+            </a>
+                        <span class="catalog-item-title">
                            {{$service->translate()->title}}
                         </span>
-            </a>
+
         </li>
         @endforeach
     </ul>

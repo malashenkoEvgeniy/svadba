@@ -64,7 +64,8 @@
         </section>
         <section class="seo">
             <div class="seo-block">
-                {!! $main_page->translate()->body !!}
+{{--                {!! $main_page->translate()->body !!}--}}
+                @include('includes.admin.temp-template-seo')
             </div>
         </section>
     </main>

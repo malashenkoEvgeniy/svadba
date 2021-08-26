@@ -39,7 +39,7 @@ class CartController extends BaseController
                 'attributes' => [
                     'img' => $product->attachments[0]->img_prev,
                     'size'=>$request->size,
-                    'color'=>$request->color
+                    'color'=>$request->color,
                 ]
             ]);
 

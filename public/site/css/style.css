@@ -593,6 +593,10 @@ h1.slider-title {
         margin-right: 20px;
     }
 
+    .footer-catalog-link {
+        padding: 45px 15px;
+    }
+
 
 }
 
@@ -610,6 +614,7 @@ h1.slider-title {
 
     .header-nav {
        width: calc(100% - 80px);
+        max-width: unset;
     }
 
     .btn-menu-burger {
@@ -643,7 +648,7 @@ h1.slider-title {
     .nav-menu-list {
         margin: 30px 40px;
         flex-direction: column;
-        padding-top: 30px 40px;
+        padding-top: 30px;
 
     }
 
@@ -750,7 +755,7 @@ h1.slider-title {
         margin-right: auto;
         padding-right: 32px
     }
-/*    TODO: clear submenu*/
+
     .sub-catalog-menu {
         position: fixed;
         top: 0;
@@ -841,11 +846,19 @@ h1.slider-title {
 
     .footer-top {
         width: calc(100% - 80px);
+        max-width: unset;
     }
 
     .copyright {
          width: calc(100% - 80px);
+        max-width: unset;
         align-items: center;
+    }
+
+    .footer-catalog-link {
+        font-size: 16px;
+        line-height: 24px;
+        padding: 30px 5px;
     }
 
     .footer-catalog-link {
@@ -854,59 +867,35 @@ h1.slider-title {
         padding: 30px 20px;
     }
 
-
-
-
 }
 
 @media all and (max-width: 768px){
 
     .header-nav, .footer-top, .copyright {
-         max-width: calc( 100% - 80px);
+         width: calc( 100% - 80px);
+        max-width: unset;
     }
 
     .footer-catalog-link {
     font-size: 14px;
     line-height: 24px;
-        padding: 10px 15px;
+        padding: 10px 5px;
     }
-    */
-}
-
-@media all and (max-width: 656px){
-
-    .header-nav  {
-        width: 100%;
-    }
-
-    .footer-top {
-        width: 100%;
-    }
-
-    .copyright {
-         width: 100%;
-        align-items: center;
-    }
-
-    .footer-top {
-    align-items: flex-end;
-}
-
-    .footer-catalog-list {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .copyright-text{
-    font-size: 9px;
-    line-height: 11px;
-}
 
 }
 
-@media all and (max-width: 568px){
 
-       h1 {
+@media all and (max-width: 700px){
+
+    .header-nav,
+    .footer-top,
+    .copyright,
+    .seo-block {
+        width: calc( 100% - 20px)!important;
+        max-width: unset!important;
+    }
+
+    h1.slider-title {
     font-size: 24px;
     line-height: 56px;
     }
@@ -914,7 +903,7 @@ h1.slider-title {
     .nav-item-logo {
         order: 1;
         margin-left: 0;
-        margin-right: 40px;
+        margin-right: 0;
     }
 
     .nav-item-logo-img {
@@ -936,6 +925,11 @@ h1.slider-title {
 
     .burger-close-btn {
         order: 0;
+    }
+
+    .footer-catalog-list {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
 

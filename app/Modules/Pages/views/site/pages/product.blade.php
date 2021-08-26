@@ -6,7 +6,7 @@
 @section('content')
     <main>
         @include('includes.site.breadcrumbs')
-        <section class="content">
+        <section class="content-product">
             <div class="product-page">
                 <div class="product-wrapper">
                     <div class="product-photos">
@@ -23,7 +23,7 @@
                             <ul class="product-previews-list">
                                 @foreach($product->attachments as $product_img)
                                     <li class="product-previews-item">
-                                        <a href="#" class="product-previews-link">
+                                        <a  class="product-previews-link">
                                             <img src="{{$product_img->img_d}}" alt="" class="product-previews-link-img">
                                         </a>
                                     </li>
@@ -55,30 +55,31 @@
                                 <h3 class="product-characteristics-item-title">Ткань:&#8195; </h3>
                                 <span class="product-characteristics-item-decription"> {{$product->textile->translate()->title}}</span>
                             </li>
-{{--                            <li class="product-characteristics-item">--}}
-{{--                                <h3 class="product-characteristics-item-title">Цвет:&#8195; </h3>--}}
-{{--                                <span class="product-characteristics-item-decription"> {{$product->color->translate()->title}}</span>--}}
-{{--                            </li>--}}
-{{--                            <li class="product-characteristics-item">--}}
-{{--                                <h3 class="product-characteristics-item-title">Размер:&#8195; </h3>--}}
-{{--                                <span class="product-characteristics-item-decription"> {{$product->size->size}}</span>--}}
-{{--                            </li>--}}
+
                         </ul>
                         <ul class="product-options">
                             <li class="product-options-item">
-                                <h4 class="product-options-item-title">Доступно в размере:</h4>
-                                @foreach( $product->options as $option )
-
-                                    <input type="checkbox" name="size" value="{{ $option->size_id }}" id="size{{ $option->size_id }}" @if($loop->first) checked @endif>
-                                    <label for="size{{ $option->size_id }}">{{ $option->sizes->size }}</label>
-                                @endforeach
+                                <h4 class="product-options-item-title">Размер:</h4>
+                                <div class="product-options-size-wrap">
+                                    @foreach( $product->options as $option )
+                                        <input type="radio" name="size" value="{{ $option->size_id }}" id="size{{ $option->size_id }}" @if($loop->first) checked @endif>
+                                        <label for="size{{ $option->size_id }}">{{ $option->sizes->size }}</label>
+                                    @endforeach
+                                </div>
                             </li>
                             <li class="product-options-item">
-                                <h4 class="product-options-item-title">Доступно в цвете:</h4>
+                                <h4 class="product-options-item-title">Цвет:</h4>
+                                <div class="product-options-color-wrap">
                                 @foreach( $product->options as $option )
-                                    <input type="checkbox" name="color" value="{{ $option->colors_id }}" id="size{{ $option->colors_id }}" @if($loop->first) checked @endif>
-                                    <label for="size{{ $option->colors_id }}">{{ $option->colors->translate()->title }}</label>
+                                    <div class="color-input-block">
+                                        <input type="radio" name="color" value="{{ $option->colors_id }}" id="color{{ $option->colors_id }}" @if($loop->first) checked @endif>
+                                        <label for="color{{ $option->colors_id }}">
+                                            <span class="colors-value-block" style="background-color: {{ $option->colors->meaning }}"></span>
+                                            {{ $option->colors->translate()->title }}
+                                        </label>
+                                    </div>
                                 @endforeach
+                                </div>
                             </li>
                         </ul>
                         @if($product->is_promotion)
@@ -172,6 +173,7 @@
                 },
                 success: function (data) {
                     console.log(data);
+
 
                 },
                 error: function (msg) {

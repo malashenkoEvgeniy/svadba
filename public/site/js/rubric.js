@@ -26,6 +26,20 @@ $(document).ready(function () {
         $('.filter-btn-sort-list').toggleClass('active');
     });
 
+    if( $(document).width() <= 1200) {
+
+        $(".silhouette-list").slick({
+            dots: false,
+            arrows: false,
+            infinite: true,
+            slidesToShow: 2,
+            autoplay: true,
+            autoplaySpeed: 1000,
+            slidesToScroll: 1,
+        });
+
+    }
+
 
 });
 

@@ -108,6 +108,30 @@
                         @endforeach
                     </div>
                 </div>
+                <div class="contacts-bottom">
+                    <div class="contacts-feedback-bottom">
+                        <h3 class="contacts-block-title">@lang('main.contacts.feedback_title')</h3>
+                        <form action="" class="contacts-feedback-form">
+                            <div class="contacts-feedback-form-top">
+                                <div class="form-block form-block-input">
+                                    <label for="feedback-name">@lang('main.contacts.fk_name')</label>
+                                    <input type="text" id="feedback-name" name="name">
+                                </div>
+                                <div class="form-block form-block-input">
+                                    <label for="feedback-phone">@lang('main.contacts.fk_phone')</label>
+                                    <input type="text" id="feedback-phone" name="phone">
+                                </div>
+                                <div class="form-block">
+                                    <label for="feedback-msg">@lang('main.contacts.fk_msg')</label>
+                                    <textarea id="feedback-msg" name="phone"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-block">
+                                <button class="contacts-feedback-btn">@lang('main.contacts.fk_btn')</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
         </section>

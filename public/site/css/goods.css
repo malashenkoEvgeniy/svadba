@@ -168,6 +168,11 @@
 }
 
 @media all and (max-width: 768px){
+
+    .products {
+        height: 70vh;
+    }
+
     .products-title {
         position: static;
         text-align: center;
@@ -180,13 +185,30 @@
         max-width: 100%;
     }
 
+    .products-list .slick-prev {
+        left: -15%;
+        top: 30%;
+    }
 
+    .products-list .slick-next {
+        right: -15%;
+        top: 30%;
+    }
 
 
 }
 
 @media all and (max-width: 568px){
 
+    .products {
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .products-block {
+        width: calc(100% - 20px);
+    }
 
     .products-title {
         font-size: 24px;
@@ -194,6 +216,7 @@
     }
 
     .products-item {
+        width: 100%;
         margin-bottom: 25px;
     }
 
