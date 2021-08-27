@@ -112,7 +112,7 @@
                     @include('svg.cart')
                 </a>
                 <div class="counter-orders">{{ \Cart::session($_COOKIE['cart_id'])->getTotalQuantity() }}</div>
-                <div class="counter-orders1">{{ \Cart::session($_COOKIE['cart_id'])->getTotal() }}</div>
+{{--                <div class="counter-orders1">{{ \Cart::session($_COOKIE['cart_id'])->getTotal() }}</div>--}}
             </li>
 {{--            <li class="nav-item nav-item-temp-cart">--}}
 {{--                <a href="{{ route('cart.index') }}" class="nav-item-temp-cart-btn">--}}

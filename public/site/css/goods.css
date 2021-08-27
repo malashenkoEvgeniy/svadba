@@ -170,7 +170,7 @@
 @media all and (max-width: 768px){
 
     .products {
-        height: 70vh;
+        height: 100%;
     }
 
     .products-title {

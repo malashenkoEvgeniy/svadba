@@ -33,7 +33,7 @@
 
                     </div>
                     <div class="product-description">
-                        <h1 class="product-title">Viola</h1>
+                        <h1 class="product-title">{{ $product->translate()->title }}</h1>
                         <ul class="product-characteristics">
                             <li class="product-characteristics-item">
                                 <h3 class="product-characteristics-item-title">Бренд:&#8195; </h3>
@@ -61,7 +61,7 @@
                             <li class="product-options-item">
                                 <h4 class="product-options-item-title">Размер:</h4>
                                 <div class="product-options-size-wrap">
-                                    @foreach( $product->options as $option )
+                                    @foreach( $product_sizes as $option )
                                         <input type="radio" name="size" data-size="{{ $option->size_id }}" id="size{{ $option->size_id }}" @if($loop->first) checked @endif>
                                         <label for="size{{ $option->size_id }}">{{ $option->sizes->size }}</label>
                                     @endforeach
@@ -70,7 +70,7 @@
                             <li class="product-options-item">
                                 <h4 class="product-options-item-title">Цвет:</h4>
                                 <div class="product-options-color-wrap">
-                                @foreach( $product->options as $option )
+                                @foreach( $product_colors_first as $option )
                                     <div class="color-input-block">
                                         <input type="radio" name="color" data-color="{{ $option->colors_id }}" id="color{{ $option->colors_id }}" @if($loop->first) checked @endif>
                                         <label for="color{{ $option->colors_id }}">
@@ -125,19 +125,32 @@
 @section('scripts')
     <script src="{{asset('site/js/product.js')}}"></script>
     <script>
+        $('input[name=size]').change(function () {
+            let sizeId = $(this).data('size')
+            $.ajax({
+                url: "{{ route('page.select-color', $product->id) }}",
+                type: "get",
+                data: {
+                    id: sizeId
+                },
+                headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (data) {
+                    $('.product-options-color-wrap').html(data);
 
-
-        // Переключает табы в карточке товара
-        $('.product-tabs-header-btn').click(function (){
-            if($(this).children('i').hasClass('fa-chevron-up')) {
-                $(this).children('i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
-                $(this).siblings('.product-tabs-header-description').removeClass('active');
-
-            } else {
-                $(this).children('i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
-                $(this).siblings('.product-tabs-header-description').addClass('active');
+                },
+                error: function (msg) {
+                    debugger;
+                    console.log(msg.responseText);
+                    // alert('Ошибка');
+                }
+            });
             }
-        });
+
+        );
+
+
 // ==============================================Корзина=====================================================================
 //         function modalAddToCart(teg) {
 //             function cartOpen(evt){
@@ -165,7 +178,7 @@
             $('.counter-orders').text(total_qty);
             let prodSize = $('input[name=size]:checked').data('size');
             let prodColor = $('input[name=color]:checked').data('color');
-            console.log(prodColor);
+            // console.log(prodColor);
 
             $.ajax({
                 url: "{{ route('cart.add-to-cart') }}",
@@ -180,7 +193,7 @@
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function (data) {
-                    console.log(data);
+                   $('.modal-add-to-cart-list').html(data);
 
 
                 },

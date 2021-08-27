@@ -35,8 +35,30 @@ class PageController extends BaseController
 //            NewPostServices::areas();
 //            $request->session()->put('korzina.product.id', 325);
 //            $res = $request->session()->all();
-//            dd($res);
-            return view('Pages::site.pages.product', compact('product'));
+//            dd($res);+
+//            dd($product->options->pluck('size_id')->unique());
+//            $first_el = ProductOption::where('product_id', $product->id)->first();
+
+            $product_size_first = ProductOption::where('product_id', $product->id)
+                ->get();
+
+            $product_sizes = collect();
+            foreach ($product_size_first as $size){
+                if($product_sizes->where('size_id', $size->size_id)->count() < 1){
+                    $product_sizes->push($size);
+                }
+            }
+            $product_sizes = $product_sizes->map(function($item){
+                $item->size = $item->sizes()->first()->size;
+                return $item;
+            })->sortBy('size');
+
+            $product_colors_first = ProductOption::where([
+                'product_id'=> $product->id,
+                'size_id' => $product_sizes->first()->size_id
+            ])->get();
+
+            return view('Pages::site.pages.product', compact('product', 'product_colors_first', 'product_sizes'));
         }
 
         switch ($slug) {
@@ -50,6 +72,18 @@ class PageController extends BaseController
                 return view('Pages::site.pages.services', compact('page'));
             default:
                 return view('Pages::site.pages.view', compact('page'));
+        }
+    }
+
+    public function selectColor(Request $request, $id)
+    {
+
+        $options = ProductOption::where([
+            'product_id' =>$id,
+            'size_id'=>$request->id
+        ])->get();
+        if($request->ajax()){
+            return view('ajax-tpl.select-color', compact('options'))->render();
         }
     }
 }

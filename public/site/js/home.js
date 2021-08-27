@@ -10,7 +10,7 @@ $(document).ready(function() {
     slidesToScroll: 1,
   });
 
-    if($(window).width() > 568) {
+    if($(window).width() > 700) {
 
         $(".products-list").slick({
             dots: false,

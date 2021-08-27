@@ -26,16 +26,18 @@
     <link rel="stylesheet" href="{{ asset('site/css/goods.css')}}">
     <link rel="stylesheet" href="{{ asset('site/css/pagination.css')}}">
     <link rel="stylesheet" href="{{ asset('site/css/add-to-cart.css')}}">
+    <link rel="stylesheet" href="{{ asset('site/css/social_buttons.css')}}">
     @yield('links')
     <title>Svadba-Kiev</title>
 </head>
 <body>
 <div class="overflow"></div>
-<div class="site-content">
+<div class="site-content" id="site-content">
    @include('includes.site.header')
 
 
     @yield('content')
+    @include('includes.site.social_buttons')
     @include('includes.site.modal-add-to-cart')
     @include('includes.site.footer')
 
@@ -48,6 +50,7 @@
 {{--<script src="{{asset('site/libs/nouislider/dist/nouislider.js')}}"></script>--}}
 <script src="{{asset('site/js/script.js')}}"></script>
 <script src="{{asset('site/js/home.js')}}"></script>
+<script src="{{asset('site/js/social_buttons.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script type="text/javascript">
     $('.livesearch').select2({

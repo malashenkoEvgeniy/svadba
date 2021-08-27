@@ -34,14 +34,9 @@ class CartController extends BaseController
         if(!$product){
             return  false;
         }
-
-        if(!isset($_COOKIE['cart_id'])) {
-            setcookie('cart_id', uniqid());
-        }
         $cart_id = $_COOKIE['cart_id'];
 
         \Cart::session($cart_id);
-
 
         \Cart::add([
             'id' => $product->id,
@@ -51,12 +46,15 @@ class CartController extends BaseController
             'attributes' => [
                 'img' => $product->product->attachments[0]->img_prev,
                 'size'=>$product->sizes->size,
-                'color'=>$product->colors->translate()->title
+                'color'=>$product->colors->translate()->title,
+                'meaning'=>$product->colors->meaning
             ]
         ]);
 
-
-        return response()->json(\Cart::getContent());
+        if($request->ajax()){
+            return view('ajax-tpl.cart', ['options'=>\Cart::getContent()])->render();
+        }
+//        return response()->json(\Cart::getContent());
 
     }
 }

@@ -3,6 +3,10 @@
     margin: 0 auto 100px auto;
 }
 
+.contacts-feedback-bottom {
+    display: none;
+}
+
 .content-title {
     font-family: 'Playfair Display', serif;
     font-size: 56px;
@@ -448,8 +452,63 @@
     .modal-btn-filter {
         left: -150%;
     }
+
+    .contacts-top {
+        margin-bottom: 30px;
+    }
+
+    .shops-body {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+
+    .shops-body-wrap {
+        width: 32%;
+    }
 }
-@media all and (max-width: 568px){}
+@media all and (max-width: 700px){
+
+    .content-title {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 32px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .contacts-data {
+        width: 100%;
+    }
+
+    .contacts-block-title {
+        font-size: 18px;
+    }
+
+    .contact-social-icon {
+        margin-right: 20px;
+    }
+
+    .shops-body-wrap {
+        width: 100%;
+    }
+
+    .form-block-input {
+        width: 100%;
+    }
+
+    .contacts-feedback-form-top {
+        width: 100%;
+    }
+
+    .contacts-feedback-btn {
+        width: 100%;
+        height: auto;
+    }
+}
 
 
 

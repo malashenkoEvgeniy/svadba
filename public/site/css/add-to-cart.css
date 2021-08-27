@@ -61,6 +61,17 @@
     width: 100%;
 }
 
+.modal-add-to-cart-list {
+    width: 100%;
+}
+
+.product-color-modal-add-to-cart-color {
+    width: 25px;
+    padding: 2px 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
 .row-modal-add-to-cart {
     display: flex;
     align-items: flex-start;

@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 class BaseController extends Controller
 {
     public function __construct(){
+        if(!isset($_COOKIE['cart_id'])) {
+            setcookie('cart_id', uniqid());
+        }
         $h_contacts = Contact::where('id', 1)->first();
         $h_pages = Page::where('parent_id', 0)->with('children')->get();
         $h_categories = Category::where('parent_id', 0)->with('children')->get();

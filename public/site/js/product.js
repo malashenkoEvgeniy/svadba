@@ -1,4 +1,6 @@
- $('.product-main-photos').slick({
+
+
+$('.product-main-photos').slick({
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
@@ -19,32 +21,30 @@ $('.product-previews-list').slick({
         {
             breakpoint: 768,
             settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
                 vertical: true
 
             }
         },
-        // {
-        //     breakpoint: 600,
-        //     settings: {
-        //         slidesToShow: 2,
-        //         slidesToScroll: 2
-        //     }
-        // },
-        // {
-        //     breakpoint: 480,
-        //     settings: {
-        //         slidesToShow: 1,
-        //         slidesToScroll: 1
-        //     }
-        // }
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
+        {
+            breakpoint: 700,
+            settings: {
+                vertical: false
+            }
+        }
     ]
 
 
 });
 
 
+ // Переключает табы в карточке товара
+ $('.product-tabs-header-btn').click(function (){
+     if($(this).children('i').hasClass('fa-chevron-up')) {
+         $(this).children('i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+         $(this).siblings('.product-tabs-header-description').removeClass('active');
+
+     } else {
+         $(this).children('i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+         $(this).siblings('.product-tabs-header-description').addClass('active');
+     }
+ });
