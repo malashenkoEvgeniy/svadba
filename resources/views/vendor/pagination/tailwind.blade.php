@@ -31,7 +31,7 @@
 
 
             <div>
-                <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                <span class="relative z-0 inline-flex rounded-md">
                     {{-- Previous Page Link --}}
 
                     {{-- Pagination Elements --}}
@@ -39,7 +39,7 @@
                         {{-- "Three Dots" Separator --}}
                         @if (is_string($element))
                             <span aria-disabled="true">
-                                <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 cursor-default leading-5">{{ $element }}</span>
+                                <span class="relative inline-flex items-center px-4 py-4 -ml-px font-medium  bg-white  cursor-default leading-5" style="color: #790C5A">{{ $element }}</span>
                             </span>
                         @endif
 
@@ -48,7 +48,7 @@
                             @foreach ($element as $page => $url)
                                 @if ($page == $paginator->currentPage())
                                     <span aria-current="pagination-link active">
-                                        <span class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5">{{ $page }}</span>
+                                        <span class="relative inline-flex items-center px-4 py-4 -ml-px  font-medium  bg-white  cursor-default leading-5" style="color: #790C5A">{{ $page }}</span>
                                     </span>
                                 @else
                                     <a href="{{ $url }}" class="pagination-link" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">

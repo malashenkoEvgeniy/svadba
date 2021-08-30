@@ -11,7 +11,14 @@
             <div class="product-qty-modal-add-to-cart">Количество: {{ $option->quantity }}шт</div>
         </div>
         <div class="product-action-modal-add-to-cart">
-            <a href="{{ \Cart::session($_COOKIE['cart_id'])->remove($option->id) }}" class="remove-product-modal-add-to-cart">@include('svg.modal-cart')</a>
+            <form action="{{ route('cart.remove-from-cart', $option->id)}}" method="post" class="float-left">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="remove-product-modal-add-to-cart"   onclick="return confirm('Подтвердите удаление')">
+                    @include('svg.modal-cart')
+                </button>
+            </form>
+{{--            <a href="{{ route('remove-from-cart', $option->id)}}" class="remove-product-modal-add-to-cart">@include('svg.modal-cart')</a>--}}
             <div class="product-price-modal-add-to-cart">{{ $option->price }} грн.</div>
         </div>
     </li>

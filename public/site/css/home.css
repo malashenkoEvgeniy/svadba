@@ -51,6 +51,7 @@
 .catalog {
     height: 100vh;
     box-sizing: border-box;
+    margin-bottom: 100px;
 }
 
 .catalog-title {
@@ -84,8 +85,6 @@
 .catalog-link {
     position: relative;
     display: block;
-
-    outline: 2px solid black;
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
@@ -147,7 +146,7 @@
 .advantage-item {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 56px;
 }
 
 .advantage-img {

@@ -23,7 +23,10 @@ function modalAddToCart(teg) {
         $('.modal-add-to-cart').addClass('active');
         if(teg == '.product-add-cart'){
             addProductToCart();
-        }
+        } else {
+           window.showCart();
+            }
+
         $('body').addClass('overflow-bg');
     }
     //Закрывает попап корзины
@@ -34,7 +37,6 @@ function modalAddToCart(teg) {
 
     $(teg).click(cartOpen);
     $('.btn-close-modal-add-to-cart').click(cartClose);
-
 }
 
 if($(document).width() > 1200) {

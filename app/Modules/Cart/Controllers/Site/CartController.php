@@ -4,22 +4,13 @@
 namespace App\Modules\Cart\Controllers\Site;
 
 use App\Http\Controllers\Site\BaseController;
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\MainPage;
-use App\Models\MainSlider;
-use App\Models\Product;
 use App\Models\ProductOption;
-use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class CartController extends BaseController
 {
     public function index()
     {
-
-
         return view('Cart::site.cart.index');
     }
 
@@ -54,7 +45,26 @@ class CartController extends BaseController
         if($request->ajax()){
             return view('ajax-tpl.cart', ['options'=>\Cart::getContent()])->render();
         }
-//        return response()->json(\Cart::getContent());
 
+    }
+
+    public function showToCart(Request $request)
+    {
+        $cart_id = $_COOKIE['cart_id'];
+
+        \Cart::session($cart_id);
+//       return response()->json(\Cart::getContent());
+
+        if($request->ajax()){
+            return view('ajax-tpl.cart', ['options'=>\Cart::getContent()])->render();
+        }
+
+    }
+
+
+    public function removeFromCart(Request $request, $id)
+    {
+        \Cart::session( $_COOKIE['cart_id'])->remove($id);
+        return redirect()->back();
     }
 }

@@ -53,31 +53,62 @@
 <script src="{{asset('site/js/social_buttons.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script type="text/javascript">
-    $('.livesearch').select2({
-        placeholder: 'Введите название платья или бренда',
-        ajax: {
-            url: "{{ route('ajax-autocomplete-search')}}",
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                // debugger;
-                console.log(data);
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            slug: item.slug,
-                            text: item.id+' '+item.title,
-                            id: item.id
-                        }
-                    })
-                };
+    $(document).ready(function () {
+        $('.livesearch').select2({
+            placeholder: 'Введите название платья или бренда',
+            ajax: {
+                url: "{{ route('ajax-autocomplete-search')}}",
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    // debugger;
+                    console.log(data);
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                slug: item.slug,
+                                text: item.id + ' ' + item.title,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                errors() {
+                    debugger;
+                },
+                cache: true
+            }
+        });
+
+        window.showCart = function () {
+
+        $.ajax({
+            url: "{{ route('cart.show-to-show') }}",
+            type: "get",
+            data: {},
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             },
-            errors() {
+            success: function (data) {
+                // console.log(data);
+                $('.modal-add-to-cart-list').html(data);
+
+
+            },
+            error: function (msg) {
                 debugger;
-            },
-            cache: true
-        }
+                console.log(msg.responseText);
+                // alert('Ошибка');
+            }
+        });
+    }
+
+
+
     });
+
+
+
 </script>
 @yield('scripts')
 </body>

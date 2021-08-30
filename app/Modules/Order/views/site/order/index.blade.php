@@ -25,6 +25,9 @@
 
 @section('scripts')
     <script>
+        $(document).ready(function () {
+            window.showCart();
+
         //Табы на странице заказов
         $('.make-order-link').click(function (evt) {
             evt.preventDefault();
@@ -77,6 +80,39 @@
                 $('.new-post-order-block').removeClass('active');
             }
         });
+
+        $(function() {
+
+
+            $.ajax({
+                url: "https://api.novaposhta.ua/v2.0/",
+                type: "post",
+                data: {
+                    modelName: 'Address',
+                    calledMethod: 'getAreas',
+                    apikey: "{{ \App\Services\NewPostServices::API_KEY}}",
+                },
+                headers: {
+                    'content-type': "application/json",
+                        } ,
+                success: function (response) {
+                    console.log(response);
+
+
+                },
+
+                error: function (msg) {
+                    debugger;
+                    console.log(msg.responseText);
+                    // alert('Ошибка');
+                }
+
+
+
+            });
+        });
+
+    });
 
     </script>
 @endsection

@@ -258,6 +258,8 @@
     text-transform: uppercase;
     color: #790C5A;
     text-align: center;
+    padding-bottom: 16px;
+    padding-top: 58px;
 }
 
 .silhouette-list {
@@ -282,6 +284,8 @@
 
 .silhouette-img {
     max-width: 95%;
+    padding: 12px 12px 0 12px;
+
 
 }
 

@@ -9,7 +9,6 @@ use App\Models\Contact;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\ProductOption;
-use App\Services\NewPostServices;
 use Illuminate\Http\Request;
 
 class PageController extends BaseController
@@ -30,14 +29,7 @@ class PageController extends BaseController
                 dd(4);
                 abort('404');
             }
-//            $product = ProductOption::where('product_id', 1)->first();
-//            dd($product->product->translate()->title);
-//            NewPostServices::areas();
-//            $request->session()->put('korzina.product.id', 325);
-//            $res = $request->session()->all();
-//            dd($res);+
-//            dd($product->options->pluck('size_id')->unique());
-//            $first_el = ProductOption::where('product_id', $product->id)->first();
+
 
             $product_size_first = ProductOption::where('product_id', $product->id)
                 ->get();
@@ -57,6 +49,8 @@ class PageController extends BaseController
                 'product_id'=> $product->id,
                 'size_id' => $product_sizes->first()->size_id
             ])->get();
+//            $get_content_cart = \Cart::session($_COOKIE['cart_id'])->getContent();
+//            dd($get_content_cart);
 
             return view('Pages::site.pages.product', compact('product', 'product_colors_first', 'product_sizes'));
         }

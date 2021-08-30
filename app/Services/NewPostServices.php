@@ -7,8 +7,8 @@ use GuzzleHttp\Exception\RequestException;
 
 class NewPostServices
 {
-    const API_KEY = "ea469f07e764d8f8d35a63fa2e4a70d2";
-    const REQ_URL = "https://api.novaposhta.ua/v2.0/";
+    const API_KEY = "3e5a3193490f568873e83ee9c823f5e9";
+    const REQ_URL = "https://api.novaposhta.ua/v2.0/json/";
 
     public static function areas()
     {
