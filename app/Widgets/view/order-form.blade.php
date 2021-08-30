@@ -2,19 +2,19 @@
     <div class="order-form-first order-form-level1 order-form-level active">
         <div class="input-block">
             <label for="name">Имя<span>*</span></label>
-            <input type="text" id="name" required>
+            <input type="text" id="name" name="name" class="el-input invalid" autofocus="autofocus" required>
         </div>
         <div class="input-block">
             <label for="surname">Фамилия<span>*</span></label>
-            <input type="text" id="surnamename" required>
+            <input type="text" id="surnamename" class="el-input invalid" required>
         </div>
         <div class="input-block">
             <label for="phone">Телефон<span>*</span></label>
 {{--            <input type="text" id="phone">--}}
-            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Телефон в формате (XXX) XXX-XX-XX" pattern="\(\d{3}\) \d{3}-\d{2}-\d{2}" required>
+            <input type="tel" class="form-control el-input invalid" id="phone" name="phone" placeholder="Телефон в формате (XXX)XXX-XX-XX" pattern="\(\d{3}\)\d{3}-\d{2}-\d{2}" required>
         </div>
         <div class="input-block">
-            <a href="#" class="btn-next-order btn-order" data-order="2">Далее</a>
+            <a href="#" class="btn-next-order btn-order1" data-order="2">Далее</a>
         </div>
 
     </div>
@@ -23,6 +23,16 @@
             <legend>Выберите способ доставки</legend>
             <div class="input-block-radio">
                 <input type="radio" name="delivery" checked id="pickup"><label for="pickup">Самовывоз с магазина (возможна примерка)</label>
+            </div>
+            <div class="input-pickup active">
+                <label for="address">Адрес салона<span>*</span></label>
+                <select type="text" id="address" name="address" required>
+                    <option value="">Выбирите адрес</option>
+                    <option value="ул. Шевченко 1">ул. Шевченко 1</option>
+                    <option value="ул. Шевченко 10">ул. Шевченко 10</option>
+                    <option value="ул. Шевченко 100">ул. Шевченко 100</option>
+                    <option value="ул. Шевченко 1000">ул. Шевченко 1000</option>
+                </select>
             </div>
             <div class="input-block-radio">
                 <input type="radio" name="delivery" id="new_post"><label for="new_post">Новая почта</label>
@@ -44,10 +54,14 @@
             <div class="input-block-radio">
                 <input type="radio" name="delivery" id="courier"><label for="courier">Курьер по Киеву</label>
             </div>
+            <div class="input-block courier-input">
+                <label for="surname">Укажите отделение<span>*</span></label>
+                <input type="text" id="surnamename">
+            </div>
         </div>
         <div class="order-form-btn-wrap">
             <a href="#" class="btn-prev-order btn-order" data-order="1">Назад</a>
-            <a href="#" class="btn-next-order btn-order" data-order="3">Далее</a>
+            <a href="#" class="btn-next-order btn-order2" data-order="3">Далее</a>
         </div>
 
     </div>

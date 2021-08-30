@@ -314,6 +314,19 @@ div.order-form {
     position: relative;
 }
 
+.input-pickup,
+.courier-input {
+    display: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.input-pickup.active,
+.courier-input.active {
+    display: flex;
+}
+
 .input-block-radio label::before {
     content: "";
     display: inline-block;

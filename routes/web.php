@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BrandsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ColorsController;
+use App\Http\Controllers\Admin\FittingFormController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProductController;
@@ -46,6 +47,7 @@ Route::group(
         Route::resource('cities', CityController::class);
         Route::resource('silhouettes', SilhouetteController::class);
         Route::resource('textiles', TextileController::class);
+        Route::resource('fitting_form', FittingFormController::class);
 
     }
     );

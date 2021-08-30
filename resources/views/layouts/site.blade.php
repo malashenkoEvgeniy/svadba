@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('site/css/pagination.css')}}">
     <link rel="stylesheet" href="{{ asset('site/css/add-to-cart.css')}}">
     <link rel="stylesheet" href="{{ asset('site/css/social_buttons.css')}}">
+    <link rel="stylesheet" href="{{ asset('site/css/modal.css')}}">
     @yield('links')
     <title>Svadba-Kiev</title>
 </head>
@@ -40,6 +41,8 @@
     @include('includes.site.social_buttons')
     @include('includes.site.modal-add-to-cart')
     @include('includes.site.footer')
+    @include('includes.site.fitting-form-modal')
+    @include('includes.site.form_fitting_success_alert')
 
 
 </div>
@@ -47,7 +50,7 @@
 <script rel="stylesheet" src="{{ asset('/js/app.js')}}"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
-{{--<script src="{{asset('site/libs/nouislider/dist/nouislider.js')}}"></script>--}}
+<script src="https://unpkg.com/imask"></script>
 <script src="{{asset('site/js/script.js')}}"></script>
 <script src="{{asset('site/js/home.js')}}"></script>
 <script src="{{asset('site/js/social_buttons.js')}}"></script>
@@ -101,7 +104,66 @@
                 // alert('Ошибка');
             }
         });
-    }
+         }
+        let fittingForm = document.forms.fitting_form;
+        $(fittingForm).submit(function (evt) {
+            let timeArr = ((fittingForm.elements.date.value.split('-').join(', ') + ', ' + fittingForm.elements.time.value.split(':').join(', ')).split(','));
+            let dateNow = new Date();
+            let date = new Date(
+                parseInt(timeArr[0]),
+                parseInt(timeArr[1]),
+                parseInt(timeArr[2]),
+                parseInt(timeArr[3]),
+                parseInt(timeArr[4])
+            )
+            let diff =date - dateNow; // вычитаем два объекта с датами друг от друга
+            if(diff <= 0) {
+                $('.wrong_date').fadeIn();
+                setTimeout(function () {
+                    $('.wrong_date').fadeOut();
+                }, 3000);
+            } else {
+
+                $.ajax({
+                    url: "{{ route('fittingForms') }}",
+                    type: "post",
+                    data: {
+                        name: fittingForm.elements.name.value,
+                        phone: fittingForm.elements.phone.value,
+                        date: date.getTime(),
+                        msg: fittingForm.elements.msg.value,
+                        shop_id: fittingForm.elements.address.value
+                    },
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        evt.preventDefault();
+                        $('.fitting-success').fadeIn();
+                        let str = 'Спасибо за запрос. Будем рады вас видеть ' + fittingForm.elements.date.value.split('-').reverse().join('.') + ' в ' + fittingForm.elements.time.value;
+                        $('.fitting-success span').text(str);
+                        setTimeout(function () {
+                            $('.fitting-success').fadeOut();
+                        }, 3000);
+
+                        console.log(data);
+
+
+
+
+                    },
+                    error: function (msg) {
+                        debugger;
+                        console.log(msg.responseText);
+                        // alert('Ошибка');
+                    }
+                });
+
+            }
+
+
+
+        });
 
 
 

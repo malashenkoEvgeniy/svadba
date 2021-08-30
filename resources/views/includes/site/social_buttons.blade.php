@@ -1,6 +1,4 @@
 
-
-
 <div>
 	<div class="social-items-bg">
 	</div>
@@ -48,7 +46,7 @@
 						<div class="item-icon-chat item-icon"></div>
 					</div>
 				</div>
-				<span class="social-item__description">find_out_the_cost</span>
+				<span class="social-item__description">Записаться на примерку</span>
 			</div>
 
 		</div>

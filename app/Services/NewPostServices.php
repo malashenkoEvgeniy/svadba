@@ -13,31 +13,24 @@ class NewPostServices
     public static function areas()
     {
 
-        $client = new Client([
-            'base_uri' => self::REQ_URL,
-        ]);
-
-        try {
-
-            $response = $client->request('POST', '', [
-                'query' => [
-                    'apikey' => self::API_KEY,
-                    'modelName'=> "Address",
-                    "calledMethod"=> "getAreas",
-                    "methodProperties"=> []
-                ]
-            ]);
-
-            $content = $response->getBody()->getContents();
-            $response_data = json_decode($content, true);
-            dd($content);
-//            $result = $response_data['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos'];
-
-
-        } catch (RequestException $e) {
-//            $result = '0 0';
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => self::REQ_URL,
+            CURLOPT_RETURNTRANSFER => True,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\r\n\"apiKey\": \"{{ \App\Services\NewPostServices::API_KEY}}\",\r\n \"modelName\": \"Address\",\r\n \"calledMethod\": \"getAreas\",\r\n \"methodProperties\": { }\r\n}",
+            CURLOPT_HTTPHEADER => array("content-type: application/json",),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
         }
 
-        return $result;
+        dd(response());
     }
 }

@@ -108,10 +108,10 @@
     color: #FFFFFF;
 }
 
-.catalog-link:hover + .catalog-item-title {
-    color: transparent;
-    font-size: 1px;
-}
+/*.catalog-link:hover + .catalog-item-title {*/
+/*    color: transparent;*/
+/*    font-size: 1px;*/
+/*}*/
 
 .advantage {
     height: 100vh;

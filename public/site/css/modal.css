@@ -419,6 +419,83 @@
     border: 1px solid #790C5A;
 }
 
+.fitting-form-modal {
+    display: none;
+    box-shadow: 0 0 5px 0 #000;
+    position: fixed;
+    top: 15%;
+    left: 20%;
+    background-color: #fff;
+    width: 60%;
+    padding: 50px;
+}
+
+.fitting-form-modal-close {
+    display: block;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+
+.feedback-form-modal-block .feedback-form-title  {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.feedback-form-modal-block .feedback-form-form {
+    width: 100%;
+}
+
+.fitting-success {
+    display: none;
+    position: fixed;
+    top: 15%;
+    left: 15%;
+    width: 80%;
+    background-color: #FFFFFF;
+}
+
+.wrong_date {
+    display: none;
+    font-size: 12px;
+    color: red;
+}
+
+#date::-webkit-calendar-picker-indicator {
+    background: #FFFFFF url("../img/svg/calendar.svg") no-repeat 0 0;
+}
+
+#fitting-form select {
+    background: #FFFFFF url("../img/svg/select-arrow.svg") no-repeat right 0.5rem center;
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+}
+
+.fitting-success h4 {
+    display: block;
+    margin: 0 auto;
+    font-weight: 300;
+    font-size: 48px;
+    line-height: 56px;
+    color: #790C5A;
+    padding: 25px;
+}
+
+.fitting-success span {
+    font-family: 'Vollkorn', serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+    color: #101010;
+    padding: 25px;
+}
+
 @media (max-width: 768px){
     .modal-btn-filter {
         left: -150%;

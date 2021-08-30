@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\MainPage;
 use App\Models\MainSlider;
+use Illuminate\Http\Request;
 
 class HomeController extends BaseController
 {
@@ -18,5 +19,10 @@ class HomeController extends BaseController
         $brands = Brand::all();
 
         return view('Home::site.home.index', compact('main_page', 'slider', 'brands'));
+    }
+
+    public function fittingForms(Request $request)
+    {
+        return response()->json($request->name);
     }
 }

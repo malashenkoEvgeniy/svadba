@@ -28,3 +28,18 @@ $(window).on('scroll', { passive: true }, function() {
         $('#btn-up').fadeOut();
     }
 });
+
+
+
+$('.call-contact-form, .fitting-form-modal-close').click(function(){
+    $('.fitting-form-modal').fadeToggle();
+});
+//
+// $('#contact-from-bg').click(function(e){
+//     var form_bg = $('#contact-from-bg');
+//     if ( form_bg.is(e.target ) && form_bg.has(e.target).length === 0) {
+//         $('#contact-from-bg').fadeToggle();
+//     }
+// });
+
+

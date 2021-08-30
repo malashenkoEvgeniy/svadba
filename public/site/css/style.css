@@ -92,8 +92,13 @@ h1.slider-title {
 }
 
 .header {
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: #fff;
     width: 100%;
-    box-shadow: 0 0 10px rgba(0,0,0,.1);
 }
 
 .header-nav {
