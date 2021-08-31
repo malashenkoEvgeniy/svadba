@@ -9,6 +9,7 @@ use App\Models\Contact;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\ProductOption;
+use App\Services\NewPostServices;
 use Illuminate\Http\Request;
 
 class PageController extends BaseController
@@ -49,9 +50,6 @@ class PageController extends BaseController
                 'product_id'=> $product->id,
                 'size_id' => $product_sizes->first()->size_id
             ])->get();
-//            $get_content_cart = \Cart::session($_COOKIE['cart_id'])->getContent();
-//            dd($get_content_cart);
-
             return view('Pages::site.pages.product', compact('product', 'product_colors_first', 'product_sizes'));
         }
 
@@ -61,6 +59,7 @@ class PageController extends BaseController
             case 'kontakty':
                 $cities = City::with('shops')->get();
                 $contacts = Contact::where('id', 1)->first();
+
                 return view('Pages::site.pages.contacts', compact('page', 'cities', 'contacts'));
             case 'uslugi':
                 return view('Pages::site.pages.services', compact('page'));

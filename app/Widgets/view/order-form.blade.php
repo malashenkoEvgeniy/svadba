@@ -39,8 +39,13 @@
             </div>
             <div class="new-post-order-block">
                 <div class="input-block ">
-                    <label for="surname">Область<span>*</span></label>
-                    <input type="text" id="surnamename">
+                    <label for="area_np">Область<span>*</span></label>
+                    <select type="text" id="area_np" name="area">
+                        <option value="">Выбирите область</option>
+                        @foreach($areasNP as $area)
+                            <option value="{{$area->ref}}">{{$area->description_ru}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="input-block">
                     <label for="surname">Населенныйи пункт<span>*</span></label>
@@ -81,3 +86,33 @@
         </div>
     </div>
 </form>
+<script>
+    $(document).ready(function () {
+        $('#area_np').change(function (){
+            let areaRef = $(this).val();
+            $(function() {
+                $.ajax({
+                    async: true,
+                    crossDomain: true,
+                    url: "https://api.novaposhta.ua/v2.0/json/",
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    processData: false,
+                    data: {
+                        apiKey: "{{ \App\Services\NewPostServices::API_KEY}}",
+                        modelName: "AddressGeneral",
+                        calledMethod: "getSettlements",
+                        methodProperties: {
+                            AreaRef: areaRef
+                        }
+                    }
+                }).done(function (response) {
+                    console.log(response);
+                });
+            });
+        });
+    });
+
+</script>

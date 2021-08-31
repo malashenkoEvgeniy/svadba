@@ -160,23 +160,23 @@
         {{--    });--}}
         {{--});--}}
 
-            $(function() {
-                var settings = {
-                    "async": true,
-                    "crossDomain": true,
-                    "url": "https://api.novaposhta.ua/v2.0/json/",
-                    "method": "POST",
-                    "headers": {
-                        "content-type": "application/json",
+{{--            $(function() {--}}
+{{--                var settings = {--}}
+{{--                    "async": true,--}}
+{{--                    "crossDomain": true,--}}
+{{--                    "url": "https://api.novaposhta.ua/v2.0/json/",--}}
+{{--                    "method": "POST",--}}
+{{--                    "headers": {--}}
+{{--                        "content-type": "application/json",--}}
 
-                    },
-                    "processData": false,
-                    "data": "{\r\n\"apiKey\": \"{{ \App\Services\NewPostServices::API_KEY}}\",\r\n \"modelName\": \"Address\",\r\n \"calledMethod\": \"getAreas\",\r\n \"methodProperties\": { }\r\n}"
-                }
+{{--                    },--}}
+{{--                    "processData": false,--}}
+{{--                    "data": "{\r\n\"apiKey\": \"{{ \App\Services\NewPostServices::API_KEY}}\",\r\n \"modelName\": \"Address\",\r\n \"calledMethod\": \"getAreas\",\r\n \"methodProperties\": { }\r\n}"--}}
+{{--                }--}}
 
-                $.ajax(settings).done(function (response) { console.log(response);
-                });
-            });
+{{--                $.ajax(settings).done(function (response) { console.log(response);--}}
+{{--                });--}}
+{{--            });--}}
 
     });
 
