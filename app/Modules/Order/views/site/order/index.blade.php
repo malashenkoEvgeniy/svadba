@@ -76,11 +76,13 @@
 
         });
 
-            $('.btn-order2').click(function (evt) {
+            $('.btn-order2, .btn-order ').click(function (evt) {
                 evt.preventDefault();
                 let postf = $(this).attr('data-order'),
                     content = $('.order-form-level'+ postf);
-
+                    if(postf == 1) {
+                        $('#name, #surnamename, #phone').addClass('invalid');
+                    }
                     $('.order-form-level.active').removeClass('active');
                     content.addClass('active');
             });

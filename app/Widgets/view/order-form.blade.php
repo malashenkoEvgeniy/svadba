@@ -87,32 +87,32 @@
     </div>
 </form>
 <script>
-    $(document).ready(function () {
-        $('#area_np').change(function (){
-            let areaRef = $(this).val();
-            $(function() {
-                $.ajax({
-                    async: true,
-                    crossDomain: true,
-                    url: "https://api.novaposhta.ua/v2.0/json/",
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    processData: false,
-                    data: {
-                        apiKey: "{{ \App\Services\NewPostServices::API_KEY}}",
-                        modelName: "AddressGeneral",
-                        calledMethod: "getSettlements",
-                        methodProperties: {
-                            AreaRef: areaRef
-                        }
-                    }
-                }).done(function (response) {
-                    console.log(response);
-                });
-            });
-        });
-    });
+    {{--$(document).ready(function () {--}}
+    {{--    $('#area_np').change(function (){--}}
+    {{--        let areaRef = $(this).val();--}}
+    {{--        $(function() {--}}
+    {{--            $.ajax({--}}
+    {{--                async: true,--}}
+    {{--                crossDomain: true,--}}
+    {{--                url: "https://api.novaposhta.ua/v2.0/json/",--}}
+    {{--                method: "POST",--}}
+    {{--                headers: {--}}
+    {{--                    "content-type": "application/json",--}}
+    {{--                },--}}
+    {{--                processData: false,--}}
+    {{--                data: {--}}
+    {{--                    apiKey: "{{ \App\Services\NewPostServices::API_KEY}}",--}}
+    {{--                    modelName: "AddressGeneral",--}}
+    {{--                    calledMethod: "getSettlements",--}}
+    {{--                    methodProperties: {--}}
+    {{--                        AreaRef: areaRef--}}
+    {{--                    }--}}
+    {{--                }--}}
+    {{--            }).done(function (response) {--}}
+    {{--                console.log(response);--}}
+    {{--            });--}}
+    {{--        });--}}
+    {{--    });--}}
+    {{--});--}}
 
 </script>
