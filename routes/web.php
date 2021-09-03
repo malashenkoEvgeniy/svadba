@@ -42,6 +42,7 @@ Route::group(
         Route::resource('colors', ColorsController::class);
         Route::resource('products', ProductController::class);
         Route::post('/request-product-option', [ProductController::class, 'requestProductOption'])->name('request-product-option');
+        Route::get('/get-sub-category', [ProductController::class, 'getSubCategory'])->name('get-sub-category');
         Route::resource('pages', PageController::class);
         Route::resource('shops', ShopController::class);
         Route::resource('cities', CityController::class);

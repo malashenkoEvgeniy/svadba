@@ -7,11 +7,13 @@
         @if(count($model->attachments))
             <img src="{{ $model->attachments[0]->img_d}}" data-old="{{$model->attachments[0]->img_d}}" data-change="{{ asset('site/img/item4.jpg')}}" alt="" class="products-img">
         @endif
-
         <h3 class="products-link-title">{{$model->translate()->title}}</h3>
         <div class="products-price">
-            <span class="products-new-price">{{$model->new_price}} грн.</span>
-            <span class="products-old-price">{{$model->price}} грн.</span>
+            <span class="products-new-price">{{$model->price}} грн.</span>
+            @if($model->is_promotion == 1)
+                <span class="products-old-price">{{$model->new_price}} грн.</span>
+            @endif
+
         </div>
     </a>
 </li>

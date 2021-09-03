@@ -25,14 +25,14 @@ class CategoryController extends BaseController
         $rubric = Category::where('slug', $slug)->with('children')->first();
         if($request->orderBy == 'sort-promotion') {
             $products = Product::where('category_id', $rubric->id)
-                ->where('is_promotion', 1)
                 ->with('brand', 'silhouette', 'color', 'size', 'textile')
+                ->orderBy('is_promotion', 'desc')
                 ->paginate(12);
         }
         if($request->orderBy == 'sort-new') {
             $products = Product::where('category_id', $rubric->id)
-                ->where('is_new', 1)
                 ->with('brand', 'silhouette', 'color', 'size', 'textile')
+                ->orderBy('is_new', 'desc')
                 ->paginate(12);
         }
         if($request->orderBy == 'sort-price-asc') {

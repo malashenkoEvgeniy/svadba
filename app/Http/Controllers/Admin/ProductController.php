@@ -49,7 +49,7 @@ class ProductController extends BaseController
 
     public function create()
     {
-        $parent = Category::get();
+        $parent = Category::where('parent_id', 0)->get();
         $brands = Brand::all();
         $textiles = Textile::all();
         $silhouettes = Silhouette::all();
@@ -64,13 +64,25 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'images' => 'nullable|mimes:jpeg,jpg,png,gif',
+            'category_id'=>'required|not_in:0'
 
+        ], [
+            'images.mimes' => 'Поле "Картинка" должны обязательно иметь расширения: jpeg,jpg,png,gif',
+            'category_id.not_in' => 'Поле "Родительская категория" должны быть заполнено',
+            'category_id.required' => 'Поле "Родительская категория" должны быть заполнено',
+
+        ]);
 
         $req = request()->only( 'category_id', 'price',   'new_price', 'brand_id', 'textile_id',  'silhouette_id' );
         $req['slug'] = SlugService :: createSlug ( Product :: class, 'slug' , $request->title );
         $req['is_promotion'] =  $request->has('is_promotion') ? 1 : 0;
 
-        if($req['is_promotion'] ==0){
+        if($req['is_promotion'] !==0){
+            $req['new_price'] = $request->price;
+            $req['price'] = $request->new_price;
+        } else {
             $req['new_price'] = 0;
         }
         $req['is_new'] =  $request->has('is_new') ? 1 : 0;
@@ -105,15 +117,17 @@ class ProductController extends BaseController
      */
     public function edit($id)
     {
-
+        $brands = Brand::all();
         $parent = Category::get();
+        $textiles = Textile::all();
+        $silhouettes = Silhouette::all();
         $product = Product::where('id', $id)
             ->with('options')
             ->first();
         $colors = Colors::all();
 
 
-        return view('admin.products.edit', compact('product', 'parent', 'colors'));
+        return view('admin.products.edit', compact('product', 'parent','brands','textiles', 'silhouettes', 'colors'));
     }
 
     /**
@@ -125,9 +139,6 @@ class ProductController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title' => 'required',
-        ]);
 
 
         $product = Product::where('id', $id)->with('attachments')->first();
@@ -156,12 +167,26 @@ class ProductController extends BaseController
             ]);
             $product->attachments()->save($img);
         }
-        $req = request()->only( 'category_id', 'price',   'new_price' );
+        $req = request()->only(  'price',   'new_price', 'brand_id', 'textile_id', 'silhouette_id'  );
         $req['is_promotion'] =  $request->has('is_promotion') ? 1 : 0;
+        if($product->new_price == 0 ){
+            if($req['is_promotion'] !==0){
+                $req['new_price'] = $request->price;
+                $req['price'] = $request->new_price;
+            } else {
+                $req['new_price'] = 0;
+            }
+        } else {
+            if($req['is_promotion'] ==0){
+                $req['new_price'] = 0;
+            }
+        }
+
         $req['is_new'] =  $request->has('is_new') ? 1 : 0;
         $req[ 'is_collection'] =  $request->has( 'is_collection') ? 1 : 0;
+        $req[ 'available'] =  $request->has( 'main-available') ? 1 : 0;
         $product->update($req);
-        $reqT = request()->except( 'category_id', 'price', 'is_promotion', 'is_new', 'is_collection', 'new_price', 'images' );
+        $reqT = request()->only( 'title', 'language', 'body', 'seo_title', 'seo_description', 'seo_keywords');
 
 
 
@@ -231,5 +256,13 @@ class ProductController extends BaseController
         $category->delete();
 
         return redirect()->route('products.index')->with('success', 'Категория удалена');
+    }
+
+    public function getSubCategory(Request $request)
+    {
+        $subcategories = Category::where('parent_id',  $request->id)->get();
+        if($request->ajax()){
+            return view('ajax-tpl.get-sub-category', compact('subcategories'))->render();
+        }
     }
 }

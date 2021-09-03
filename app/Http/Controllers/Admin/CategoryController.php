@@ -92,9 +92,7 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title' => 'required',
-        ]);
+
 
         $reqTranslation = request()->except('images', 'parent_id');
         $category = Category::where('id', $id)->with('attachments')->first();

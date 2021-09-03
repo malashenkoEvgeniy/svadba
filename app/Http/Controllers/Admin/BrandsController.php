@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 class BrandsController extends  BaseController
 {
     public function __construct()
-{
-    parent::__construct();
-}
+    {
+        parent::__construct();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -62,7 +62,6 @@ class BrandsController extends  BaseController
             ]);
             $brand->attachments()->save($img);
         }
-
 
         return redirect()->route('brands.index')->with('success', 'Запись успешно создана');
     }

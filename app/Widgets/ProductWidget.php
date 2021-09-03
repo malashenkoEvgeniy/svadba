@@ -16,9 +16,7 @@ class ProductWidget implements ContractWidget
         }
     }
 
-
     public function execute(){
-
 
         return view('Widgets::product', [
             'model' => $this->model
