@@ -92,11 +92,11 @@ h1.slider-title {
 }
 
 .header {
-    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    box-shadow: 0 0 10px rgba(0 0 0 0.1);
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 99;
     background-color: #fff;
     width: 100%;
 }
@@ -504,6 +504,10 @@ h1.slider-title {
     justify-content: flex-start;
     flex-direction: column;
     font-size: 12px;
+}
+
+main {
+    margin-top: 200px;
 }
 
 

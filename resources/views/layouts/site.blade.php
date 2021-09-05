@@ -1,3 +1,8 @@
+<?php
+if(!isset($_COOKIE['cart_id'])) {
+    setcookie('cart_id', uniqid());
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

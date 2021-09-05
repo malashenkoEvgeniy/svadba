@@ -112,7 +112,7 @@
                                     </div>
                                 @endif
                                 @if(count($textiles)>0)
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-3 accessory">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Ткань</span>
                                         </div>
@@ -125,7 +125,7 @@
                                     </div>
                                 @endif
                                 @if(count($silhouettes)>0)
-                                    <div class="input-group mb-3" style="display: flex; flex-direction: column">
+                                    <div class="input-group mb-3 accessory" style="display: flex; flex-direction: column">
                                         <div class="input-group-prepend">
                                             <h3 class="">Силуеты</h3>
                                         </div>
@@ -215,6 +215,11 @@
         $(document).ready(function () {
             $('.parent_category').change(function () {
                 let val = $(this).val();
+                if(val == 3){
+                   $('.accessory').fadeOut();
+                } else {
+                    $('.accessory').fadeIn();
+                }
                 $.ajax({
                     url: "{{ route('get-sub-category') }}",
                     type: "get",

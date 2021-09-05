@@ -3,22 +3,15 @@
     <link rel="stylesheet" href="{{ asset('site/css/page.css')}}">
     <link rel="stylesheet" href="{{ asset('site/css/modal.css')}}">
     <link rel="stylesheet" href="{{ asset('site/css/range-slider.css')}}">
-
 @endsection
 @section('content')
     <main>
         @include('includes.site.breadcrumbs')
-
-
             <section class="content">
                 <h2 class="content-title page-title">{{ $rubric->translate()->title }}</h2>
                 @if( count($categories))
                     <ul class="content-brands-list">
                         <li class="content-brands-item">@lang('main.categories'):</li>
-                        <li class="content-brands-item">
-                            <a href="#" class="content-brands-link">Все</a>
-                        </li>
-
                         @foreach( $categories as $category)
                             <li class="content-brands-item">
                                 <a href="{{ route('page.category.view', ['slug'=>$category->slug])}}" class="content-brands-link">{{$category->translate()->title}}</a>

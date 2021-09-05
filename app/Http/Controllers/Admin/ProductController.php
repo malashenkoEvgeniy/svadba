@@ -90,6 +90,7 @@ class ProductController extends BaseController
         $req[ 'vendor_code'] =  $req['slug'];
         $reqT = request()->except('slug', 'category_id','size_id', 'price', 'brand_id', 'textile_id', 'colors_id', 'silhouette_id', 'is_promotion', 'is_new', 'is_collection', 'new_price', 'images' );
 
+
         $product = $this->storeWithTranslation(new Product(), $req,$reqT)['model'];
 
 

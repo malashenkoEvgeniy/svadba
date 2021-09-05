@@ -2,17 +2,16 @@
 
 namespace App\Traits;
 
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 trait BaseSearch
 {
-  protected function getObject()
-  {
-      $className = self::Model;
-      return new $className;
-  }
+    protected function getObject() {
+        $className = self::MODEL;
+        return new $className;
+    }
 
     protected function getNameSpace()
     {
@@ -48,5 +47,10 @@ trait BaseSearch
     private function isValidObject( $decorator)
     {
         return class_exists($decorator);
+    }
+
+    private function getResults(Builder $query)
+    {
+        return $query;
     }
 }

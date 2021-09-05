@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ClothingSize;
 use App\Models\Colors;
+use App\Models\Page;
 use App\Models\Product;
 use App\Models\Silhouette;
 use App\Models\Textile;
@@ -52,33 +53,74 @@ class CategoryController extends BaseController
         }
     }
 
+//    public function view(Request $request, $slug, Product $product)
+//    {
+//        $rubric = Category::where('slug', $slug)->with('children')->first();
+//
+//        $products = Product::where('category_id', $rubric->id)
+//            ->with('brand', 'silhouette', 'color', 'size', 'textile')
+//            ->paginate(12);
+//
+//        $brands = Brand::whereIn('id', ProductService::getArrayItems($products, 'brand'))->get();
+//        $categories = Category::whereIn('id', ProductService::getArrayItems($products, 'category'))->get();
+//        $colors = Colors::whereIn('id', ProductService::getArrayItemsOptions($products))->get();
+//        $silhouettes = Silhouette::whereIn('id', ProductService::getArrayItems($products, 'silhouette'))->get();
+//        $textiles = Textile::whereIn('id', ProductService::getArrayItems($products, 'textile'))->get();
+//        $sizes = ClothingSize::whereIn('id', ProductService::getArrayItemsOptions($products, 'size_id'))->get();
+//
+//        $breadcrumbs = (object) [
+//            'current' => strip_tags($rubric->translate()->title),
+//            'parent' => Page::where('slug', 'katalog')->get()
+//        ];
+//
+//          return view('Pages::site.categories.view', compact(
+//              'categories',
+//              'brands',
+//              'colors',
+//              'silhouettes',
+//              'textiles',
+//              'sizes',
+//              'rubric',
+//              'products',
+//              'breadcrumbs'
+//          ));
+//    }
 
-
-    public function view(Request $request, $slug)
+    public function view(Request $request, $slug, Product $product)
     {
         $rubric = Category::where('slug', $slug)->with('children')->first();
-        $categories =  $rubric->children;
 
-        $products = Product::where('category_id', $rubric->id)
+        $products = $product->getProductsBySearch($request)
+            ->where([
+                'category_id'=> $rubric->id,
+                'available'=>1
+                ])
             ->with('brand', 'silhouette', 'color', 'size', 'textile')
             ->paginate(12);
 
         $brands = Brand::whereIn('id', ProductService::getArrayItems($products, 'brand'))->get();
+        $categories = Category::whereIn('id', ProductService::getArrayItems($products, 'category'))->get();
         $colors = Colors::whereIn('id', ProductService::getArrayItemsOptions($products))->get();
         $silhouettes = Silhouette::whereIn('id', ProductService::getArrayItems($products, 'silhouette'))->get();
         $textiles = Textile::whereIn('id', ProductService::getArrayItems($products, 'textile'))->get();
         $sizes = ClothingSize::whereIn('id', ProductService::getArrayItemsOptions($products, 'size_id'))->get();
 
-          return view('Pages::site.categories.view', compact(
-              'categories',
-              'brands',
-              'colors',
-              'silhouettes',
-              'textiles',
-              'sizes',
-              'rubric',
-              'products'
-          ));
+        $breadcrumbs = (object) [
+            'current' => strip_tags($rubric->translate()->title),
+            'parent' => Page::where('slug', 'katalog')->get()
+        ];
+
+        return view('Pages::site.categories.view', compact(
+            'categories',
+            'brands',
+            'colors',
+            'silhouettes',
+            'textiles',
+            'sizes',
+            'rubric',
+            'products',
+            'breadcrumbs'
+        ));
     }
 
 

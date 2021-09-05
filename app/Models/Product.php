@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Filters\Product\ProductSearch;
 use App\Traits\Attachable;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class Product extends BaseModel
 {
@@ -142,6 +144,11 @@ class Product extends BaseModel
             }
         }
         return $product;
+    }
+
+    public function getProductsBySearch(Request $request): Builder
+    {
+        return (new ProductSearch())->apply($request);
     }
 
 }
