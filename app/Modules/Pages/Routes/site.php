@@ -13,6 +13,7 @@ Route::group(
         Route::get('select-color/{id}','PageController@selectColor')->name('page.select-color');
         Route::get('category/{slug}','CategoryController@view')->name('page.category.view');
         Route::get('sort/{slug}', 'CategoryController@viewSort')->name('view-sort');
+        Route::get('filter/{slug}', 'CategoryController@viewFilter')->name('view-filter');
     });
 
 });

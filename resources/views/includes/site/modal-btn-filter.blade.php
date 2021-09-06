@@ -32,32 +32,40 @@
             <button class="filter-show-more">+ показать больше</button>
         </fieldset>
         @endif
-        @if(count($silhouettes))
-        <fieldset>
-            <legend>Силуэт</legend>
-            <div class="group-inputs group-inputs-silhouette">
-                @foreach($silhouettes as $silhouette)
-                <div class="group-input">
-                    <label for="silhouette{{$silhouette->id}}"><img src="{{$silhouette->scheme}}" alt=""></label>
-                    <input type="checkbox" id="silhouette{{$silhouette->id}}" name="silhouette[]"  value="{{$silhouette->id}}">
-                    <label for="silhouette{{$silhouette->id}}">{{$silhouette->translate()->title}}</label>
-                </div>
-                @endforeach
-        </fieldset>
+        @if($rubric->id !== 3)
+            @if($rubric->parent_id !== 3)
+                @if(count($silhouettes))
+                <fieldset>
+                    <legend>Силуэт</legend>
+                    <div class="group-inputs group-inputs-silhouette">
+                        @foreach($silhouettes as $silhouette)
+                        <div class="group-input">
+                            <label for="silhouette{{$silhouette->id}}"><img src="{{$silhouette->scheme}}" alt=""></label>
+                            <input type="checkbox" id="silhouette{{$silhouette->id}}" name="silhouette[]"  value="{{$silhouette->id}}">
+                            <label for="silhouette{{$silhouette->id}}">{{$silhouette->translate()->title}}</label>
+                        </div>
+                        @endforeach
+                </fieldset>
+                @endif
+            @endif
         @endif
-        @if(count($textiles))
-        <fieldset>
-            <legend>Ткань</legend>
-            <div class="group-inputs">
-                @foreach($textiles as $textile)
-                    <div class="group-input">
-                        <input type="checkbox" id="textile{{$textile->id}}" name="textile[]" value="{{$textile->id}}">
-                        <label for="textile{{$textile->id}}">{{$textile->translate()->title}}</label>
-                    </div>
-                @endforeach
-            </div>
-            <button class="filter-show-more">+ показать больше</button>
-        </fieldset>
+        @if($rubric->id !== 3)
+            @if($rubric->parent_id !== 3)
+                @if(count($textiles))
+                    <fieldset>
+                        <legend>Ткань</legend>
+                        <div class="group-inputs">
+                            @foreach($textiles as $textile)
+                                <div class="group-input">
+                                    <input type="checkbox" id="textile{{$textile->id}}" name="textile[]" value="{{$textile->id}}">
+                                    <label for="textile{{$textile->id}}">{{$textile->translate()->title}}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button class="filter-show-more">+ показать больше</button>
+                    </fieldset>
+                @endif
+            @endif
         @endif
         @if(count($sizes))
         <fieldset>

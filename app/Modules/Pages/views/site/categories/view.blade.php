@@ -19,21 +19,26 @@
                         @endforeach
                     </ul>
                 @endif
-                @if($silhouettes !== null)
-                <div class="silhouette">
-                    <h3 class="silhouette-title">Силуэт</h3>
-                    <ul class="silhouette-list">
-                        @foreach( $silhouettes as $silhouette)
-                        <li class="silhouette-item">
-                            <a href="#" class="silhouette-link">
-                                <img src="{{$silhouette->attachments[0]->img_d}}" alt="" class="silhouette-img">
-                                <h4 class="silhouette-link-title">{{ $silhouette->translate()->title }}</h4>
 
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
+                @if($rubric->id !== 3)
+                    @if($rubric->parent_id !== 3)
+                        @if($silhouettes !== null)
+                        <div class="silhouette">
+                            <h3 class="silhouette-title">Силуэт</h3>
+                            <ul class="silhouette-list">
+                                @foreach( $silhouettes as $silhouette)
+                                <li class="silhouette-item">
+                                    <a href="#" class="silhouette-link" data-link="{{$silhouette->id}}">
+                                        <img src="{{$silhouette->attachments[0]->img_d}}" alt="" class="silhouette-img">
+                                        <h4 class="silhouette-link-title">{{ $silhouette->translate()->title }}</h4>
+
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                     @endif
                 @endif
             </section>
             <section class="filter">
@@ -108,19 +113,79 @@
                 });
             });
 
+            $('.silhouette-link').click(function (evt) {
+                evt.preventDefault();
+                let id = $(this).data('link');
+                $.ajax({
+                    url: "{{ route('view-filter', $rubric->slug) }}",
+                    type: "get",
+                    data: {
+                        silhouette_id: id
+                    },
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        $('.rubric-products').html(data);
+                        // console.log(data);
+                    },
+                    error: function (msg) {
+                        debugger;
+                        console.log(msg.responseText);
+                        // alert('Ошибка');
+                    }
+                });
+            });
+
             //Отработка фильтрации
             $("#filter-form").change(function(){
-                // для читаемости кода
                 let $form = $(this);
-                console.log( $form.serializeArray() )
-                // вы же понимаете, о чём я тут толкую?
-                // это ведь одна из ипостасей AJAX-запроса
-                // $.post(
-                //     $form.attr("action"), // ссылка куда отправляем данные
-                //     $form.serialize()     // данные формы
-                // );
-                // отключаем действие по умолчанию
-                return false;
+                let obj = $form.serializeArray();
+                let brands = [];
+                let colors = [];
+                let silhouettes = [];
+                let textiles = [];
+                let sizes = [];
+                obj.forEach(function(item, i, arr) {
+                    if(item['name']=='brand[]'){
+                        brands.push(item['value']);
+                    }
+                    if(item['name']=='color[]'){
+                        colors.push(item['value']);
+                    }
+                    if(item['name']=='silhouette[]'){
+                        silhouettes.push(item['value']);
+                    }
+                    if(item['name']=='textile[]'){
+                       textiles.push(item['value']);
+                    }
+                    if(item['name']=='size[]'){
+                        sizes.push(item['value']);
+                    }
+                });
+                $.ajax({
+                    url: "{{ route('view-filter', $rubric->slug) }}",
+                    type: "get",
+                    data: {
+                        brands: brands,
+                        colors: colors,
+                        silhouettes: silhouettes,
+                        textiles: textiles,
+                        sizes: sizes
+                    },
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        $('.rubric-products').html(data);
+                        // console.log(data);
+                    },
+                    error: function (msg) {
+                        debugger;
+                        console.log(msg.responseText);
+                        // alert('Ошибка');
+                    }
+                });
             });
 
         });

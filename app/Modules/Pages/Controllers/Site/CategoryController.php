@@ -122,6 +122,27 @@ class CategoryController extends BaseController
             'breadcrumbs'
         ));
     }
+//TODO: доделать
+    public function viewFilter(Request $request, $slug, Product $product)
+    {
+        $rubric = Category::where('slug', $slug)->with('children')->first();
 
+        $products = $product->getProductsBySearch($request)
+            ->where([
+                'category_id' => $rubric->id,
+                'available' => 1
+            ])
+            ->with('brand', 'silhouette', 'color', 'size', 'textile');
 
+        if ($request->brands !== null) {
+            $products->whereIn('brand_id', $request->brands);
+        }
+        if ($request->silhouettes !== null) {
+            $products->whereIn('silhouette_id', $request->silhouettes);
+        }
+        $products->paginate(12);
+        if ($request->ajax()) {
+            return view('ajax-tpl.filter', compact('products'))->render();
+        }
+    }
 }

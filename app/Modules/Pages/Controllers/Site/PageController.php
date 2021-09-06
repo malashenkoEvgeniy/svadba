@@ -54,7 +54,7 @@ class PageController extends BaseController
             $category = Category::where('id', $product->category_id)->first();
             if($category->parent_id == null) {
                 $breadcrumbs = (object) [
-                    'current' => $product,
+                    'current' => $product->translate()->title,
                     'parent' =>  [$category]
                 ];
             } else {
