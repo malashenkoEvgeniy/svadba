@@ -285,8 +285,11 @@
 .silhouette-img {
     max-width: 95%;
     padding: 12px 12px 0 12px;
+}
 
-
+.silhouette-link:hover .silhouette-img {
+    filter: grayscale(1);
+    opacity: 0.5;
 }
 
 .silhouette-link-title{

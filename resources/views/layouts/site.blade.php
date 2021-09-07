@@ -62,7 +62,8 @@ if(!isset($_COOKIE['cart_id'])) {
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.livesearch').select2({
+
+        let eventSelect = $('.livesearch').select2({
             placeholder: 'Введите название платья или бренда',
             ajax: {
                 url: "{{ route('ajax-autocomplete-search')}}",
@@ -87,6 +88,32 @@ if(!isset($_COOKIE['cart_id'])) {
                 cache: true
             }
         });
+
+        eventSelect.on("select2:select", function (e) {
+            console.log("select2:select");
+            $('.search-form').submit();
+        });
+
+
+
+        function log (name, evt) {
+            if (!evt) {
+                var args = "{}";
+            } else {
+                var args = JSON.stringify(evt.params, function (key, value) {
+                    if (value && value.nodeName) return "[DOM node]";
+                    if (value instanceof $.Event) return "[$.Event]";
+                    return value;
+                });
+            }
+            var $e = $("<li>" + name + " -> " + args + "</li>");
+            $eventLog.append($e);
+            $e.animate({ opacity: 1 }, 10000, 'linear', function () {
+                $e.animate({ opacity: 0 }, 2000, 'linear', function () {
+                    $e.remove();
+                });
+            });
+        }
 
         window.showCart = function () {
 
@@ -152,10 +179,6 @@ if(!isset($_COOKIE['cart_id'])) {
                         }, 3000);
 
                         console.log(data);
-
-
-
-
                     },
                     error: function (msg) {
                         debugger;
@@ -163,19 +186,9 @@ if(!isset($_COOKIE['cart_id'])) {
                         // alert('Ошибка');
                     }
                 });
-
             }
-
-
-
         });
-
-
-
     });
-
-
-
 </script>
 @yield('scripts')
 </body>

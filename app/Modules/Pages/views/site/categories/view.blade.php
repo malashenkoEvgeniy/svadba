@@ -120,7 +120,7 @@
                     url: "{{ route('view-filter', $rubric->slug) }}",
                     type: "get",
                     data: {
-                        silhouette_id: id
+                        silhouettes: [id],
                     },
                     headers: {
                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -146,6 +146,8 @@
                 let silhouettes = [];
                 let textiles = [];
                 let sizes = [];
+                let pricemin, pricemax;
+                console.log(obj);
                 obj.forEach(function(item, i, arr) {
                     if(item['name']=='brand[]'){
                         brands.push(item['value']);
@@ -162,6 +164,12 @@
                     if(item['name']=='size[]'){
                         sizes.push(item['value']);
                     }
+                    if(item['name']=='pricemin'){
+                        pricemin = item['value'];
+                    }
+                    if(item['name']=='pricemax'){
+                        pricemax = item['value'];
+                    }
                 });
                 $.ajax({
                     url: "{{ route('view-filter', $rubric->slug) }}",
@@ -171,7 +179,9 @@
                         colors: colors,
                         silhouettes: silhouettes,
                         textiles: textiles,
-                        sizes: sizes
+                        sizes: sizes,
+                        pricemin: pricemin,
+                        pricemax: pricemax
                     },
                     headers: {
                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -187,9 +197,7 @@
                     }
                 });
             });
-
         });
-
 
     </script>
 

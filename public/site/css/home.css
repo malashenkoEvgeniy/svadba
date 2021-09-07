@@ -49,7 +49,7 @@
 }
 
 .catalog {
-    height: 100vh;
+    height: 80vh;
     box-sizing: border-box;
     margin-bottom: 100px;
 }
@@ -63,7 +63,7 @@
     text-transform: uppercase;
     text-align: center;
     color: #000000;
-    margin-bottom: 74px;
+    margin-bottom: 35px;
 }
 
 .catalog-list {
@@ -78,7 +78,7 @@
 .catalog-item {
     position: relative;
     height: 100%;
-    width: 33.3%;
+    width: 33%;
 
 }
 
@@ -86,7 +86,7 @@
     position: relative;
     display: block;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: 50% 0;
     height: 100%;
     filter: brightness(.65);
 }

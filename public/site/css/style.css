@@ -228,7 +228,7 @@ h1.slider-title {
     content: "";
     position: absolute;
     top: -50%;
-    left: -80%;
+    left: -100%;
     width: 30px;
     height: 30px;
     background-color: #790C5A;
@@ -442,7 +442,7 @@ h1.slider-title {
     position: relative;
     vertical-align: middle;
     width: 95%!important;
-    top: -10px;
+    top: 10px!important;
 }
 
 .select2-container--default .select2-selection--single {
@@ -507,7 +507,7 @@ h1.slider-title {
 }
 
 main {
-    margin-top: 200px;
+    margin-top: 130px;
 }
 
 

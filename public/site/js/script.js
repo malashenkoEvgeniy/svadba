@@ -14,8 +14,6 @@ function closeSearchForm(){
 }
 
 
-
-
 function modalAddToCart(teg) {
     //Открывает попап корзины
     function cartOpen(evt){
@@ -46,16 +44,16 @@ if($(document).width() > 1200) {
 
     $(document).mouseup(function (e){ // событие клика по веб-документу
         let div = $(".search-form"); // тут указываем ID элемента
+        let select = $(".select2-container");
         if (!div.is(e.target) // если клик был не по нашему блоку
-            && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            && div.has(e.target).length === 0 &&  !select.is(e.target) // если клик был не по нашему блоку
+            && select.has(e.target).length === 0) { // и не по его дочерним элементам
             closeSearchForm();
         }
     });
 
 //    Открытие -закрытие попап корзины
     modalAddToCart('.nav-item-cart-btn');
-
-
 
 //    Ховер меню категорий
 
@@ -91,10 +89,9 @@ if( $(document).width() <= 1200) {
     $('.search-form-btn-open').click(function(evt){
         evt.stopPropagation();
         $(this).parent().siblings().addClass('passive');
-        $(this).parent().addClass('open-search-blok');
+        $(this).parent().addClass('open-search-block');
         $('.search-form').removeClass('search-input-close');
         $(this).addClass('passive');
-
     });
 
     $('.btn-menu-burger').click(function(){

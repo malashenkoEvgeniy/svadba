@@ -40,6 +40,40 @@ $(document).ready(function () {
 
     }
 
+    $('.filter-show-more').click(function (evt) {
+        evt.preventDefault();
+        $(this).siblings('.filter-group-inputs').css('height', 'auto');
+        $(this).css('display', 'none');
+    });
+
+    $('.block-pagination .btn-show-more').click(function(){
+
+        let page = $(this).attr('data-page');
+
+        $.ajax({
+            method: 'GET',
+            url: page,
+            data: {
+                _token: '{{csrf_token()}}',
+            }
+        }).done(function(data){
+            let page = $(data);
+            let items = page.find('.products-item');
+            if (page.find('.block-pagination .btn-show-more').length == 1) {
+                let nextPage = page.find('.block-pagination .btn-show-more').attr('data-page');
+                $('.block-pagination .btn-show-more').attr('data-page', nextPage);
+            }else{
+                $('.block-pagination .btn-show-more').remove();
+            }
+
+            $('.rubric-products-list').append(items);
+
+            let next = $('.page-item.active').next();
+            $('.page-item.active').removeClass('active');
+            next.addClass("active");
+        });
+    });
+
 
 });
 

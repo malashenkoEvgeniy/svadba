@@ -7,7 +7,7 @@
         @if(count($brands))
         <fieldset>
             <legend>@lang('main.brand')</legend>
-            <div class="group-inputs">
+            <div class="group-inputs filter-group-inputs">
                 @foreach($brands as $brand)
                 <div class="group-input">
                     <input type="checkbox" id="brand{{$brand->id}}" name="brand[]" value="{{$brand->id}}">
@@ -15,13 +15,15 @@
                 </div>
                 @endforeach
             </div>
+            @if(count($brands)>5)
             <button class="filter-show-more">+ показать больше</button>
+            @endif
         </fieldset>
         @endif
         @if(count($colors))
         <fieldset>
             <legend>Цвет</legend>
-            <div class="group-inputs">
+            <div class="group-inputs filter-group-inputs">
                 @foreach($colors as $color)
                 <div class="group-input">
                     <input type="checkbox" id="color{{$color->id}}" name="color[]" value="{{$color->id}}">
@@ -29,7 +31,9 @@
                 </div>
                 @endforeach
             </div>
+            @if(count($colors)>5)
             <button class="filter-show-more">+ показать больше</button>
+            @endif
         </fieldset>
         @endif
         @if($rubric->id !== 3)
@@ -54,7 +58,7 @@
                 @if(count($textiles))
                     <fieldset>
                         <legend>Ткань</legend>
-                        <div class="group-inputs">
+                        <div class="group-inputs filter-group-inputs">
                             @foreach($textiles as $textile)
                                 <div class="group-input">
                                     <input type="checkbox" id="textile{{$textile->id}}" name="textile[]" value="{{$textile->id}}">
@@ -62,7 +66,9 @@
                                 </div>
                             @endforeach
                         </div>
+                        @if(count($textiles)>5)
                         <button class="filter-show-more">+ показать больше</button>
+                        @endif
                     </fieldset>
                 @endif
             @endif
@@ -70,7 +76,7 @@
         @if(count($sizes))
         <fieldset>
             <legend>Размер</legend>
-            <div class="group-inputs">
+            <div class="group-inputs filter-group-inputs">
                 @foreach($sizes as $size)
                     <div class="group-input">
                         <input type="checkbox" id="size{{$size->id}}" name="size[]" value="{{$size->id}}">
@@ -78,7 +84,9 @@
                     </div>
                 @endforeach
             </div>
+            @if(count($sizes)>5)
             <button class="filter-show-more">+ показать больше</button>
+            @endif
         </fieldset>
         @endif
 

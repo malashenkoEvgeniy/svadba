@@ -22,7 +22,7 @@
 {{--    </nav>--}}
 
 @if($paginator->hasMorePages())
-<button class="btn-show-more">Показать еще</button>
+<button class="btn-show-more" data-page="{{$paginator->nextPageUrl()}}">Показать еще</button>
 @endif
     <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
 
@@ -51,7 +51,7 @@
                                         <span class="relative inline-flex items-center px-4 py-4 -ml-px  font-medium  bg-white  cursor-default leading-5" style="color: #790C5A">{{ $page }}</span>
                                     </span>
                                 @else
-                                    <a href="{{ $url }}" class="pagination-link" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
+                                    <a href="{{ $url }}" class="pagination-link"  aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
                                         {{ $page }}
                                     </a>
                                 @endif

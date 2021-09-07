@@ -20,6 +20,13 @@
 .block-pagination> .btn-show-more {
     display: block;
     width: 300px;
+    border: 2px solid #ffffff;
+}
+
+.block-pagination> .btn-show-more:hover {
+    border: 2px solid #790C5A;
+    color:  #790C5A;
+    background-color: #ffffff;
 }
 
 .pagination-list {
@@ -45,7 +52,7 @@
 @media all and (max-width: 568px){
     .btn-show-more {
     display: block;
-   
+
     }
 
 }

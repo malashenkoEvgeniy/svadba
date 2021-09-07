@@ -51,6 +51,11 @@
     border: none;
 }
 
+.filter-group-inputs {
+    height: 190px;
+    overflow: hidden;
+}
+
 .modal-btn-filter legend {
    font-family: 'Playfair Display', serif;
     font-size: 24px;
@@ -131,6 +136,10 @@
     line-height: 24px;
     text-transform: uppercase;
     color: #A7A7A7;
+}
+
+.modal-btn-filter .filter-show-more:hover {
+    color: #790C5A;
 }
 
 .group-inputs-silhouette {

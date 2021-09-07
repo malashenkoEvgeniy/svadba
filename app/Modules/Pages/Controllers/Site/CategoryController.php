@@ -10,6 +10,7 @@ use App\Models\ClothingSize;
 use App\Models\Colors;
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\ProductOption;
 use App\Models\Silhouette;
 use App\Models\Textile;
 use App\Services\ProductService;
@@ -126,21 +127,51 @@ class CategoryController extends BaseController
     public function viewFilter(Request $request, $slug, Product $product)
     {
         $rubric = Category::where('slug', $slug)->with('children')->first();
+        $str = '1=1 ';
+        if ($request->pricemin !== null) {
+            $str .=  ' and price >= '.$request->pricemin;
+        }
+        if ($request->pricemax !== null) {
+            $str .=  ' and price < '.$request->pricemax;
+        }
+        if ($request->brands !== null) {
+            $str .=  ' and brand_id IN('.implode(',',$request->brands).') ';
+        }
+        if ($request->silhouettes !== null) {
+            $str .=  ' and silhouette_id IN('.implode(',',$request->silhouettes).') ';
+        }
 
-        $products = $product->getProductsBySearch($request)
-            ->where([
+        if ($request->textiles !== null) {
+            $str .=  ' and textile_id IN('.implode(',',$request->textiles).') ';
+        }
+
+        if ($request->colors !== null) {
+            $arr= [];
+            $options = ProductOption::whereIn('colors_id', $request->colors)->get();
+            foreach ($options as $item){
+                $arr[]= $item->product_id;
+            }
+            $str .=  'and id IN('.implode(',', $arr).') ';
+        }
+
+        if ($request->sizes !== null) {
+            $arr_size = [];
+            $options = ProductOption::whereIn('size_id', $request->sizes)->get();
+            foreach ($options as $item){
+                $arr_size[]= $item->product_id;
+            }
+            $str .=  'and id IN('.implode(',', $arr_size).') ';
+        }
+
+        $products = $product
+           ->where([
                 'category_id' => $rubric->id,
                 'available' => 1
             ])
-            ->with('brand', 'silhouette', 'color', 'size', 'textile');
+            ->whereRaw($str)
+            ->with('brand', 'silhouette', 'color', 'size', 'textile')
+            ->paginate(12);
 
-        if ($request->brands !== null) {
-            $products->whereIn('brand_id', $request->brands);
-        }
-        if ($request->silhouettes !== null) {
-            $products->whereIn('silhouette_id', $request->silhouettes);
-        }
-        $products->paginate(12);
         if ($request->ajax()) {
             return view('ajax-tpl.filter', compact('products'))->render();
         }
