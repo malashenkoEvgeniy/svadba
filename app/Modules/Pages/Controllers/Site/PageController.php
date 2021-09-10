@@ -34,7 +34,7 @@ class PageController extends BaseController
                 ->with('brand', 'silhouette', 'color', 'size', 'textile')
                 ->first();
             if ($product == null){
-                dd(4);
+
                 abort('404');
             }
 
@@ -72,6 +72,7 @@ class PageController extends BaseController
                         ]
                 ];
             }
+//            dd($breadcrumbs);
 
             return view('Pages::site.pages.product', compact('product', 'product_colors_first', 'product_sizes', 'breadcrumbs'));
         }

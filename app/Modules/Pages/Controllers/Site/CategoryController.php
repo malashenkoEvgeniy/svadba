@@ -26,25 +26,37 @@ class CategoryController extends BaseController
     {
         $rubric = Category::where('slug', $slug)->with('children')->first();
         if($request->orderBy == 'sort-promotion') {
-            $products = Product::where('category_id', $rubric->id)
+            $products = Product::where(
+                ['category_id'=> $rubric->id,
+                    'available'=>1
+            ])
                 ->with('brand', 'silhouette', 'color', 'size', 'textile')
                 ->orderBy('is_promotion', 'desc')
                 ->paginate(12);
         }
         if($request->orderBy == 'sort-new') {
-            $products = Product::where('category_id', $rubric->id)
+            $products = Product::where(
+                ['category_id'=> $rubric->id,
+                    'available'=>1
+                ])
                 ->with('brand', 'silhouette', 'color', 'size', 'textile')
                 ->orderBy('is_new', 'desc')
                 ->paginate(12);
         }
         if($request->orderBy == 'sort-price-asc') {
-            $products = Product::where('category_id', $rubric->id)
+            $products = Product::where(
+                ['category_id'=> $rubric->id,
+                    'available'=>1
+                ])
                 ->with('brand', 'silhouette', 'color', 'size', 'textile')
                 ->orderBy('price', 'asc')
                 ->paginate(12);
         }
         if($request->orderBy == 'sort-price-desc') {
-            $products = Product::where('category_id', $rubric->id)
+            $products = Product::where(
+                ['category_id'=> $rubric->id,
+                    'available'=>1
+                ])
                 ->with('brand', 'silhouette', 'color', 'size', 'textile')
                 ->orderBy('price', 'desc')
                 ->paginate(12);
@@ -96,34 +108,36 @@ class CategoryController extends BaseController
                 'category_id'=> $rubric->id,
                 'available'=>1
                 ])
-            ->with('brand', 'silhouette', 'color', 'size', 'textile')
-            ->paginate(12);
+            ->with('brand', 'silhouette', 'color', 'size', 'textile');
+//        ->get()
+//            ->paginate(12);
+//        dd($products);
 
-        $brands = Brand::whereIn('id', ProductService::getArrayItems($products, 'brand'))->get();
-        $categories = Category::whereIn('id', ProductService::getArrayItems($products, 'category'))->get();
-        $colors = Colors::whereIn('id', ProductService::getArrayItemsOptions($products))->get();
-        $silhouettes = Silhouette::whereIn('id', ProductService::getArrayItems($products, 'silhouette'))->get();
-        $textiles = Textile::whereIn('id', ProductService::getArrayItems($products, 'textile'))->get();
-        $sizes = ClothingSize::whereIn('id', ProductService::getArrayItemsOptions($products, 'size_id'))->get();
+        $brands = Brand::whereIn('id', ProductService::getArrayItems($products->get(), 'brand'))->get();
+        $categories = Category::whereIn('id', ProductService::getArrayItems($products->get(), 'category'))->get();
+        $colors = Colors::whereIn('id', ProductService::getArrayItemsOptions($products->get()))->get();
+        $silhouettes = Silhouette::whereIn('id', ProductService::getArrayItems($products->get(), 'silhouette'))->get();
+        $textiles = Textile::whereIn('id', ProductService::getArrayItems($products->get(), 'textile'))->get();
+        $sizes = ClothingSize::whereIn('id', ProductService::getArrayItemsOptions($products->get(), 'size_id'))->get();
 
         $breadcrumbs = (object) [
             'current' => strip_tags($rubric->translate()->title),
             'parent' => Page::where('slug', 'katalog')->get()
         ];
 
-        return view('Pages::site.categories.view', compact(
-            'categories',
-            'brands',
-            'colors',
-            'silhouettes',
-            'textiles',
-            'sizes',
-            'rubric',
-            'products',
-            'breadcrumbs'
-        ));
+        return view('Pages::site.categories.view', [
+            'categories' =>$categories,
+            'brands' =>$brands,
+            'colors' =>$colors,
+            'silhouettes' =>$silhouettes,
+            'textiles' => $textiles,
+            'sizes' => $sizes,
+            'rubric' => $rubric,
+            'products' => $products->paginate(12),
+            'breadcrumbs' => $breadcrumbs
+        ]);
     }
-//TODO: доделать
+
     public function viewFilter(Request $request, $slug, Product $product)
     {
         $rubric = Category::where('slug', $slug)->with('children')->first();
@@ -151,16 +165,16 @@ class CategoryController extends BaseController
             foreach ($options as $item){
                 $arr[]= $item->product_id;
             }
-            $str .=  'and id IN('.implode(',', $arr).') ';
+            $str .=  ' and id IN('.implode(',', array_unique($arr)).') ';
         }
 
         if ($request->sizes !== null) {
             $arr_size = [];
-            $options = ProductOption::whereIn('size_id', $request->sizes)->get();
+            $options = ProductOption::whereIn('size_id', array_unique($request->sizes))->get();
             foreach ($options as $item){
                 $arr_size[]= $item->product_id;
             }
-            $str .=  'and id IN('.implode(',', $arr_size).') ';
+            $str .=  ' and id IN('.implode(',', $arr_size).') ';
         }
 
         $products = $product
@@ -172,6 +186,7 @@ class CategoryController extends BaseController
             ->with('brand', 'silhouette', 'color', 'size', 'textile')
             ->paginate(12);
 
+//        return $str;
         if ($request->ajax()) {
             return view('ajax-tpl.filter', compact('products'))->render();
         }

@@ -10,9 +10,9 @@
             {{$service->attachments[0]->img_d}}
             @endif">
             </a>
-                        <span class="catalog-item-title">
-                           {{$service->translate()->title}}
-                        </span>
+            <a href="{{route('page.view', ['slug'=>$service->slug])}}" class="catalog-item-title">
+               {{$service->translate()->title}}
+            </a>
 
         </li>
         @endforeach

@@ -113,9 +113,9 @@
                 </a>
                 <div class="counter-orders">
                     <?php
-                    if(!isset($_COOKIE['cart_id'])) {
-                        setcookie('cart_id', uniqid());
-                    }
+//                    if(!isset($_COOKIE['cart_id'])) {
+//                        setcookie('cart_id', uniqid());
+//                    }
 //                    echo $_COOKIE['cart_id'];
 ////                    echo 1111;
 //                    die;

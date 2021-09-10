@@ -27,6 +27,7 @@
     line-height: 24px;
     text-transform: uppercase;
     color: #790C5A;
+    margin: 24px 0;
 }
 
 .contacts-wrapper {
@@ -279,6 +280,7 @@
 .silhouette-link {
     max-width: 100%;
     text-decoration: none;
+    cursor: pointer;
 
 }
 
@@ -354,7 +356,7 @@
     width: 100%;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     list-style: none;
     padding: 0;

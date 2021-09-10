@@ -19,6 +19,10 @@ class BaseController extends Controller
         $h_categories = Category::where('parent_id', 0)->with('children')->get();
         $test = Product::where('is_promotion', 1)->get();
 
+        if(!isset($_COOKIE['cart_id'])){
+            $_COOKIE['cart_id'] = uniqid();
+        }
+
         view()->share(compact('h_contacts', 'h_pages', 'h_categories', 'test'));
     }
 

@@ -89,16 +89,15 @@
             @endif
         </fieldset>
         @endif
-
             <fieldset>
                 <div class="filters__item filters-price">
                     <h3 class="filters-price__title">Цена</h3>
                     <div class="filters-price__inputs">
                         <label class="filters-price__label">
-                            <input type="number" min="100" max="50000" placeholder="100" name="pricemin" class="filters-price__input" id="input-0">
+                            <input type="number" min="{{ $products->min('price') }}" placeholder="{{ $products->min('price') }}" name="pricemin" class="filters-price__input" id="input-0">
                         </label>
                         <label class="filters-price__label">
-                            <input type="number" min="100" max="50000" placeholder="50000" name="pricemax" class="filters-price__input" id="input-1">
+                            <input type="number"  max="{{ $products->max('price') }}" placeholder="{{ $products->max('price') }}" name="pricemax" class="filters-price__input" id="input-1">
                         </label>
                         <button type="submit" class="filter-submit">OK</button>
                     </div>

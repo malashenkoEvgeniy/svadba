@@ -1,6 +1,9 @@
 "use strict";
 
     const rangeSlider = document.getElementById('range-slider');
+    let minVal = document.getElementById('input-0');
+    let maxVal = document.getElementById('input-1');
+    // console.log(minVal.getAttribute('data-min'));
 
     if (rangeSlider) {
         noUiSlider.create(rangeSlider, {
@@ -8,8 +11,8 @@
             connect: true,
             step: 1,
             range: {
-                'min': [100],
-                'max': [50000]
+                'min': [Number(minVal.getAttribute('min'))],
+                'max': [Number(maxVal.getAttribute('max'))]
             }
         });
 
@@ -25,7 +28,7 @@
             let arr = [null, null];
             arr[i] = value;
 
-            console.log(arr);
+            // console.log(arr);
 
             rangeSlider.noUiSlider.set(arr);
         };

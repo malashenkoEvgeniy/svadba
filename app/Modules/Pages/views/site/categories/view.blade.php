@@ -30,11 +30,11 @@
                             <ul class="silhouette-list">
                                 @foreach( $silhouettes as $silhouette)
                                 <li class="silhouette-item">
-                                    <a href="#" class="silhouette-link" data-link="{{$silhouette->id}}">
+                                    <div class="silhouette-link" data-link="{{$silhouette->id}}">
                                         <img src="{{$silhouette->attachments[0]->img_d}}" alt="" class="silhouette-img">
                                         <h4 class="silhouette-link-title">{{ $silhouette->translate()->title }}</h4>
 
-                                    </a>
+                                    </div>
                                 </li>
                                 @endforeach
                             </ul>

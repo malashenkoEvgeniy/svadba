@@ -51,7 +51,7 @@
 .catalog {
     height: 80vh;
     box-sizing: border-box;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 }
 
 .catalog-title {
@@ -100,7 +100,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     font-size: 48px;
     line-height: 56px;
     text-decoration: none;
@@ -132,7 +132,7 @@
     line-height: 56px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 40px 0;
+    padding: 44px 0 55px 0;
     color: #101010;
 }
 

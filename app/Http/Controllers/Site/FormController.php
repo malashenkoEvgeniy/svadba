@@ -19,7 +19,7 @@ class FormController extends Controller
     {
         $cart_id = $_COOKIE['cart_id'];
         \Cart::session($cart_id);
-//        dd($request, \Cart::getContent());
+        dd($request, \Cart::getContent());
         if($request->payment_method == 'bank'){
             dd(123);
         }

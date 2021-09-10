@@ -540,7 +540,7 @@ main {
     line-height: 32px;
     text-decoration: none;
     color: #101010;
-    padding: 45px 30px;
+    padding: 45px;
     white-space: nowrap;
     display: block;
 }
@@ -560,8 +560,9 @@ main {
     margin-left: auto;
 }
 
-
-
+.footer-social-item:first-child {
+    margin-right: 20px;
+}
 
 .footer-social-link {
      padding: 10px;

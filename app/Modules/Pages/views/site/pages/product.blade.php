@@ -84,8 +84,8 @@
                         </ul>
                         @if($product->is_promotion)
                             <div class="product-price">
-                                <span class="product-new-price">{{ $product->new_price}} грн.</span>
-                                <span class="product-old-price">{{ $product->price}} грн.</span>
+                                <span class="product-new-price">{{ $product->price}} грн.</span>
+                                <span class="product-old-price">{{ $product->new_price}} грн.</span>
                             </div>
                         @else
                             <div class="product-price">
