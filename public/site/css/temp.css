@@ -1,0 +1,42 @@
+.about_us_first,
+.about_us_second {
+ display: flex;
+    align-items: flex-start;
+    width: 90%;
+    justify-content: flex-start;
+}
+
+.about_us_second {
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.about_us-wrap p {
+    padding: 5px 25px;
+    width: 60%;
+}
+
+.about_us-wrap .image {
+    width: 40%;
+}
+
+@media all and (max-width: 768px){
+    .about_us_first,
+    .about_us_second {
+       flex-direction: column-reverse;
+        width: 100%;
+    }
+
+    .about_us_second {
+        flex-direction: column;
+    }
+
+    .about_us-wrap p {
+        padding: 5px 25px;
+        width: 100%;
+    }
+
+    .about_us-wrap .image {
+        width: 100%;
+    }
+}

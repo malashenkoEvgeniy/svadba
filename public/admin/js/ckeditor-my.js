@@ -110,3 +110,4 @@ function initEditor(selector) {
         console.error( error );
     }
 }
+initEditor('.editor')

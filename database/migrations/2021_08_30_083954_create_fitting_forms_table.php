@@ -17,7 +17,7 @@ class CreateFittingFormsTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('phone', 255);
-            $table->integer('date');
+            $table->string('date');
             $table->text('msg')->nullable();
             $table->string('product_id', 50)->nullable();
             $table->bigInteger('shop_id')->unsigned();

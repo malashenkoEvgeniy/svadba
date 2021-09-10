@@ -59,7 +59,7 @@
         <section class="feedback-form">
             <div class="feedback-form-block">
                 <h2 class="feedback-form-title page-title">Записаться на примерку</h2>
-                @widget('fitting-form')
+                @widget('fitting-form',12)
             </div>
         </section>
         <section class="seo">

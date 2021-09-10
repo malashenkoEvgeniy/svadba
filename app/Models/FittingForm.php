@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class FittingForm extends Model
 {
     use HasFactory;
+    protected $table = 'fitting_forms';
+    protected $guarded = [];
 }

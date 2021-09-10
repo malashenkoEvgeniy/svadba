@@ -1,10 +1,11 @@
-<form action="" method="post" name="fitting_form" class="feedback-form-form" id="fitting-form">
+{{--{{dd($is_autofocus)}}--}}
+<form action=" {{route('form.fitting')}}" method="post" name="fitting_form" class="feedback-form-form" id="fitting-form">
     <div class="wrong_date">Вы выбрали не корректную дату. Вы не можете записаться на примерку на дату которая уже прошла!</div>
     @csrf
     <div class="feedback-form-lavel feedback-form-first-lavel">
         <div class="input-block">
             <label for="name">Имя<span>*</span></label>
-            <input type="text" id="name" name="name" autofocus="autofocus" required>
+            <input type="text" id="name" name="name" @if($is_autofocus == 1) autofocus="autofocus" @endif required>
         </div>
         <div class="input-block">
             <label for="phone">Телефон<span>*</span></label>
@@ -18,7 +19,7 @@
         </div>
         <div class="input-block">
             <label for="time-appointment">Время<span>*</span></label>
-            <select type="text" id="time-appointment" name="time" required>
+            <select type="text" id="time-appointment" name="date" required>
                 <option value=""></option>
                 <option value="10:00">10:00 - 11:00</option>
                 <option value="11:00">11:00 - 12:00</option>
@@ -33,12 +34,11 @@
         </div>
         <div class="input-block">
             <label for="address">Адрес салона<span>*</span></label>
-            <select type="text" id="address" name="address" required>
+            <select type="text" id="address" name="shop_id" required>
                 <option value="">Выбирите адрес</option>
-                <option value="ул. Шевченко 1">ул. Шевченко 1</option>
-                <option value="ул. Шевченко 10">ул. Шевченко 10</option>
-                <option value="ул. Шевченко 100">ул. Шевченко 100</option>
-                <option value="ул. Шевченко 1000">ул. Шевченко 1000</option>
+                @foreach($shops as $shop)
+                    <option value="{{$shop->id}}">{{$shop->city->translate()->title}}, {{$shop->translate()->address}}</option>
+                @endforeach
             </select>
         </div>
     </div>
@@ -46,5 +46,6 @@
         <label for="description">Сообщение</label>
         <textarea type="date" id="description" name="msg"></textarea>
     </div>
+{{--    <input type="hidden" name="language" value="{{ LaravelLocalization::getCurrentLocale() }}">--}}
     <button class="btn" type="submit">Записаться</button>
 </form>

@@ -36,7 +36,7 @@ class Page extends BaseModel
         ];
     }
 
-    public static function create_item($title, $order_by, $parent_id = 0, $img = null)
+    public static function create_item($title, $order_by, $parent_id = 0, $img = null, $body = null)
     {
         $page = self::create([
             'slug'=>SlugService :: createSlug ( Page :: class, 'slug' , $title ),
@@ -57,7 +57,8 @@ class Page extends BaseModel
         }
         $page->translations()->create([
             'title'=>$title,
-            'language'=>'ru'
+            'language'=>'ru',
+            'body'=>$body
         ]);
         return $page;
     }

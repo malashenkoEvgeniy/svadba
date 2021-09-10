@@ -9,15 +9,17 @@
         @include('includes.site.breadcrumbs')
             <section class="content">
                 <h2 class="content-title page-title">{{ $rubric->translate()->title }}</h2>
-                @if( count($categories))
-                    <ul class="content-brands-list">
-                        <li class="content-brands-item">@lang('main.categories'):</li>
-                        @foreach( $categories as $category)
-                            <li class="content-brands-item">
-                                <a href="{{ route('page.category.view', ['slug'=>$category->slug])}}" class="content-brands-link">{{$category->translate()->title}}</a>
-                            </li>
-                        @endforeach
-                    </ul>
+                @if($rubric->slug !== 'akcii')
+                    @if( count($categories))
+                        <ul class="content-brands-list">
+                            <li class="content-brands-item">@lang('main.categories'):</li>
+                            @foreach( $categories as $category)
+                                <li class="content-brands-item">
+                                    <a href="{{ route('page.category.view', ['slug'=>$category->slug])}}" class="content-brands-link">{{$category->translate()->title}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 @endif
 
                 @if($rubric->id !== 3)

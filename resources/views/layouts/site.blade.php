@@ -1,8 +1,10 @@
-<?php
-if(!isset($_COOKIE['cart_id'])) {
-    setcookie('cart_id', uniqid());
-}
-?>
+{{--<?php--}}
+{{--if(!isset($_COOKIE['cart_id'])) {--}}
+{{--    setcookie('cart_id', uniqid());--}}
+{{--}--}}
+
+{{--?>--}}
+{{--    {{dd($_COOKIE['cart_id'])}}--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>

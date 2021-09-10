@@ -1,4 +1,6 @@
-<form action="" id="order-form">
+<form action="{{route('form.order')}}" method="post" id="order-form">
+
+    @csrf
     <div class="order-form-first order-form-level1 order-form-level active">
         <div class="input-block">
             <label for="name">Имя<span>*</span></label>
@@ -22,20 +24,20 @@
         <div class="order-form-second-wrap">
             <legend>Выберите способ доставки</legend>
             <div class="input-block-radio">
-                <input type="radio" name="delivery" checked id="pickup"><label for="pickup">Самовывоз с магазина (возможна примерка)</label>
+                <input type="radio" name="delivery" value="pickup" checked id="pickup"><label for="pickup">Самовывоз с магазина (возможна примерка)</label>
             </div>
             <div class="input-pickup active">
                 <label for="address">Адрес салона<span>*</span></label>
-                <select type="text" id="address" name="address" required>
+
+                <select type="text" id="address" name="shop_id" required>
                     <option value="">Выбирите адрес</option>
-                    <option value="ул. Шевченко 1">ул. Шевченко 1</option>
-                    <option value="ул. Шевченко 10">ул. Шевченко 10</option>
-                    <option value="ул. Шевченко 100">ул. Шевченко 100</option>
-                    <option value="ул. Шевченко 1000">ул. Шевченко 1000</option>
+                    @foreach($shops as $shop)
+                        <option value="{{$shop->id}}">{{$shop->city->translate()->title}}, {{$shop->translate()->address}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="input-block-radio">
-                <input type="radio" name="delivery" id="new_post"><label for="new_post">Новая почта</label>
+                <input type="radio" name="delivery" value="new_post" id="new_post"><label for="new_post">Новая почта</label>
             </div>
             <div class="new-post-order-block">
                 <div class="input-block ">
@@ -60,8 +62,8 @@
                 <input type="radio" name="delivery" id="courier"><label for="courier">Курьер по Киеву</label>
             </div>
             <div class="input-block courier-input">
-                <label for="surname">Укажите отделение<span>*</span></label>
-                <input type="text" id="surnamename">
+                <label for="address">Укажите адрес<span>*</span></label>
+                <input type="text" name="address" id="address">
             </div>
         </div>
         <div class="order-form-btn-wrap">
@@ -74,15 +76,15 @@
         <div class="input-block">
             <legend>Выберите способ оплаты</legend>
             <div class="input-block-radio">
-                <input type="radio" name="payment method" id="payment_upon-receipt" checked><label for="payment_upon-receipt">Оплата при получении</label>
+                <input type="radio" name="payment method" value="cash" id="payment_upon-receipt" checked><label for="payment_upon-receipt">Оплата при получении</label>
             </div>
             <div class="input-block-radio">
-                <input type="radio" name="payment method" id="bank_payment"><label class="label-payment" for="bank_payment">Оплата картой через Приват 24 @include('svg.pay')</label>
+                <input type="radio" name="payment method" value="bank" id="bank_payment"><label class="label-payment" for="bank_payment">Оплата картой через Приват 24 @include('svg.pay')</label>
             </div>
         </div>
         <div class="order-form-btn-wrap">
             <a href="#" class="btn-prev-order btn-order" data-order="2">Назад</a>
-            <a href="#" class="btn-next-order btn-order" data-order="4">Далее</a>
+            <a href="#" class="btn-next-order btn-order" onclick="document.querySelector('#order-form').submit()" data-order="4">Далее</a>
         </div>
     </div>
 </form>

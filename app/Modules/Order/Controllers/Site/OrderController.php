@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\MainPage;
 use App\Models\MainSlider;
 use App\Models\NewPostArea;
+use App\Models\Shop;
 use App\Services\NewPostServices;
 use LisDev\Delivery\NovaPoshtaApi2;
 
@@ -19,11 +20,18 @@ class OrderController extends BaseController
 
 //        NewPostServices::settlements();
         //TODO: Проработать использование преложения
-        $np = new NovaPoshtaApi2(NewPostServices::API_KEY);
-        $city = $np->getCity('Киев', 'Киевская');
-        $result = $np->getWarehouses($city['data'][0]['Ref']);
-        dd($result);
-
-        return view('Order::site.order.index');
+//        $np = new NovaPoshtaApi2(NewPostServices::API_KEY);
+//        $city = $np->getCity('Киев', 'Киевская');
+//        $result = $np->getWarehouses($city['data'][0]['Ref']);
+//        dd($result);
+        $breadcrumbs = (object) [
+            'current' => 'Оформление заказа',
+            'parent' => null
+        ];
+        $shops = Shop::with('city')->get();
+        return view('Order::site.order.index', [
+            'breadcrumbs' =>$breadcrumbs,
+            'shops' => $shops
+        ]);
     }
 }
