@@ -112,24 +112,11 @@
                     @include('svg.cart')
                 </a>
                 <div class="counter-orders">
-                    <?php
-//                    if(!isset($_COOKIE['cart_id'])) {
-//                        setcookie('cart_id', uniqid());
-//                    }
-//                    echo $_COOKIE['cart_id'];
-////                    echo 1111;
-//                    die;
-                    ?>
+
                     {{ \Cart::session($_COOKIE['cart_id'])->getTotalQuantity() }}
                 </div>
-{{--                <div class="counter-orders1">{{ \Cart::session($_COOKIE['cart_id'])->getTotal() }}</div>--}}
             </li>
-{{--            <li class="nav-item nav-item-temp-cart">--}}
-{{--                <a href="{{ route('cart.index') }}" class="nav-item-temp-cart-btn">--}}
-{{--                    Корзина временно--}}
-{{--                </a>--}}
-{{--                <div class="counter-orders">10</div>--}}
-{{--            </li>--}}
+
         </ul>
     </nav>
 </header>

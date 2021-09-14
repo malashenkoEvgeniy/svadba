@@ -22,8 +22,8 @@ class Product extends BaseModel
         'img_t_h' => 350,
         'img_m_w' => 300,
         'img_m_h' => 300,
-        'img_p_w' => 100,
-        'img_p_h' => 75,
+        'img_p_w' => 120,
+        'img_p_h' => 160,
     ];
 
 

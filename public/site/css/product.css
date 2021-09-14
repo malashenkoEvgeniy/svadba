@@ -30,7 +30,7 @@
 .product-main-photos,
 .product-previews-list {
     list-style: none;
-    padding: 0;
+    padding: 10px;
 }
 
 /*.product-main-photo-item {*/
@@ -47,7 +47,7 @@
     display: flex;
     align-content: flex-start;
     justify-content: flex-start;
-    padding: 0;
+    padding: 0 0 0 5px;
 }
 
 .product-previews-item {
@@ -190,7 +190,7 @@
 }
 
 .product-tabs-header-btn {
-    width: 550px;
+    width: 100%;
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;

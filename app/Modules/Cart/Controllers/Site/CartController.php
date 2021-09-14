@@ -35,7 +35,7 @@ class CartController extends BaseController
             'price' => ($product->product->is_promotion) ? $product->product->new_price : $product->product->price,
             'quantity' => (int)$request->quantity,
             'attributes' => [
-                'img' => $product->product->attachments[0]->img_prev,
+                'img' => $product->product->attachments[0]->img_m,//TODO: Не забудь вернуть превью
                 'size'=>$product->sizes->size,
                 'color'=>$product->colors->translate()->title,
                 'meaning'=>$product->colors->meaning

@@ -1,5 +1,6 @@
 @extends('layouts.site')
 @section('links')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="{{asset('site/css/product.css')}}">
 
 @endsection
@@ -13,7 +14,7 @@
                         <div class="product-photos-wrapper">
                             <ul class="product-main-photos">
                                 @foreach($product->attachments as $product_img)
-                               <li class="product-main-photo">
+                               <li class="product-main-photo" data-fancybox="gallery" href="{{$product_img->img_f}}">
                                     <a class="product-main-link">
                                         <img src="{{$product_img->img_d}}" alt="" class="product-main-photo-item">
                                     </a>
@@ -23,7 +24,7 @@
                             <ul class="product-previews-list">
                                 @foreach($product->attachments as $product_img)
                                     <li class="product-previews-item">
-                                        <a  class="product-previews-link">
+                                        <a  class="product-previews-link" data-fancybox="gallery" href="{{$product_img->img_f}}">
                                             <img src="{{$product_img->img_d}}" alt="" class="product-previews-link-img">
                                         </a>
                                     </li>
@@ -123,6 +124,7 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script src="{{asset('site/js/product.js')}}"></script>
     <script>
         $('input[name=size]').change(function () {
